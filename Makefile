@@ -12,8 +12,10 @@ LIBFT_NAME = libft.a
 LIBFT_FULL = $(LIBFT_DIR)/$(LIBFT_NAME)
 
 # ---------- SOURCES ---------- #
-VPATH = ./src
-SOURCES =	main.c execute_command.c freeing.c
+VPATH = ./src ./src/builtins ./src/shell_utils
+SOURCES =	main.c execute_command.c freeing.c \
+			check_builtin.c builtin_echo.c builtin_pwd.c builtin_cd.c \
+			get_shell.c
 
 # ---------- OBJECTS ---------- #
 OBJECT_DIR = obj
