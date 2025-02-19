@@ -60,13 +60,17 @@ checkMyLibft:
 	fi	
 
 $(LIBFT_NAME):
-	@echo "$(YELLOW)Creating $(LIBFT_NAME)...$(NC)"
-	@make -C $(LIBFT_DIR) > $(LIBFT_DIR)/make_log.txt
-	@if [ -f $(LIBFT_DIR)/$(LIBFT_NAME) ]; then \
-		echo "$(GREEN)$(LIBFT_NAME) successfully created$(NC)"; \
+	@if [ ! -d $(LIBFT_DIR) ]; then \
+		echo "$(RED)myLibft folder doesnt exist! Run 'make checkMyLibft' first to download myLibft$(NC)"; \
 	else \
-		echo "$(RED)failed to compile $(LIBFT_DIR)$(NC)"; \
-		exit 1; \
+		echo "$(YELLOW)Creating $(LIBFT_NAME)...$(NC)"; \
+		make -C $(LIBFT_DIR) > $(LIBFT_DIR)/make_log.txt; \
+		if [ -f $(LIBFT_DIR)/$(LIBFT_NAME) ]; then \
+			echo "$(GREEN)$(LIBFT_NAME) successfully created$(NC)"; \
+		else \
+			echo "$(RED)failed to compile $(LIBFT_DIR)$(NC)"; \
+			exit 1; \
+		fi \
 	fi
 
 $(OBJECT_DIR)/%.o: %.c | $(OBJECT_DIR)
