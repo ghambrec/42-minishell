@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 18:39:55 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/02/18 19:25:12 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/02/19 11:12:04 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 # define MINISHELL_H
 
 # include "../lib/myLibft/include/my_libft.h"
-# include <stdbool.h>
-#include <stdio.h>
-
+# include <errno.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 
@@ -41,6 +39,10 @@ typedef struct s_tokens
 } t_tokens;
 
 
+// FREEING
+void	free_split(char **split);
 
+// EXECUTING
+void	execute_command(char **cmd);
 
 #endif

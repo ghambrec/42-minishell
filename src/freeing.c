@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   freeing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/13 18:46:29 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/02/19 11:11:18 by ghambrec         ###   ########.fr       */
+/*   Created: 2025/02/19 10:52:32 by ghambrec          #+#    #+#             */
+/*   Updated: 2025/02/19 10:53:46 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+# include "minishell.h"
 
-int	main(void)
+void	free_split(char **split)
 {
-	char	*input;
-	// t_tokens tokens;
+	char	**orig;
 
-	while (1)
+	orig = split;
+	while (*split != NULL)
 	{
-		input = readline("\033[0;36m> \033[0m");
-		if (!input) // STRG-D closes the shell
-			break ;
-		
-		// doing stuff
-		// ...
-
-		printf("--> %s\n", input);
-
-		
-		add_history(input);
-		free(input);
+		free(*split);
+		split++;
 	}
-	clear_history();
-	return (EXIT_SUCCESS);
+	free(orig);
 }

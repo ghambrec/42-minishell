@@ -6,7 +6,7 @@
 #    By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/13 18:46:31 by ghambrec          #+#    #+#              #
-#    Updated: 2025/02/18 18:26:28 by ghambrec         ###   ########.fr        #
+#    Updated: 2025/02/19 11:01:27 by ghambrec         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ LIBFT_FULL = $(LIBFT_DIR)/$(LIBFT_NAME)
 
 # ---------- SOURCES ---------- #
 VPATH = ./src
-SOURCES =	main.c
+SOURCES =	main.c execute_command.c freeing.c
 
 # ---------- OBJECTS ---------- #
 OBJECT_DIR = obj
