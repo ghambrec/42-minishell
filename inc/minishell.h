@@ -21,7 +21,7 @@
 // 	BIN_EXIT
 // } t_buildins;
 
-enum e_tokens
+typedef enum e_token_type
 {
 	CMD,
 	PIPE,
@@ -31,8 +31,11 @@ enum e_tokens
 	HEREDOC,
 	AND,
 	OR
-};
+} t_token_type;
 
+
+// hier noch ein error bool flag? zu beginn immer auf false und bei fehler auf true damit verkettungsoperatoren wissen
+// ob befehl vorher erfolgreich bzw nicht erfolgreich war
 typedef struct s_shell
 {
 	char	**env;
@@ -41,12 +44,24 @@ typedef struct s_shell
 
 typedef struct s_tokens
 {
-	int				id;
-	enum e_tokens	token_type;
+	t_token_type	token_type;
 	char			**token;
 	struct s_ctbl	*next;
 } t_tokens;
 
+typedef struct s_current_token
+{
+	t_tokens	*current;
+} t_current_token;
+
+
+typedef struct s_ast
+{
+	t_token_type	ttype;
+	char			**cmd; // copy from t_tokens.token, if its a command otherwise NULL
+	struct s_ast	*left;
+	struct s_ast	*right;
+} t_ast;
 
 // FREEING
 void	free_split(char **split);
