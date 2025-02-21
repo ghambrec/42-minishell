@@ -9,17 +9,17 @@
 // #include <readline/history.h>
 
 
-typedef enum e_builtins
-{
-	NO_BIN,
-	BIN_ECHO,
-	BIN_CD,
-	BIN_PWD,
-	BIN_EXPORT,
-	BIN_UNSET,
-	BIN_ENV,
-	BIN_EXIT
-} t_buildins;
+// typedef enum e_builtins
+// {
+// 	NO_BIN,
+// 	BIN_ECHO,
+// 	BIN_CD,
+// 	BIN_PWD,
+// 	BIN_EXPORT,
+// 	BIN_UNSET,
+// 	BIN_ENV,
+// 	BIN_EXIT
+// } t_buildins;
 
 enum e_tokens
 {
@@ -55,7 +55,7 @@ void	free_split(char **split);
 void	execute_command(char **cmd);
 
 // BUILTINS
-t_buildins	check_builtin(char *program);
+void		check_builtin(char *program);
 void		builtin_echo(char **cmd);
 void		builtin_pwd(void);
 void		builtin_cd(char **cmd);
