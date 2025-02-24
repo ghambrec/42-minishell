@@ -1,37 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/13 18:46:29 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/02/19 13:08:28 by rstumpf          ###   ########.fr       */
+/*   Created: 2025/02/19 15:03:16 by rstumpf           #+#    #+#             */
+/*   Updated: 2025/02/19 15:07:20 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../inc/minishell.h"
 
-int	main(void)
+int	get_array_size(char **array)
 {
-	char	*input;
-	// t_tokens tokens;
+	int	i;
 
-	while (1)
-	{
-		input = readline("\033[0;36m> \033[0m");
-		if (!input) // STRG-D closes the shell
-			break ;
-		
-		// doing stuff
-		// ...
-
-		printf("--> %s\n", input);
-
-		
-		add_history(input);
-		free(input);
-	}
-	clear_history();
-	return (EXIT_SUCCESS);
+	i = 0;
+	while (array[i] != NULL)
+		i++;
+	return (i);
 }

@@ -5,33 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/13 18:46:29 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/02/19 13:08:28 by rstumpf          ###   ########.fr       */
+/*   Created: 2025/02/20 11:07:17 by rstumpf           #+#    #+#             */
+/*   Updated: 2025/02/20 11:07:33 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../inc/minishell.h"
 
 int	main(void)
 {
-	char	*input;
-	// t_tokens tokens;
-
-	while (1)
-	{
-		input = readline("\033[0;36m> \033[0m");
-		if (!input) // STRG-D closes the shell
-			break ;
-		
-		// doing stuff
-		// ...
-
-		printf("--> %s\n", input);
-
-		
-		add_history(input);
-		free(input);
-	}
-	clear_history();
-	return (EXIT_SUCCESS);
+	t_tokens	*token_list = NULL;
+	char		*input;
+	input = "    grep pattern     < input.txt | wc -l > output.txt";
+	create_command_list(input, &token_list);
 }
