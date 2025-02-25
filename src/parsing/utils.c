@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 11:08:14 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/02/20 11:08:17 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/02/25 13:26:51 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_print2d(char **array2d)
 	printf("\n");
 }
 
-void	ft_printlist(t_tokens *token)
+void	ft_printlist(t_token_type *token)
 {
 	while (token)
 	{
@@ -46,11 +46,15 @@ int	get_token_type(char **token)
 		token_type = RE_OUTPUT;
 	else if (token[0][0] == '&' && token[0][1] == '&')
 		token_type = AND;
+	else if (token[0][0] == '&')
+		token_type = BACKGROUND;
+	else if (token[0][0] == '(')
+		token_type = PARENTESIS_OPEN;
+	else if (token[0][0] == ')')
+		token_type = PARENTESIS_CLOSE;
 	else if (token[0][0] == '<')
 		token_type = RE_INPUT;
-	else if (token[0][0] == '>' && token[0][1] == '>')
-		token_type = RE_APPEND;
 	else
-		token_type = RE_OUTPUT;
+		token_type = RE_APPEND;
 	return (token_type);
 }

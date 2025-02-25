@@ -6,13 +6,13 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 10:21:55 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/02/20 11:04:28 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/02/25 13:24:20 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	handle_commands(char **all_tokens, t_tokens **token_list, int i)
+void	handle_commands(char **all_tokens, t_token_type **token_list, int i)
 {
 	char	**commands;
 
