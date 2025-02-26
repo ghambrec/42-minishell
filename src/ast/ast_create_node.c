@@ -1,8 +1,9 @@
+
 #include "minishell.h"
 
-t_ast *ast_create_node(t_token_type ttype, char **cmd, t_ast *left, t_ast *right)
+t_ast	*ast_create_node(t_token_type ttype, char **cmd, t_ast *left, t_ast *right)
 {
-	t_ast *new_node;
+	t_ast	*new_node;
 
 	new_node = (t_ast *)malloc(sizeof(t_ast));
 	if (!new_node)
@@ -11,19 +12,5 @@ t_ast *ast_create_node(t_token_type ttype, char **cmd, t_ast *left, t_ast *right
 	new_node->cmd = cmd;
 	new_node->left = left;
 	new_node->right = right;
-}
-
-t_tokens *get_token(t_current_token *current_token)
-{
-	return (current_token->current);
-}
-
-
-t_ast *ast_create(t_tokens *tokens)
-{
-	t_current_token token;
-	token.current = tokens;
-
-
-
+	return (new_node);
 }
