@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 10:21:25 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/02/26 14:12:14 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/02/26 15:33:05 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	split_tokens_set_type(char **all_tokens, t_tokens **token_list)
 void	create_command_list(char *input, t_tokens **token_list)
 {
 	split_tokens_set_type(ft_split(input, ' '), token_list);
-	handle_quotes_and_envs(*token_list);
-	ft_printlist(*token_list);
+	// handle_quotes_and_envs(*token_list);
+	// ft_printlist(*token_list);
 }
 

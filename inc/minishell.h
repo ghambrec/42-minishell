@@ -103,6 +103,7 @@ bool			is_command(char *check);
 
 // FREEING
 void	free_split(char **split);
+void	free_tokens(t_tokens *tokens);
 
 // EXECUTING
 void	execute_command(char **cmd);
@@ -124,5 +125,6 @@ t_ast	*ast_parse_pipe(t_tokens **tokens);
 t_ast	*ast_parse_cmd(t_tokens **tokens);
 t_ast	*ast_parse_parenthesis(t_tokens **tokens);
 t_ast	*ast_create_node(t_token_type ttype, char **cmd, t_ast *left, t_ast *right);
+char	**ast_dup_tokens(char **tokens);
 
 #endif

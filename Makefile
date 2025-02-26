@@ -16,7 +16,8 @@ SOURCE_DIRS = src \
 				src/builtins \
 				src/shell_utils \
 				src/ast \
-				src/parsing
+				src/parsing \
+				src/freeing
 
 VPATH = $(SOURCE_DIRS)
 
@@ -37,10 +38,15 @@ SOURCES += bools.c \
 			utils.c \
 			utils2.c
 
+# FREEING
+SOURCES += free_split.c \
+			free_tokens.c
+
 # AST
 SOURCES += ast_create_node.c \
 			ast_create_tree.c \
-			ast_print.c
+			ast_print.c \
+			ast_dup_tokens.c
 
 # BUILTINS
 SOURCES += check_builtin.c \
@@ -49,8 +55,7 @@ SOURCES += check_builtin.c \
 			builtin_cd.c
 
 # EXECUTING
-SOURCES += execute_command.c \
-			freeing.c
+SOURCES += execute_command.c
 
 # ---------- OBJECTS ---------- #
 OBJECT_DIR = obj
