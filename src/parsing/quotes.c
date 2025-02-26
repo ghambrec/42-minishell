@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 09:57:01 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/02/26 13:29:18 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/02/26 14:14:40 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	handle_quotes_and_envs(t_token_type *token_list)
+void	handle_quotes_and_envs(t_tokens *token_list)
 {
 	int	i;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 11:08:14 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/02/26 10:10:19 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/02/26 14:12:57 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_print2d(char **array2d)
 	printf("\n");
 }
 
-void	ft_printlist(t_token_type *token)
+void	ft_printlist(t_tokens *token)
 {
 	while (token)
 	{
@@ -37,22 +37,22 @@ int	get_token_type(char **token)
 	int	token_type;
 
 	if (token[0][0] == '|' && token[0][1] == '|')
-		token_type = tt_OR;
+		token_type = TT_OR;
 	else if (token[0][0] == '|')
-		token_type = tt_PIPE;
+		token_type = TT_PIPE;
 	else if (token[0][0] == '<' && token[0][1] == '<')
-		token_type = tt_HEREDOC;
+		token_type = TT_HEREDOC;
 	else if (token[0][0] == '>')
-		token_type = tt_RE_OUTPUT;
+		token_type = TT_RE_OUTPUT;
 	else if (token[0][0] == '&' && token[0][1] == '&')
-		token_type = tt_AND;
+		token_type = TT_AND;
 	else if (token[0][0] == '(')
-		token_type = tt_PARENTESIS_OPEN;
+		token_type = TT_PARENTESIS_OPEN;
 	else if (token[0][0] == ')')
-		token_type = tt_PARENTESIS_CLOSE;
+		token_type = TT_PARENTESIS_CLOSE;
 	else if (token[0][0] == '<')
-		token_type = tt_RE_INPUT;
+		token_type = TT_RE_INPUT;
 	else
-		token_type = tt_RE_APPEND;
+		token_type = TT_RE_APPEND;
 	return (token_type);
 }

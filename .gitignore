@@ -2,4 +2,5 @@ lib/
 obj/
 minishell
 .vscode/
-.DS_Store/
+.DS_Store
+a.out

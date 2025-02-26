@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   operator.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 11:04:58 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/02/25 13:15:32 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/02/26 14:12:22 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	handle_operator(char **all_tokens, t_token_type **token_list, int i)
+void	handle_operator(char **all_tokens, t_tokens **token_list, int i)
 {
 	int		token_type;
 	char	**operator;

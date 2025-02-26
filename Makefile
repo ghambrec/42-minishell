@@ -1,8 +1,8 @@
 
 # ---------- MAIN ---------- #
-NAME = minishell
-CC = cc
-INCLUDE_DIR = ./inc
+NAME := minishell
+CC := cc
+INCLUDE_DIR := ./inc
 CFLAGS = -Wall -Wextra -Werror -I $(INCLUDE_DIR)
 
 # ---------- LIB ---------- #
@@ -12,8 +12,45 @@ LIBFT_NAME = libft.a
 LIBFT_FULL = $(LIBFT_DIR)/$(LIBFT_NAME)
 
 # ---------- SOURCES ---------- #
-VPATH = ./src
-SOURCES =	main.c execute_command.c freeing.c
+SOURCE_DIRS = src \
+				src/builtins \
+				src/shell_utils \
+				src/ast \
+				src/parsing
+
+VPATH = $(SOURCE_DIRS)
+
+SOURCES = main.c 
+
+# SHELL_UTILS
+SOURCES += get_shell.c
+
+# PARSING
+SOURCES += bools.c \
+			commands.c \
+			create_tokens.c \
+			operator.c \
+			quotes.c \
+			redirects.c \
+			safe.c \
+			token_list.c \
+			utils.c \
+			utils2.c
+
+# AST
+SOURCES += ast_create_node.c \
+			ast_create_tree.c \
+			ast_print.c
+
+# BUILTINS
+SOURCES += check_builtin.c \
+			builtin_echo.c \
+			builtin_pwd.c \
+			builtin_cd.c
+
+# EXECUTING
+SOURCES += execute_command.c \
+			freeing.c
 
 # ---------- OBJECTS ---------- #
 OBJECT_DIR = obj

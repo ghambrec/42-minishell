@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   redirects.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 19:13:18 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/02/25 13:15:52 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/02/26 14:12:33 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int	handle_redirects(char **all_tokens, t_token_type **token_list, int i)
+int	handle_redirects(char **all_tokens, t_tokens **token_list, int i)
 {
 	int				token_type;
 	char			**token_args;
-	t_token_type	*token_node;
+	t_tokens	*token_node;
 
 	token_args = get_redirects_2d(&all_tokens[i]);
 	token_type = get_token_type(token_args);

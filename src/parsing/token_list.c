@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   token_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:36:13 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/02/25 13:16:08 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/02/26 14:16:53 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-t_token_type	*ft_newtoken(int token_type, char **token)
+t_tokens	*ft_newtoken(int token_type, char **token)
 {
-	t_token_type	*new_entry;
+	t_tokens	*new_entry;
 
-	new_entry = (t_token_type *)malloc(sizeof(t_token_type));
+	new_entry = (t_tokens *)malloc(sizeof(t_tokens));
 	if (!new_entry)
 	{
 		return (NULL);
@@ -27,9 +27,9 @@ t_token_type	*ft_newtoken(int token_type, char **token)
 	return (new_entry);
 }
 
-void	ft_lstadd_back_token(t_token_type **lst, t_token_type *new)
+void	ft_lstadd_back_token(t_tokens **lst, t_tokens *new)
 {
-	t_token_type	*last_entry;
+	t_tokens	*last_entry;
 
 	if (new == NULL)
 	{
@@ -44,9 +44,9 @@ void	ft_lstadd_back_token(t_token_type **lst, t_token_type *new)
 	last_entry->next = new;
 }
 
-t_token_type	*ft_lstlast_token(t_token_type *lst)
+t_tokens	*ft_lstlast_token(t_tokens *lst)
 {
-	t_token_type	*last_entry;
+	t_tokens	*last_entry;
 
 	if (lst == NULL)
 	{
