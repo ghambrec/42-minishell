@@ -20,7 +20,7 @@ SOURCE_DIRS = src \
 
 VPATH = $(SOURCE_DIRS)
 
-SOURCES = main.c 
+SOURCES = main.c main2.c
 
 # SHELL_UTILS
 SOURCES += get_shell.c

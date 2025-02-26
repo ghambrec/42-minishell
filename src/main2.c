@@ -4,7 +4,7 @@
 int	main(void)
 {
 	char	        *input;
-	t_token_type    *tokens = NULL;
+	t_tokens    *tokens = NULL;
 
 	while (1)
 	{

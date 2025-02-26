@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 19:32:42 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/02/26 14:13:04 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/02/26 15:42:09 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,14 @@
 
 bool	is_operator(char c)
 {
-	if (c && (c == '|' || c == '&' || c == '(' || c == ')'))
+	if (c && (c == '|' || c == '(' || c == ')'))
+		return (true);
+	return (false);
+}
+
+bool	need_space(char c)
+{
+	if (c && (c == '|' || c == '<' || c == '>'))
 		return (true);
 	return (false);
 }

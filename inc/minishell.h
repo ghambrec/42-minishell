@@ -100,6 +100,7 @@ int				c_count(char *string, char c);
 bool			is_redirector(char *c);
 bool			is_operator(char c);
 bool			is_command(char *check);
+bool			need_space(char c);
 
 // FREEING
 void	free_split(char **split);
