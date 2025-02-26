@@ -3,12 +3,20 @@
 # define MINISHELL_H
 
 # include "../lib/myLibft/include/my_libft.h"
+<<<<<<< HEAD
 # include <stdio.h>
 # include <stdbool.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
 enum e_token_type
+=======
+# include <errno.h>
+#include <readline/readline.h>
+#include <readline/history.h>
+
+enum e_tokens
+>>>>>>> 1b9c3009c99b3e8eb01b70b73e1907181965097e
 {
 	tt_CMD,
 	tt_PIPE,
@@ -54,6 +62,7 @@ void			handle_commands(
 					char **all_tokens, t_token_type **token_list, int i);
 void			create_command_list(char *input, t_token_type **token_list);
 
+<<<<<<< HEAD
 //HandleQuotesZ
 void			handle_quotes_and_envs(t_token_type *token_list);
 char			*get_quote_string(char **command, int i);
@@ -65,5 +74,12 @@ int				c_count(char *string, char c);
 bool			is_redirector(char *c);
 bool			is_operator(char c);
 bool			is_command(char *check);
+=======
+// FREEING
+void	free_split(char **split);
+
+// EXECUTING
+void	execute_command(char **cmd);
+>>>>>>> 1b9c3009c99b3e8eb01b70b73e1907181965097e
 
 #endif

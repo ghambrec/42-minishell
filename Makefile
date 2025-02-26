@@ -1,14 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/02/13 18:46:31 by ghambrec          #+#    #+#              #
-#    Updated: 2025/02/18 18:26:28 by ghambrec         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
 
 # ---------- MAIN ---------- #
 NAME = minishell
@@ -24,7 +13,7 @@ LIBFT_FULL = $(LIBFT_DIR)/$(LIBFT_NAME)
 
 # ---------- SOURCES ---------- #
 VPATH = ./src
-SOURCES =	main.c
+SOURCES =	main.c execute_command.c freeing.c
 
 # ---------- OBJECTS ---------- #
 OBJECT_DIR = obj
@@ -71,13 +60,17 @@ checkMyLibft:
 	fi	
 
 $(LIBFT_NAME):
-	@echo "$(YELLOW)Creating $(LIBFT_NAME)...$(NC)"
-	@make -C $(LIBFT_DIR) > $(LIBFT_DIR)/make_log.txt
-	@if [ -f $(LIBFT_DIR)/$(LIBFT_NAME) ]; then \
-		echo "$(GREEN)$(LIBFT_NAME) successfully created$(NC)"; \
+	@if [ ! -d $(LIBFT_DIR) ]; then \
+		echo "$(RED)myLibft folder doesnt exist! Run 'make checkMyLibft' first to download myLibft$(NC)"; \
 	else \
-		echo "$(RED)failed to compile $(LIBFT_DIR)$(NC)"; \
-		exit 1; \
+		echo "$(YELLOW)Creating $(LIBFT_NAME)...$(NC)"; \
+		make -C $(LIBFT_DIR) > $(LIBFT_DIR)/make_log.txt; \
+		if [ -f $(LIBFT_DIR)/$(LIBFT_NAME) ]; then \
+			echo "$(GREEN)$(LIBFT_NAME) successfully created$(NC)"; \
+		else \
+			echo "$(RED)failed to compile $(LIBFT_DIR)$(NC)"; \
+			exit 1; \
+		fi \
 	fi
 
 $(OBJECT_DIR)/%.o: %.c | $(OBJECT_DIR)
