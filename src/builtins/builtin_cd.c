@@ -2,6 +2,10 @@
 #include "minishell.h"
 
 
+// TODO: testcase 	1) cd /
+//					2) cd ..
+
+
 // cd to the given path
 // exactly 1 arugument needed (relative or absolute path)
 void	builtin_cd(char **cmd)
