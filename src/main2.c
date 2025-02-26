@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/13 18:46:29 by ghambrec          #+#    #+#             */
-/*   Updated: 2025/02/25 13:40:25 by rstumpf          ###   ########.fr       */
+/*   Created: 2025/02/25 13:40:29 by rstumpf           #+#    #+#             */
+/*   Updated: 2025/02/26 09:52:39 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../inc/minishell.h"
 
-// int	main(void)
-// {
-// 	char	*input;
-// 	// t_tokens tokens;
+int	main(void)
+{
+	char	        *input;
+	t_token_type    *tokens = NULL;
 
-// 	while (1)
-// 	{
-// 		input = readline("\033[0;36m> \033[0m");
-// 		if (!input) // STRG-D closes the shell
-// 			break ;
+	while (1)
+	{
+		input = readline("\033[0;36m> \033[0m");
+		if (!input) // STRG-D closes the shell
+			break ;
 		
-// 		// doing stuff
-// 		// ...
+		// doing stuff
+		// ...
 
-// 		printf("--> %s\n", input);
+		create_command_list(input, &tokens);
 
-		
-// 		add_history(input);
-// 		free(input);
-// 	}
-// 	clear_history();
-// 	return (EXIT_SUCCESS);
-// }
+		free(input);
+	}
+	return (EXIT_SUCCESS);
+}

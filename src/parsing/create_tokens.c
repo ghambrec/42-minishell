@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 10:21:25 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/02/25 13:15:12 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/02/26 11:13:10 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	split_tokens_set_type(char **all_tokens, t_token_type **token_list)
 void	create_command_list(char *input, t_token_type **token_list)
 {
 	split_tokens_set_type(ft_split(input, ' '), token_list);
+	handle_quotes_and_envs(*token_list);
 	ft_printlist(*token_list);
 }
 

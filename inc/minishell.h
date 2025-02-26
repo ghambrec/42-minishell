@@ -5,22 +5,21 @@
 # include "../lib/myLibft/include/my_libft.h"
 # include <stdio.h>
 # include <stdbool.h>
-// # include <readline/readline.h>
-// # include <readline/history.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
 enum e_token_type
 {
-	CMD,
-	PIPE,
-	RE_INPUT,
-	RE_OUTPUT,
-	RE_APPEND,
-	HEREDOC,
-	AND,
-	OR,
-	BACKGROUND,
-	PARENTESIS_OPEN,
-	PARENTESIS_CLOSE
+	tt_CMD,
+	tt_PIPE,
+	tt_RE_INPUT,
+	tt_RE_OUTPUT,
+	tt_RE_APPEND,
+	tt_HEREDOC,
+	tt_AND,
+	tt_OR,
+	tt_PARENTESIS_OPEN,
+	tt_PARENTESIS_CLOSE
 };
 
 typedef struct s_token_type
@@ -55,6 +54,12 @@ void			handle_commands(
 					char **all_tokens, t_token_type **token_list, int i);
 void			create_command_list(char *input, t_token_type **token_list);
 
+//HandleQuotesZ
+void			handle_quotes_and_envs(t_token_type *token_list);
+char			*get_quote_string(char **command, int i);
+void			handle_doule_quotes(char **command, int i);
+char			*remove_char(char *string, char c);
+int				c_count(char *string, char c);
 
 //Bool
 bool			is_redirector(char *c);
