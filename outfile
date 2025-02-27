@@ -30,13 +30,13 @@ SOURCES += bools.c \
 			commands.c \
 			create_tokens.c \
 			operator.c \
-			dquotes.c \
+			quotes.c \
 			redirects.c \
 			safe.c \
 			token_list.c \
 			utils.c \
 			utils2.c \
-			insert_spaces.c 
+			insert_spaces.c
 
 # AST
 SOURCES += ast_create_node.c \

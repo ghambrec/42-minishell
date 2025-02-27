@@ -88,13 +88,20 @@ char			**get_redirects_2d(char **all_tokens);
 void			handle_commands(
 					char **all_tokens, t_tokens **token_list, int i);
 void			create_command_list(char *input, t_tokens **token_list);
+void			copy_with_spaces(char *input, char *updatet_input);
+char			*insert_spaces(char *input);
+int				count_extra_spaces(char *input);
 
 // HANDLE_QUOTES
 void			handle_quotes_and_envs(t_tokens *token_list);
 char			*get_quote_string(char **command, int i);
-void			handle_doule_quotes(char **command, int i);
+void			handle_doule_quotes(char **command);
 char			*remove_char(char *string, char c);
 int				c_count(char *string, char c);
+void			merge_quotes(char **tokens, int i);
+bool			handle_immediate_end_quote(char **tokens, int i, char *merged);
+char			*merge_tokens(char **tokens, int *j_ptr, char *merged);
+char			*merge_token(char *merged, char *token);
 
 // BOOL
 bool			is_redirector(char *c);
