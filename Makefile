@@ -36,7 +36,9 @@ SOURCES += bools.c \
 			token_list.c \
 			utils.c \
 			utils2.c \
-			insert_spaces.c 
+			insert_spaces.c \
+			envs.c \
+			squotes.c
 
 # AST
 SOURCES += ast_create_node.c \

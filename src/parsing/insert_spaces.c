@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 17:04:01 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/02/26 17:24:29 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/02/27 15:15:52 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,30 +44,38 @@ char	*insert_spaces(char *input)
 	return (updatet_input);
 }
 
+void	handle_operator_with_spaces(
+			char *input, char *updatet_input, int *i, int *j)
+{
+	if (*j > 0 && updatet_input[*j - 1] != ' ')
+		updatet_input[(*j)++] = ' ';
+	updatet_input[(*j)++] = input[(*i)++];
+	if (input[*i] != ' ')
+		updatet_input[(*j)++] = ' ';
+}
+
 void	copy_with_spaces(char *input, char *updatet_input)
 {
 	int		i;
 	int		j;
+	bool	in_quotes;
 
 	i = 0;
 	j = 0;
+	in_quotes = false;
 	while (input[i])
 	{
-		if (need_space(input[i]))
+		if (input[i] == '"')
 		{
-			if (updatet_input[j - 1] != ' ')
-			{
-				updatet_input[j] = ' ';
-				j++;
-			}
-			updatet_input[j] = input[i];
-			j++;
-			if (input[i + 1] != ' ')
-				updatet_input[j++] = ' ';
+			in_quotes = !in_quotes;
+			updatet_input[j++] = input[i++];
 		}
+		if (in_quotes)
+			updatet_input[j++] = input[i++];
+		else if (need_space(input[i]))
+			handle_operator_with_spaces(input, updatet_input, &i, &j);
 		else
-			updatet_input[j++] = input[i];
-		i++;
+			updatet_input[j++] = input[i++];
 	}
 	updatet_input[j] = '\0';
 }

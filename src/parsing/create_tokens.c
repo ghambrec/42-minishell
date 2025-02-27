@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 10:21:25 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/02/27 12:58:22 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/02/27 17:02:16 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	split_tokens_set_type(char **all_tokens, t_tokens **token_list)
 	int		i;
 
 	i = 0;
-	handle_double_quotes(all_tokens);
 	while (all_tokens[i])
 	{
 		if (is_command(all_tokens[i]))
@@ -51,10 +50,16 @@ char	*change_input_string(char *input)
 void	create_command_list(char *input, t_tokens **token_list)
 {
 	char	*updatet_input;
+	t_tokens *temp;
 
 	updatet_input = change_input_string(input);
 	split_tokens_set_type(ft_split(updatet_input, ' '), token_list);
-	// handle_quotes_and_envs(*token_list);
-	ft_printlist(*token_list);
+	temp = *token_list;
+	while (*token_list)
+	{
+		handle_quotes_and_envs((*token_list)->token);
+		*token_list = (*token_list)->next;
+	}
+	ft_printlist(temp);
 }
 

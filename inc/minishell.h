@@ -91,19 +91,19 @@ void			create_command_list(char *input, t_tokens **token_list);
 void			copy_with_spaces(char *input, char *updatet_input);
 char			*insert_spaces(char *input);
 int				count_extra_spaces(char *input);
+void			handle_operator_with_spaces(
+					char *input, char *updatet_input, int *i, int *j);
 
 // HANDLE_QUOTES
-void			handle_quotes_and_envs(t_tokens *token_list);
-char			*get_quote_string(char **command, int i);
-void			handle_double_quotes(char **command);
+void			handle_quotes_and_envs(char **command);
 bool			handle_immediate_end(char **tokens, int i, char *merged);
-char			*remove_char(char *string, char c);
-int				c_count(char *string, char c);
-void			merge_quotes(char **tokens, int i);
-char			*merge_tokens(char **tokens, int *j_ptr, char *merged);
-char			*merge_token(char *merged, char *token);
-void			shift_tokens_left(char **tokens, int i, int j);
+void			merge_quotes(char **commands, int i);
+void			shift_command_left(char **tokens, int i, int j);
 char			*ft_strjoin_free(char *s1, char *s2, int free_s1, int free_s2);
+void			merge_single_quotes(char **commands, int i);
+
+//HANDLE ENVS
+void			handle_envs(char **commands, int i);
 
 // BOOL
 bool			is_redirector(char *c);
