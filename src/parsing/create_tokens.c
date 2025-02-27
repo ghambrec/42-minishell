@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 10:21:25 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/02/26 18:37:29 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/02/27 12:58:22 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	split_tokens_set_type(char **all_tokens, t_tokens **token_list)
 	int		i;
 
 	i = 0;
-	handle_doule_quotes(all_tokens);
+	handle_double_quotes(all_tokens);
 	while (all_tokens[i])
 	{
 		if (is_command(all_tokens[i]))

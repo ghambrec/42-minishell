@@ -95,13 +95,15 @@ int				count_extra_spaces(char *input);
 // HANDLE_QUOTES
 void			handle_quotes_and_envs(t_tokens *token_list);
 char			*get_quote_string(char **command, int i);
-void			handle_doule_quotes(char **command);
+void			handle_double_quotes(char **command);
+bool			handle_immediate_end(char **tokens, int i, char *merged);
 char			*remove_char(char *string, char c);
 int				c_count(char *string, char c);
 void			merge_quotes(char **tokens, int i);
-bool			handle_immediate_end_quote(char **tokens, int i, char *merged);
 char			*merge_tokens(char **tokens, int *j_ptr, char *merged);
 char			*merge_token(char *merged, char *token);
+void			shift_tokens_left(char **tokens, int i, int j);
+char			*ft_strjoin_free(char *s1, char *s2, int free_s1, int free_s2);
 
 // BOOL
 bool			is_redirector(char *c);
