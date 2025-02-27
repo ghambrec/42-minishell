@@ -10,6 +10,7 @@ t_ast	*ast_create_node(t_token_type ttype, char **cmd, t_ast *left, t_ast *right
 		return (NULL);
 	new_node->ttype = ttype;
 	new_node->cmd = cmd;
+	new_node->redirect = NULL;
 	new_node->left = left;
 	new_node->right = right;
 	return (new_node);

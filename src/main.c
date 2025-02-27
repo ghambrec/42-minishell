@@ -13,7 +13,6 @@ int	main(void)
 	char		*input;
 	t_tokens	*tokens;
 	t_ast		*ast;
-
 	// atexit(leaks);
 	while (1)
 	{
@@ -26,7 +25,6 @@ int	main(void)
 			create_command_list(input, &tokens);
 			ast = ast_create_tree(&tokens);
 			// free_tokens(tokens);
-			// tokens = NULL;
 			ast_print(ast);
 
 		}

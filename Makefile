@@ -45,8 +45,10 @@ SOURCES += free_split.c \
 # AST
 SOURCES += ast_create_node.c \
 			ast_create_tree.c \
+			ast_parse_functions.c \
 			ast_print.c \
-			ast_dup_tokens.c
+			ast_dup_tokens.c \
+			ast_add_redirection.c
 
 # BUILTINS
 SOURCES += check_builtin.c \
