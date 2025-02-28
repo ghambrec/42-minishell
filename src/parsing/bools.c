@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 19:32:42 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/02/26 15:42:09 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/02/28 18:44:36 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,15 @@ bool	is_command(char *check)
 {
 	if (check && is_operator(check[0]) == false
 		&& is_redirector(check) == false)
+		return (true);
+	return (false);
+}
+
+bool	is_heredoc_or_append(char c, char d)
+{
+	if (!c)
+		return (false);
+	else if ((c == '<' && d == '<') || (c == '>' && d == '>'))
 		return (true);
 	return (false);
 }

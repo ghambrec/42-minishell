@@ -93,23 +93,32 @@ char			*insert_spaces(char *input);
 int				count_extra_spaces(char *input);
 void			handle_operator_with_spaces(
 					char *input, char *updatet_input, int *i, int *j);
+void			handle_heredoc_and_append(
+					char **all_tokens, t_tokens **token_list, int i);
+
 
 // HANDLE_QUOTES
-void			handle_quotes_and_envs(char **command);
+void			handle_quotes(char **command);
 bool			handle_immediate_end(char **tokens, int i, char *merged);
 void			merge_quotes(char **commands, int i);
 void			shift_command_left(char **tokens, int i, int j);
 char			*ft_strjoin_free(char *s1, char *s2, int free_s1, int free_s2);
 void			merge_single_quotes(char **commands, int i);
 
+
 //HANDLE ENVS
 void			handle_envs(char **commands, int i);
+void			handle_envs_in_string(char *string);
+void			replace_env_vars(char *input, char *output);
+
 
 // BOOL
 bool			is_redirector(char *c);
 bool			is_operator(char c);
 bool			is_command(char *check);
 bool			need_space(char c);
+bool			is_heredoc_or_append(char c, char d);
+
 
 // FREEING
 void	free_split(char **split);

@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 11:08:14 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/02/26 17:04:09 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/02/28 16:35:14 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ int	get_token_type(char **token)
 		token_type = TT_OR;
 	else if (token[0][0] == '|')
 		token_type = TT_PIPE;
+	else if (token[0][0] == '>' && token[0][1] == '>')
+		token_type = TT_RE_APPEND;
 	else if (token[0][0] == '<' && token[0][1] == '<')
 		token_type = TT_HEREDOC;
-	else if (token[0][0] == '>')
-		token_type = TT_RE_OUTPUT;
 	else if (token[0][0] == '&' && token[0][1] == '&')
 		token_type = TT_AND;
 	else if (token[0][0] == '(')
@@ -53,6 +53,6 @@ int	get_token_type(char **token)
 	else if (token[0][0] == '<')
 		token_type = TT_RE_INPUT;
 	else
-		token_type = TT_RE_APPEND;
+		token_type = TT_RE_OUTPUT;
 	return (token_type);
 }
