@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 17:04:01 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/02/28 23:56:38 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/03 13:23:14 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,21 @@
 
 int	count_extra_spaces(char *input)
 {
-	int		i;
-	int		spaces_needed;
-	bool	in_quotes;
+	int	i;
+	int	spaces_needed;
 
 	i = 0;
 	spaces_needed = 0;
-	in_quotes = false;
 	while (input[i])
 	{
-		if (input[i] == '"' || input[i] == 39)
-		{
-			if (!in_quotes)
-			{
-				if (i > 0 && input[i - 1] != ' ')
-					spaces_needed++;
-				in_quotes = true;
-			}
-			else
-			{
-				if (input[i + 1] != '\0' && input[i + 1] != ' ')
-					spaces_needed++;
-				in_quotes = false;
-			}
-			i++;
-		}
-		else if (!in_quotes && need_space(input[i]))
+		if (need_space(input[i]))
 		{
 			if (i == 0 || input[i - 1] != ' ')
 				spaces_needed++;
 			if (input[i + 1] == '\0' || input[i + 1] != ' ')
 				spaces_needed++;
-			i++;
 		}
-		else
-			i++;
+		i++;
 	}
 	return (spaces_needed);
 }
@@ -75,7 +55,7 @@ void	handle_operator_with_spaces(
 	if (*j > 0 && updatet_input[*j - 1] != ' ')
 		updatet_input[(*j)++] = ' ';
 	updatet_input[(*j)++] = input[(*i)++];
-	if (input[*i] != ' ')
+	if (input[*i] != ' ' && input[*i] != '\0')
 		updatet_input[(*j)++] = ' ';
 }
 
@@ -83,31 +63,12 @@ void	copy_with_spaces(char *input, char *updatet_input)
 {
 	int		i;
 	int		j;
-	bool	in_quotes;
 
 	i = 0;
 	j = 0;
-	in_quotes = false;
 	while (input[i])
 	{
-		if (input[i] == '"' || input[i] == 39)
-		{
-			if (!in_quotes)
-			{
-				if (j > 0 && updatet_input[j - 1] != ' ')
-					updatet_input[j++] = ' ';
-				updatet_input[j++] = input[i++];
-				in_quotes = true;
-			}
-			else
-			{
-				updatet_input[j++] = input[i++];
-				in_quotes = false;
-				if (input[i] != ' ' && input[i] != '\0')
-					updatet_input[j++] = ' ';
-			}
-		}
-		else if (in_quotes || !need_space(input[i]))
+		if (!need_space(input[i]))
 			updatet_input[j++] = input[i++];
 		else
 			handle_operator_with_spaces(input, updatet_input, &i, &j);

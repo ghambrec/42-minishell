@@ -6,65 +6,67 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:31:02 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/02/28 23:55:12 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/03 15:12:44 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	replace_env_vars(char *input, char *output)
+static void	check_quotes(char c, t_quote_state *state)
 {
-	int		i;
-	int		j;
-	int		k;
+	if (c == '"' && !state->in_single_quotes)
+	{
+		state->output[state->j++] = c;
+		state->in_double_quotes = !state->in_double_quotes;
+	}
+	else if (c == 39 && !state->in_double_quotes)
+	{
+		state->output[state->j++] = c;
+		state->in_single_quotes = !state->in_single_quotes;
+	}
+}
+
+static void	handle_env_var(char *temp, int *i, t_quote_state *state)
+{
 	char	env_var_name[256];
 	char	*env_var_value;
-	bool	in_single_quotes;
-	bool	in_double_quotes;
-	bool	is_opening;
+	int		k;
 
-	i = 0;
-	j = 0;
-	in_single_quotes = false;
-	in_double_quotes = false;
-	while (input[i] != '\0')
+	k = 0;
+	(*i)++;
+	while (temp[*i] != '\0' && (ft_isalnum(temp[*i]) || temp[*i] == '_'))
+		env_var_name[k++] = temp[(*i)++];
+	env_var_name[k] = '\0';
+	env_var_value = getenv(env_var_name);
+	if (env_var_value != NULL)
 	{
-		if (input[i] == '"' && !in_single_quotes)
-		{
-			is_opening = !in_double_quotes;
-			if (is_opening && j > 0 && output[j - 1] != ' ')
-				output[j++] = ' ';
-			output[j++] = input[i++];
-			in_double_quotes = !in_double_quotes;
-			if (!is_opening && (input[i] != ' ' && input[i] != '\0'))
-				output[j++] = ' ';
-		}
-		else if (input[i] == 39 && !in_double_quotes)
-		{
-			is_opening = !in_single_quotes;
-			if (is_opening && j > 0 && output[j - 1] != ' ')
-				output[j++] = ' ';
-			output[j++] = input[i++];
-			in_single_quotes = !in_single_quotes;
-			if (!is_opening && (input[i] != ' ' && input[i] != '\0'))
-				output[j++] = ' ';
-		}
-		else if (input[i] == '$' && !in_single_quotes)
-		{
-			i++;
-			k = 0;
-			while (input[i] != '\0' && (isalnum(input[i]) || input[i] == '_'))
-				env_var_name[k++] = input[i++];
-			env_var_name[k] = '\0';
-			env_var_value = getenv(env_var_name);
-			if (env_var_value != NULL)
-			{
-				strcpy(&output[j], env_var_value);
-				j += strlen(env_var_value);
-			}
-		}
-		else
-			output[j++] = input[i++];
+		ft_strcpy(&state->output[state->j], env_var_value);
+		state->j += ft_strlen(env_var_value);
 	}
-	output[j] = '\0';
+}
+
+void	replace_env_vars(char *output)
+{
+	char			*temp;
+	int				i;
+	t_quote_state	state;
+
+	temp = ft_strdup(output);
+	if (!temp)
+		return ;
+	state.output = output;
+	state.j = 0;
+	state.in_single_quotes = false;
+	state.in_double_quotes = false;
+	i = 0;
+	while (temp[i] != '\0')
+	{
+		check_quotes(temp[i], &state);
+		if (temp[i] == '$' && !state.in_single_quotes)
+			handle_env_var(temp, &i, &state);
+		else
+			state.output[state.j++] = temp[i++];
+	}
+	state.output[state.j] = '\0';
+	free(temp);
 }

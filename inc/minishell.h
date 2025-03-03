@@ -64,10 +64,18 @@ typedef struct s_ast
 	struct s_ast	*right;
 }	t_ast;
 
-void			ft_print2d(char **array2d);
-t_tokens	*ft_newtoken(int token_type, char **token);
-void			ft_printlist(t_tokens *token);
+typedef struct s_quote_state
+{
+	char	*output;
+	int		j;
+	bool	in_single_quotes;
+	bool	in_double_quotes;
+}	t_quote_state;
 
+void			ft_print2d(char **array2d);
+t_tokens		*ft_newtoken(int token_type, char **token);
+void			ft_printlist(t_tokens *token);
+char			*ft_strcpy(char *dest, const char *src);
 
 // TOKEN LIST
 t_tokens	*ft_newtoken(int token_type, char **token);
@@ -98,18 +106,12 @@ void			handle_heredoc_and_append(
 
 
 // HANDLE_QUOTES
-void			handle_quotes(char **command);
-bool			handle_immediate_end(char **tokens, int i, char *merged);
-void			merge_quotes(char **commands, int i);
-void			shift_command_left(char **tokens, int i, int j);
-char			*ft_strjoin_free(char *s1, char *s2, int free_s1, int free_s2);
-void			merge_single_quotes(char **commands, int i);
-
+void			handle_quotes(t_tokens **tokenList);
 
 //HANDLE ENVS
 void			handle_envs(char **commands, int i);
 void			handle_envs_in_string(char *string);
-void			replace_env_vars(char *input, char *output);
+void			replace_env_vars(char *output);
 
 
 // BOOL
