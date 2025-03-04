@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 11:04:58 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/02/28 17:20:12 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/04 19:56:27 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ char	*join_tokens(char *token1, char *token2)
 	joined_token = (char *)malloc(ft_strlen(token1) + ft_strlen(token2) + 1);
 	if (!joined_token)
 		return (NULL);
-	strcpy(joined_token, token1);
-	strcat(joined_token, token2);
+	ft_strcpy(joined_token, token1);
+	ft_strlcat(joined_token, token2, ft_strlen(joined_token));
 	return (joined_token);
 }
 
