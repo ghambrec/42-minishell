@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 09:57:01 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/03 15:21:08 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/04 19:46:28 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 void	handle_quotes(t_tokens **token_list)
 {
-	char	**commands;
-	int		i;
+	char		**commands;
+	int			i;
 	t_tokens	*temp;
 
 	temp = *token_list;
-	ft_printlist(temp);
 	while (*token_list)
 	{
 		commands = (*token_list)->token;
@@ -27,8 +26,11 @@ void	handle_quotes(t_tokens **token_list)
 		while (commands[i])
 		{
 			replace_env_vars(commands[i]);
+			commands[i] = remove_quotes(commands[i]);
 			i++;
 		}
 		*token_list = (*token_list)->next;
 	}
+	*token_list = temp;
+	ft_printlist(temp);
 }

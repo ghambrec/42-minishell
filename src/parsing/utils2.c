@@ -3,21 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 15:03:16 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/02/26 14:11:32 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/03/04 10:17:02 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int	get_array_size(char **array)
-{
-	int	i;
 
-	i = 0;
-	while (array[i] != NULL)
-		i++;
-	return (i);
-}

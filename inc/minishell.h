@@ -78,12 +78,12 @@ void			ft_printlist(t_tokens *token);
 char			*ft_strcpy(char *dest, const char *src);
 
 // TOKEN LIST
-t_tokens	*ft_newtoken(int token_type, char **token);
+t_tokens		*ft_newtoken(int token_type, char **token);
 void			ft_lstadd_back_token(t_tokens **lst, t_tokens *new);
-t_tokens	*ft_lstlast_token(t_tokens *lst);
+t_tokens		*ft_lstlast_token(t_tokens *lst);
 char			**get_commands(char **tokens);
 char			**get_operator(char *operator);
-void			split_token_type_set_type(
+void			create_token_list(
 					char **all_tokens, t_tokens **token_list);
 int				get_array_size(char **array);
 void			handle_operator(
@@ -103,10 +103,12 @@ void			handle_operator_with_spaces(
 					char *input, char *updatet_input, int *i, int *j);
 void			handle_heredoc_and_append(
 					char **all_tokens, t_tokens **token_list, int i);
+char	**split_tokens(char *input);
 
 
 // HANDLE_QUOTES
 void			handle_quotes(t_tokens **tokenList);
+char			*remove_quotes(char *commands);
 
 //HANDLE ENVS
 void			handle_envs(char **commands, int i);
@@ -120,7 +122,7 @@ bool			is_operator(char c);
 bool			is_command(char *check);
 bool			need_space(char c);
 bool			is_heredoc_or_append(char c, char d);
-
+bool			is_in_quotes(char *input, int i);
 
 // FREEING
 void	free_split(char **split);

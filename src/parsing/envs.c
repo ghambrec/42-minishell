@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:31:02 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/03 15:12:44 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/04 09:16:48 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,10 @@ static void	check_quotes(char c, t_quote_state *state)
 {
 	if (c == '"' && !state->in_single_quotes)
 	{
-		state->output[state->j++] = c;
 		state->in_double_quotes = !state->in_double_quotes;
 	}
 	else if (c == 39 && !state->in_double_quotes)
 	{
-		state->output[state->j++] = c;
 		state->in_single_quotes = !state->in_single_quotes;
 	}
 }

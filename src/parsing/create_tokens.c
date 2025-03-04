@@ -6,13 +6,13 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 10:21:25 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/03 15:20:42 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/04 19:14:31 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	split_tokens_set_type(char **all_tokens, t_tokens **token_list)
+void	create_token_list(char **all_tokens, t_tokens **token_list)
 {
 	int		i;
 
@@ -57,9 +57,11 @@ char	*change_input_string(char *input)
 
 void	create_command_list(char *input, t_tokens **token_list)
 {
-	char		*updatet_input;
+	char		*updated_input;
+	char		**splitted_tokens;
 
-	updatet_input = change_input_string(input);
-	split_tokens_set_type(ft_split(updatet_input, ' '), token_list);
+	updated_input = change_input_string(input);
+	splitted_tokens = split_tokens(updated_input);
+	create_token_list(splitted_tokens, token_list);
 	handle_quotes(token_list);
 }

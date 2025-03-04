@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 11:08:14 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/03 15:13:36 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/04 11:12:57 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,20 @@ char	*ft_strcpy(char *dest, const char *src)
 	}
 	dest[i] = '\0';
 	return (dest);
+}
+
+bool	is_in_quotes(char *input, int i)
+{
+	bool	in_quotes;
+	int		j;
+
+	j = 0;
+	in_quotes = false;
+	while (j < i)
+	{
+		if (input[j] == '"' || input[j] == 39)
+			in_quotes = !in_quotes;
+		j++;
+	}
+	return (in_quotes);
 }

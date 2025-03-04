@@ -3,7 +3,7 @@
 NAME := minishell
 CC := cc
 INCLUDE_DIR := ./inc
-CFLAGS = -Wall -Wextra -Werror -I $(INCLUDE_DIR)
+CFLAGS = -Wall -Wextra -Werror -I $(INCLUDE_DIR) -g
 
 # ---------- LIB ---------- #
 LIB_DIR = ./lib
@@ -38,7 +38,9 @@ SOURCES += bools.c \
 			utils2.c \
 			insert_spaces.c \
 			envs.c \
-			squotes.c
+			squotes.c \
+			split_tokens.c \
+			remove_quotes.c
 
 # AST
 SOURCES += ast_create_node.c \
