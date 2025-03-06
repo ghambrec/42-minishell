@@ -60,9 +60,8 @@ typedef struct s_tokens
 typedef struct	s_redirection
 {
 	t_token_type			ttype;
-	int						fd;
 	char					*filename;
-	struct s_redirection	*next; // wird z.b. gebraucht fuer [< infile grep "hallo" > outfile 2> errfile]
+	struct s_redirection	*next; // wird z.b. gebraucht fuer [< infile grep "hallo" >outfile1 >outfile2] TODO: test, does this work?
 }	t_redirection;
 
 typedef struct	s_ast

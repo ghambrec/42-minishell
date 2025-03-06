@@ -46,8 +46,6 @@ void	ast_print_redirections(t_redirection *redirection)
 	{
 		printf(" ");
 		print_token_type(redirection->ttype);
-		if (redirection->fd < 1024)
-			printf("-%i", redirection->fd);
 		printf(" '%s'", redirection->filename);
 		if (redirection->next)
 			printf(", ");
