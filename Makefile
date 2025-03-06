@@ -132,19 +132,23 @@ clean:
 fclean: clean
 	@echo "$(RED)Removing $(NAME)$(NC)"
 	@rm -f $(NAME)
-	@rm -f $(NAME_CHECKER)
-	@if [ -d $(LIBFT_DIR) ]; then \
+	@if [ -d $(LIBFT_DIR)/objects ]; then \
 		make fclean -C $(LIBFT_DIR); \
 	fi
 
 re: fclean all
 
-# test rule - compile without flags
+# test rule	- compile without flags
 test: CFLAGS = -I $(INCLUDE_DIR)
-test: $(NAME)
+test: all
 
+# tree rule	- print the ast in the terminal
+tree: CFLAGS += -DPRINT_TREE=1 -I $(INCLUDE_DIR)
+tree: clean all
+
+# del rule	- remove lib folder
 del: fclean
 	@echo "$(RED)Removing library folder$(NC)"
 	@rm -rf $(LIB_DIR)
 
-.PHONY: all clean fclean re test del
+.PHONY: all clean fclean re test del tree

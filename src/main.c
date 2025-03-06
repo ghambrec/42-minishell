@@ -25,7 +25,8 @@ int	main(void)
 			create_command_list(input, &tokens);
 			ast = ast_create_tree(&tokens);
 			// free_tokens(tokens);
-			ast_print(ast);
+			if (PRINT_TREE == 1)
+				ast_print(ast);
 
 		}
 

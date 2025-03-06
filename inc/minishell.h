@@ -15,6 +15,10 @@
 # define GREY "\033[1;30m"
 # define PURPLE "\033[0;35m"
 
+# ifndef PRINT_TREE
+#  define PRINT_TREE 0
+# endif
+
 // typedef enum e_builtins
 // {
 // 	NO_BIN,
