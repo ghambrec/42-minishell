@@ -16,7 +16,8 @@ SOURCE_DIRS = src \
 				src/builtins \
 				src/shell_utils \
 				src/ast \
-				src/parsing
+				src/parsing \
+				src/freeing
 
 VPATH = $(SOURCE_DIRS)
 
@@ -42,10 +43,17 @@ SOURCES += bools.c \
 			split_tokens.c \
 			remove_quotes.c
 
+# FREEING
+SOURCES += free_split.c \
+			free_tokens.c
+
 # AST
 SOURCES += ast_create_node.c \
 			ast_create_tree.c \
-			ast_print.c
+			ast_parse_functions.c \
+			ast_print.c \
+			ast_dup_tokens.c \
+			ast_add_redirection.c
 
 # BUILTINS
 SOURCES += check_builtin.c \
@@ -54,8 +62,7 @@ SOURCES += check_builtin.c \
 			builtin_cd.c
 
 # EXECUTING
-SOURCES += execute_command.c \
-			freeing.c
+SOURCES += execute_command.c
 
 # ---------- OBJECTS ---------- #
 OBJECT_DIR = obj
@@ -130,19 +137,23 @@ clean:
 fclean: clean
 	@echo "$(RED)Removing $(NAME)$(NC)"
 	@rm -f $(NAME)
-	@rm -f $(NAME_CHECKER)
-	@if [ -d $(LIBFT_DIR) ]; then \
+	@if [ -d $(LIBFT_DIR)/objects ]; then \
 		make fclean -C $(LIBFT_DIR); \
 	fi
 
 re: fclean all
 
-# test rule - compile without flags
+# test rule	- compile without flags
 test: CFLAGS = -I $(INCLUDE_DIR)
-test: $(NAME)
+test: all
 
+# tree rule	- print the ast in the terminal
+tree: CFLAGS += -DPRINT_TREE=1 -I $(INCLUDE_DIR)
+tree: clean all
+
+# del rule	- remove lib folder
 del: fclean
 	@echo "$(RED)Removing library folder$(NC)"
 	@rm -rf $(LIB_DIR)
 
-.PHONY: all clean fclean re test del
+.PHONY: all clean fclean re test del tree

@@ -13,6 +13,11 @@
 # define ITALIC "\033[3m"
 # define NC "\033[0m"
 # define GREY "\033[1;30m"
+# define PURPLE "\033[0;35m"
+
+# ifndef PRINT_TREE
+#  define PRINT_TREE 0
+# endif
 
 // typedef enum e_builtins
 // {
@@ -56,10 +61,18 @@ typedef struct s_tokens
 	struct s_tokens	*next;
 }	t_tokens;
 
-typedef struct s_ast
+typedef struct	s_redirection
+{
+	t_token_type			ttype;
+	char					*filename;
+	struct s_redirection	*next; // wird z.b. gebraucht fuer [< infile grep "hallo" >outfile1 >outfile2] TODO: test, does this work?
+}	t_redirection;
+
+typedef struct	s_ast
 {
 	t_token_type	ttype;
-	char			**cmd; // copy from t_tokens.token if its a command, otherwise NULL
+	char			**cmd;
+	t_redirection	*redirect;
 	struct s_ast	*left;
 	struct s_ast	*right;
 }	t_ast;
@@ -126,6 +139,7 @@ bool			is_in_quotes(char *input, int i);
 
 // FREEING
 void	free_split(char **split);
+void	free_tokens(t_tokens *tokens);
 
 // EXECUTING
 void	execute_command(char **cmd);
@@ -146,6 +160,9 @@ t_ast	*ast_create_tree(t_tokens **tokens);
 t_ast	*ast_parse_pipe(t_tokens **tokens);
 t_ast	*ast_parse_cmd(t_tokens **tokens);
 t_ast	*ast_parse_parenthesis(t_tokens **tokens);
+void	ast_parse_redirections(t_ast *cmd, t_tokens **tokens);
 t_ast	*ast_create_node(t_token_type ttype, char **cmd, t_ast *left, t_ast *right);
+char	**ast_dup_tokens(char **tokens);
+void	ast_add_redirection(t_ast *ast, t_token_type ttype, char **token);
 
 #endif

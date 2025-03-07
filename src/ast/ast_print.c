@@ -39,6 +39,21 @@ void	print_cmd(char **cmd)
 	}
 }
 
+void	ast_print_redirections(t_redirection *redirection)
+{
+	printf(PURPLE);
+	while (redirection)
+	{
+		printf(" ");
+		print_token_type(redirection->ttype);
+		printf(" '%s'", redirection->filename);
+		if (redirection->next)
+			printf(", ");
+		redirection = redirection->next;
+	}
+	printf(NC);
+}
+
 void	ast_print_recursive(t_ast *ast, int depth, char position)
 {
 	int	i;
@@ -58,6 +73,8 @@ void	ast_print_recursive(t_ast *ast, int depth, char position)
 		printf("%s [", ITALIC);
 		print_cmd(ast->cmd);
 		printf("]%s", NC);
+		if (ast->redirect)
+			ast_print_redirections(ast->redirect);
 	}
 	printf("\n");
 	if (ast->left)
