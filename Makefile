@@ -30,18 +30,16 @@ SOURCES += get_shell.c
 SOURCES += bools.c \
 			commands.c \
 			create_tokens.c \
-			operator.c \
 			dquotes.c \
+			envs.c \
+			insert_spaces.c \
+			operator.c \
 			redirects.c \
-			safe.c \
+			remove_quotes.c \
+			split_tokens.c \
 			token_list.c \
 			utils.c \
-			utils2.c \
-			insert_spaces.c \
-			envs.c \
-			squotes.c \
-			split_tokens.c \
-			remove_quotes.c
+			utils2.c
 
 # FREEING
 SOURCES += free_split.c \
