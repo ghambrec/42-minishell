@@ -150,6 +150,10 @@ test: all
 tree: CFLAGS += -DPRINT_TREE=1 -I $(INCLUDE_DIR)
 tree: clean all
 
+# deug rule - compile with fsanitize
+debug: CFLAGS += -g -fsanitize=address -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment
+debug: clean all
+
 # del rule	- remove lib folder
 del: fclean
 	@echo "$(RED)Removing library folder$(NC)"

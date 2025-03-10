@@ -12,7 +12,7 @@ int	main(void)
 {
 	char		*input;
 	t_tokens	*tokens;
-	// t_ast		*ast;
+	t_ast		*ast;
 	// atexit(leaks);
 	while (1)
 	{
@@ -25,10 +25,10 @@ int	main(void)
 			if (no_open_quotes(input) == -1)
 				continue ;
 			create_command_list(input, &tokens);
-			// ast = ast_create_tree(&tokens);
-			// free_tokens(tokens);
-			// if (PRINT_TREE == 1)
-			// 	ast_print(ast);
+			ast = ast_create_tree(&tokens);
+			free_tokens(tokens);
+			if (PRINT_TREE == 1)
+				ast_print(ast);
 
 		}
 
