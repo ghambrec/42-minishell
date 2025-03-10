@@ -116,8 +116,7 @@ void			handle_operator_with_spaces(
 					char *input, char *updatet_input, int *i, int *j);
 void			handle_heredoc_and_append(
 					char **all_tokens, t_tokens **token_list, int i);
-char	**split_tokens(char *input);
-
+char			**split_into_tokens(char *input);
 
 // HANDLE_QUOTES
 void			handle_quotes(t_tokens **tokenList);
@@ -152,6 +151,9 @@ void		builtin_cd(char **cmd);
 
 // SHELL-UTILS
 t_shell		*get_shell(void);
+
+// Errors
+int	no_open_quotes(char *input);
 
 // AST
 void	ast_print(t_ast *ast);

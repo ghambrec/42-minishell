@@ -39,7 +39,8 @@ SOURCES += bools.c \
 			split_tokens.c \
 			token_list.c \
 			utils.c \
-			utils2.c
+			utils2.c \
+			check_errors.c
 
 # FREEING
 SOURCES += free_split.c \

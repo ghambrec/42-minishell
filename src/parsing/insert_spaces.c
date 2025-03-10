@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 17:04:01 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/04 10:34:33 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/10 10:26:53 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,7 @@ char	*insert_spaces(char *input)
 	extra_spaces = count_extra_spaces(input);
 	updatet_input = (char *)malloc(ft_strlen(input) + extra_spaces + 1);
 	if (!updatet_input)
-	{
-		perror("malloc");
-		exit(EXIT_FAILURE);
-	}
+		return (perror("malloc"), NULL);
 	copy_with_spaces(input, updatet_input);
 	return (updatet_input);
 }
@@ -53,21 +50,17 @@ void	handle_operator_with_spaces(char *input,
 		char *updated_input, int *i, int *j)
 {
 	if (is_in_quotes(input, *i))
-	{
 		updated_input[(*j)++] = input[(*i)++];
-	}
 	else
 	{
 		if (*j > 0 && updated_input[*j - 1] != ' '
-			&& input[*i] != ' ' && input[*i] != '\0') 
+			&& input[*i] != ' ' && input[*i] != '\0')
 			updated_input[(*j)++] = ' ';
 		updated_input[(*j)++] = input[(*i)++];
 		if (input[*i] != ' ' && input[*i] != '\0')
 			updated_input[(*j)++] = ' ';
 	}
 }
-
-
 
 void	copy_with_spaces(char *input, char *updated_input)
 {

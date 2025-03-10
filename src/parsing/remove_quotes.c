@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:04:54 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/05 11:23:23 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/10 10:54:02 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,21 +44,14 @@ static int	count_wihtout_quotes(char *command)
 	return (j);
 }
 
-char	*remove_quotes(char *command)
+static void	copy_without_unnecessary_quoets(char *command, char *new_string,
+			bool in_quotes, char rm_quote)
 {
-	char	rm_quote;
-	bool	in_quotes;
-	char	*new_string;
 	int		j;
 	int		k;
 
-	rm_quote = 0;
-	in_quotes = false;
 	j = 0;
 	k = 0;
-	new_string = (char *)malloc(count_wihtout_quotes(command) + 1);
-	if (!new_string)
-		return (NULL);
 	while (command[j])
 	{
 		if ((command[j] == '"' || command[j] == 39))
@@ -78,5 +71,19 @@ char	*remove_quotes(char *command)
 			new_string[k++] = command[j++];
 	}
 	new_string[k] = '\0';
+}
+
+char	*remove_quotes(char *command)
+{
+	char	rm_quote;
+	bool	in_quotes;
+	char	*new_string;
+
+	rm_quote = 0;
+	in_quotes = false;
+	new_string = (char *)malloc(count_wihtout_quotes(command) + 1);
+	if (!new_string)
+		return (NULL);
+	copy_without_unnecessary_quoets(command, new_string, in_quotes, rm_quote);
 	return (new_string);
 }

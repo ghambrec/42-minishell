@@ -22,14 +22,15 @@ int	main(void)
 			break ;
 		if (input[0])
 		{
+			if (no_open_quotes(input) == -1)
+				continue ;
 			create_command_list(input, &tokens);
 			ast = ast_create_tree(&tokens);
-			// free_tokens(tokens);
+			free_tokens(tokens);
 			if (PRINT_TREE == 1)
 				ast_print(ast);
 
 		}
-
 
 
 		add_history(input);
