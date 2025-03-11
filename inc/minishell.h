@@ -139,6 +139,7 @@ bool			is_in_quotes(char *input, int i);
 // FREEING
 void	free_split(char **split);
 void	free_tokens(t_tokens *tokens);
+void	free_ast(t_ast *ast);
 
 // EXECUTING
 void	execute_command(char **cmd);

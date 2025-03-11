@@ -44,7 +44,8 @@ SOURCES += bools.c \
 
 # FREEING
 SOURCES += free_split.c \
-			free_tokens.c
+			free_tokens.c \
+			free_ast.c
 
 # AST
 SOURCES += ast_create_node.c \
