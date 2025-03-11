@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_tokens.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 09:05:38 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/10 13:42:43 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/10 14:19:52 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	**split_into_tokens(char *input)
 	int		token_count;
 	char	**tokens;
 
-	tokens = malloc(sizeof(char *) * (ft_strlen(input) / 2 + 1));
+	tokens = ft_calloc((ft_strlen(input) + 1), sizeof(char *));
 	if (!tokens)
 		return (NULL);
 	i = 0;

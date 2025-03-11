@@ -146,9 +146,13 @@ re: fclean all
 test: CFLAGS = -I $(INCLUDE_DIR)
 test: all
 
+# deug rule	- compile with fsanitize
+debug: CFLAGS += -g -fsanitize=address -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment
+debug: clean all
+
 # tree rule	- print the ast in the terminal
 tree: CFLAGS += -DPRINT_TREE=1 -I $(INCLUDE_DIR)
-tree: clean all
+tree: debug
 
 # del rule	- remove lib folder
 del: fclean

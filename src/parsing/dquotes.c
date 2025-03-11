@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 09:57:01 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/07 14:06:02 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/03/10 13:21:16 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,5 @@ void	handle_quotes(t_tokens **token_list)
 		*token_list = (*token_list)->next;
 	}
 	*token_list = temp;
-	ft_printlist(temp);
+	// ft_printlist(temp);
 }

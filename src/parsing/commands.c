@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 10:21:55 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/04 11:04:15 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/10 14:13:57 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	**get_commands(char **tokens)
 	while (tokens[i] && is_operator(tokens[i][0]) == false
 		&& is_redirector(tokens[i]) == false)
 		i++;
-	commands = (char **)malloc((i + 1) * sizeof(char *));
+	commands = (char **)ft_calloc((i + 1), sizeof(char *));
 	if (commands == NULL)
 		return (NULL);
 	j = 0;
