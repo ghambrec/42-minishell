@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:31:02 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/04 09:16:48 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/11 14:29:42 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,47 +24,88 @@ static void	check_quotes(char c, t_quote_state *state)
 	}
 }
 
-static void	handle_env_var(char *temp, int *i, t_quote_state *state)
-{
-	char	env_var_name[256];
-	char	*env_var_value;
-	int		k;
+// static void	copy_replaced_string(char *input,
+// 		char *output, int i, int env_key_end)
+// {
+// 	char	*env_value;
+// 	char	*env_key;
+// 	int		superrechnung;
 
-	k = 0;
-	(*i)++;
-	while (temp[*i] != '\0' && (ft_isalnum(temp[*i]) || temp[*i] == '_'))
-		env_var_name[k++] = temp[(*i)++];
-	env_var_name[k] = '\0';
-	env_var_value = getenv(env_var_name);
-	if (env_var_value != NULL)
-	{
-		ft_strcpy(&state->output[state->j], env_var_value);
-		state->j += ft_strlen(env_var_value);
-	}
-}
+// 	env_key = ft_substr(input, i + 1, env_key_end - i - 1);
+// 	env_value = getenv(env_key);
+// 	free(env_key);
+// 	superrechnung = ft_strlen(input) - (env_key_end - i) + ft_strlen(env_value);
+// 	output = (char *)malloc(superrechnung * sizeof(char));
+// 	ft_strlcpy(output, input, i + 1);
+// 	ft_strlcat(output, env_value, superrechnung);
+// 	ft_strlcat(output, input + env_key_end, superrechnung);
+// 	free(input);
+// }
 
-void	replace_env_vars(char *output)
+static bool	all_vars_replaced(char *input)
 {
-	char			*temp;
 	int				i;
 	t_quote_state	state;
 
-	temp = ft_strdup(output);
-	if (!temp)
-		return ;
-	state.output = output;
-	state.j = 0;
 	state.in_single_quotes = false;
 	state.in_double_quotes = false;
 	i = 0;
-	while (temp[i] != '\0')
+	if (!ft_strchr(input, '$'))
+		return (true);
+	while (input[i])
 	{
-		check_quotes(temp[i], &state);
-		if (temp[i] == '$' && !state.in_single_quotes)
-			handle_env_var(temp, &i, &state);
-		else
-			state.output[state.j++] = temp[i++];
+		check_quotes(input[i], &state);
+		if (input[i] == '$' && !state.in_single_quotes)
+			return (false);
+		i++;
 	}
-	state.output[state.j] = '\0';
-	free(temp);
+	return (true);
+}
+
+char	*replace_env_var_in_string(char *input, int i)
+{
+	int		env_key_end;
+	int		new_len;
+	char	*env_key;
+	char	*env_value;
+	char	*output;
+
+	env_key_end = i;
+	while ((ft_isalnum(input[env_key_end])
+			|| ft_strchr("$_", input[env_key_end])) && input[env_key_end])
+		env_key_end++;
+	env_key = ft_substr(input, i + 1, env_key_end - i - 1);
+	env_value = getenv(env_key);
+	free(env_key);
+	new_len = ft_strlen(input) - (env_key_end - i) + ft_strlen(env_value) + 1;
+	output = (char *)malloc(new_len * sizeof(char));
+	ft_strlcpy(output, input, i + 1);
+	ft_strlcat(output, env_value, new_len);
+	ft_strlcat(output, input + env_key_end, new_len);
+	return (output);
+}
+
+
+char	*replace_env_vars(char *input)
+{
+	int				i;
+	t_quote_state	state;
+	char			*output;
+
+	if (all_vars_replaced(input))
+		return (input);
+	output = NULL;
+	i = 0;
+	state.in_single_quotes = false;
+	state.in_double_quotes = false;
+	while (input[i])
+	{
+		check_quotes(input[i], &state);
+		if (input[i] == '$' && !state.in_single_quotes)
+			break ;
+		i++;
+	}
+	output = replace_env_var_in_string(input, i);
+	free(input);
+	return (replace_env_vars(output));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dquotes.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 09:57:01 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/10 13:21:16 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/03/11 15:32:25 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	handle_quotes(t_tokens **token_list)
 		i = 0;
 		while (commands[i])
 		{
-			replace_env_vars(commands[i]);
+			commands[i] = replace_env_vars(commands[i]);
 			commands[i] = remove_quotes(commands[i]);
 			i++;
 		}

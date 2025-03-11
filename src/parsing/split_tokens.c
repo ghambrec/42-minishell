@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_tokens.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 09:05:38 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/10 14:19:52 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/03/11 15:32:42 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,6 @@ char	**split_into_tokens(char *input)
 	if (!tokens)
 		return (NULL);
 	i = 0;
-	while (tokens[i])
-	{
-		tokens[i] = NULL;
-		i++;
-	}
 	token_count = 0;
 	split_input(input, &token_count, tokens);
 	return (tokens);

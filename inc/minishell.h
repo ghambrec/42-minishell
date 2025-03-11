@@ -79,7 +79,7 @@ typedef struct	s_ast
 
 typedef struct s_quote_state
 {
-	char	*output;
+	char	*input;
 	int		j;
 	bool	in_single_quotes;
 	bool	in_double_quotes;
@@ -125,7 +125,7 @@ char			*remove_quotes(char *commands);
 //HANDLE ENVS
 void			handle_envs(char **commands, int i);
 void			handle_envs_in_string(char *string);
-void			replace_env_vars(char *output);
+char			*replace_env_vars(char *output);
 
 
 // BOOL
