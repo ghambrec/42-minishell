@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:31:02 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/10 16:33:58 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/11 14:29:42 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,77 @@ static void	check_quotes(char c, t_quote_state *state)
 	}
 }
 
+// static void	copy_replaced_string(char *input,
+// 		char *output, int i, int env_key_end)
+// {
+// 	char	*env_value;
+// 	char	*env_key;
+// 	int		superrechnung;
+
+// 	env_key = ft_substr(input, i + 1, env_key_end - i - 1);
+// 	env_value = getenv(env_key);
+// 	free(env_key);
+// 	superrechnung = ft_strlen(input) - (env_key_end - i) + ft_strlen(env_value);
+// 	output = (char *)malloc(superrechnung * sizeof(char));
+// 	ft_strlcpy(output, input, i + 1);
+// 	ft_strlcat(output, env_value, superrechnung);
+// 	ft_strlcat(output, input + env_key_end, superrechnung);
+// 	free(input);
+// }
+
+static bool	all_vars_replaced(char *input)
+{
+	int				i;
+	t_quote_state	state;
+
+	state.in_single_quotes = false;
+	state.in_double_quotes = false;
+	i = 0;
+	if (!ft_strchr(input, '$'))
+		return (true);
+	while (input[i])
+	{
+		check_quotes(input[i], &state);
+		if (input[i] == '$' && !state.in_single_quotes)
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+char	*replace_env_var_in_string(char *input, int i)
+{
+	int		env_key_end;
+	int		new_len;
+	char	*env_key;
+	char	*env_value;
+	char	*output;
+
+	env_key_end = i;
+	while ((ft_isalnum(input[env_key_end])
+			|| ft_strchr("$_", input[env_key_end])) && input[env_key_end])
+		env_key_end++;
+	env_key = ft_substr(input, i + 1, env_key_end - i - 1);
+	env_value = getenv(env_key);
+	free(env_key);
+	new_len = ft_strlen(input) - (env_key_end - i) + ft_strlen(env_value) + 1;
+	output = (char *)malloc(new_len * sizeof(char));
+	ft_strlcpy(output, input, i + 1);
+	ft_strlcat(output, env_value, new_len);
+	ft_strlcat(output, input + env_key_end, new_len);
+	return (output);
+}
+
+
 char	*replace_env_vars(char *input)
 {
 	int				i;
-	int				env_key_end;
-	int				superrechnung;
-	char			*output;
-	char			*env_value;
-	char			*env_key;
 	t_quote_state	state;
+	char			*output;
 
-	if (!ft_strchr(input, '$'))
+	if (all_vars_replaced(input))
 		return (input);
+	output = NULL;
 	i = 0;
 	state.in_single_quotes = false;
 	state.in_double_quotes = false;
@@ -46,18 +105,7 @@ char	*replace_env_vars(char *input)
 			break ;
 		i++;
 	}
-	env_key_end = i;
-	while ((ft_isalnum(input[env_key_end]) || ft_strchr("$_", input[env_key_end])) && input[env_key_end])
-		env_key_end++;
-	env_key = ft_substr(input, i + 1, env_key_end - i - 1);
-
-	env_value = getenv(env_key);
-	free(env_key);
-	superrechnung = ft_strlen(input) - (env_key_end - i) + ft_strlen(env_value);
-	output = (char *)malloc(superrechnung * sizeof(char));
-	ft_strlcpy(output, input, i + 1);
-	ft_strlcat(output, env_value, superrechnung);
-	ft_strlcat(output, input + env_key_end, superrechnung);
+	output = replace_env_var_in_string(input, i);
 	free(input);
-	return(replace_env_vars(output));
+	return (replace_env_vars(output));
 }
