@@ -154,7 +154,7 @@ void		builtin_cd(char **cmd);
 t_shell		*get_shell(void);
 
 // Errors
-int	no_open_quotes(char *input);
+bool	parsing_errors(char *input);
 
 // AST
 void	ast_print(t_ast *ast);

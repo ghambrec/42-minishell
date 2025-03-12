@@ -23,7 +23,7 @@ int	main(void)
 		add_history(input);
 		if (input[0])
 		{
-			if (no_open_quotes(input) == -1) // TODO: allgemeine Parsing-Error Funktion erstellen. Deklarationsvorschlag: "bool check_for_parse_errors"
+			if (parsing_errors(input))
 			{
 				free(input);
 				continue ;

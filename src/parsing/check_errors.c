@@ -6,13 +6,13 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:43:18 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/10 13:01:14 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/12 10:53:12 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int	no_open_quotes(char *input)
+static bool	no_open_quotes(char *input)
 {
 	int		i;
 	char	quote_type;
@@ -27,9 +27,17 @@ int	no_open_quotes(char *input)
 			while (input[i] && input[i] != quote_type)
 				i++;
 			if (input[i] == '\0')
-				return (ft_putendl_fd("No closing Quote", 2), -1);
+				return (ft_putendl_fd("No closing Quote", 2), true);
 		}
 		i++;
 	}
-	return (1);
+	return (false);
+}
+
+
+bool	parsing_errors(char *input)
+{
+	if (no_open_quotes(input))
+		return (true);
+	return (false);
 }

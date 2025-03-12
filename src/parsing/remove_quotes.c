@@ -6,42 +6,48 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:04:54 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/10 16:26:05 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/12 11:14:51 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"\
+#include "../../inc/minishell.h"
+
+static void	quote_counter(char c, bool *in_quotes,
+		char *rm_quote, int *quote_count)
+{
+	if ((c == '"' || c == 39))
+	{
+		if (!*in_quotes)
+		{
+			*rm_quote = c;
+			*(in_quotes) = true;
+		}
+		else if (c == *rm_quote)
+			*(in_quotes) = false;
+		else
+			(*quote_count)++;
+	}
+	else
+		(*quote_count)++;
+}
 
 static int	count_wihtout_quotes(char *command)
 {
 	int		i;
-	int		j;
+	int		quote_count;
 	char	rm_quote;
 	bool	in_quotes;
 
 	i = 0;
-	j = 0;
+	quote_count = 0;
 	rm_quote = 0;
 	in_quotes = false;
 	while (command[i])
 	{
-		if ((command[i] == '"' || command[i] == 39))
-		{
-			if (!in_quotes)
-			{
-				rm_quote = command[i];
-				in_quotes = true;
-			}
-			else if (command[i] == rm_quote)
-				in_quotes = false;
-			else
-				j++;
-		}
-		else
-			j++;
+		quote_counter(command[i], &in_quotes, &rm_quote, &quote_count);
 		i++;
 	}
-	return (j);
+	return (quote_count);
 }
 
 static void	copy_without_unnecessary_quoets(char *command, char *new_string,
@@ -78,10 +84,12 @@ char	*remove_quotes(char *command)
 	char	rm_quote;
 	bool	in_quotes;
 	char	*new_string;
+	int		new_string_len;
 
 	rm_quote = 0;
 	in_quotes = false;
-	new_string = (char *)malloc(count_wihtout_quotes(command) + 1);
+	new_string_len = count_wihtout_quotes(command) + 1;
+	new_string = (char *)malloc(new_string_len);
 	if (!new_string)
 		return (NULL);
 	copy_without_unnecessary_quoets(command, new_string, in_quotes, rm_quote);

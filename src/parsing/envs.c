@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:31:02 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/11 14:29:42 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/12 12:53:07 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,6 @@ static void	check_quotes(char c, t_quote_state *state)
 		state->in_single_quotes = !state->in_single_quotes;
 	}
 }
-
-// static void	copy_replaced_string(char *input,
-// 		char *output, int i, int env_key_end)
-// {
-// 	char	*env_value;
-// 	char	*env_key;
-// 	int		superrechnung;
-
-// 	env_key = ft_substr(input, i + 1, env_key_end - i - 1);
-// 	env_value = getenv(env_key);
-// 	free(env_key);
-// 	superrechnung = ft_strlen(input) - (env_key_end - i) + ft_strlen(env_value);
-// 	output = (char *)malloc(superrechnung * sizeof(char));
-// 	ft_strlcpy(output, input, i + 1);
-// 	ft_strlcat(output, env_value, superrechnung);
-// 	ft_strlcat(output, input + env_key_end, superrechnung);
-// 	free(input);
-// }
 
 static bool	all_vars_replaced(char *input)
 {
@@ -62,7 +44,7 @@ static bool	all_vars_replaced(char *input)
 	return (true);
 }
 
-char	*replace_env_var_in_string(char *input, int i)
+static char	*replace_env_var_in_string(char *input, int i)
 {
 	int		env_key_end;
 	int		new_len;
@@ -84,7 +66,6 @@ char	*replace_env_var_in_string(char *input, int i)
 	ft_strlcat(output, input + env_key_end, new_len);
 	return (output);
 }
-
 
 char	*replace_env_vars(char *input)
 {
