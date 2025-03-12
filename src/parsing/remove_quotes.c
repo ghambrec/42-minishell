@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   remove_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:04:54 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/12 11:14:51 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/12 13:41:43 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,6 @@ char	*remove_quotes(char *command)
 	if (!new_string)
 		return (NULL);
 	copy_without_unnecessary_quoets(command, new_string, in_quotes, rm_quote);
+	free(command);
 	return (new_string);
 }

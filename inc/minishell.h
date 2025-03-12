@@ -7,6 +7,7 @@
 # include <readline/history.h>
 # include <errno.h>
 # include <limits.h>
+# include <sys/wait.h>
 
 # define YELLOW "\033[0;33m"
 # define CYAN "\033[0;36m"
@@ -167,5 +168,8 @@ void	ast_parse_redirections(t_ast *cmd, t_tokens **tokens);
 t_ast	*ast_create_node(t_token_type ttype, char **cmd, t_ast *left, t_ast *right);
 char	**ast_dup_tokens(char **tokens);
 void	ast_add_redirection(t_ast *ast, t_token_type ttype, char **token);
+
+// EXECUTION
+void	exec_ast(t_ast *ast);
 
 #endif

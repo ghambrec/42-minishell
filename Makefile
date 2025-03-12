@@ -17,7 +17,8 @@ SOURCE_DIRS = src \
 				src/shell_utils \
 				src/ast \
 				src/parsing \
-				src/freeing
+				src/freeing \
+				src/execution
 
 VPATH = $(SOURCE_DIRS)
 
@@ -62,7 +63,8 @@ SOURCES += check_builtin.c \
 			builtin_cd.c
 
 # EXECUTING
-SOURCES += execute_command.c
+SOURCES += execute_command.c \
+			exec_ast.c
 
 # ---------- OBJECTS ---------- #
 OBJECT_DIR = obj
