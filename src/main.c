@@ -37,7 +37,7 @@ int	main(void)
 			// exec_ast(ast); // TODO: exec part
 			// free_ast(ast);
 			}
-		free(input);
+		// free(input); // wird in create_command_list freigegeben
 		// leaks();
 	}
 	clear_history();

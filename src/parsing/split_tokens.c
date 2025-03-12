@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 09:05:38 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/12 16:07:18 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/03/12 16:27:43 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	**split_into_tokens(char *input)
 	int		token_count;
 	char	**tokens;
 
-	tokens = ft_calloc((ft_strlen(input) + 1), sizeof(char *));
+	tokens = malloc(((ft_strlen(input)) + 1) * sizeof(char *));
 	if (!tokens)
 		return (NULL);
 	token_count = 0;

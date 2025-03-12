@@ -87,6 +87,7 @@ typedef struct s_quote_state
 }	t_quote_state;
 
 void			ft_print2d(char **array2d);
+void	ft_print2d_gha(char **array2d);
 t_tokens		*ft_newtoken(int token_type, char **token);
 void			ft_printlist(t_tokens *token);
 char			*ft_strcpy(char *dest, const char *src);
