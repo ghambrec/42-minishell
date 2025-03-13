@@ -143,11 +143,10 @@ void	free_split(char **split);
 void	free_tokens(t_tokens *tokens);
 void	free_ast(t_ast *ast);
 
-// EXECUTING
-void	execute_command(char **cmd);
+
 
 // BUILTINS
-void		check_builtin(char **cmd);
+bool		check_builtin(char **cmd);
 void		builtin_echo(char **cmd);
 void		builtin_pwd(void);
 void		builtin_cd(char **cmd);
@@ -171,6 +170,12 @@ char	**ast_dup_tokens(char **tokens);
 void	ast_add_redirection(t_ast *ast, t_token_type ttype, char **token);
 
 // EXECUTION
+void	execute_command(char **cmd);
+int		open_redirections(t_redirection *redirect);
 void	exec_ast(t_ast *ast);
+int		exec_cmd(t_ast *ast);
+int		exec_builtin(t_ast *ast);
+
+
 
 #endif

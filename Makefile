@@ -64,7 +64,10 @@ SOURCES += check_builtin.c \
 
 # EXECUTING
 SOURCES += execute_command.c \
-			exec_ast.c
+			redirections.c \
+			exec_ast.c \
+			exec_cmd.c \
+			exec_builtin.c
 
 # ---------- OBJECTS ---------- #
 OBJECT_DIR = obj

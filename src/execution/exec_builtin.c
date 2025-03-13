@@ -1,0 +1,50 @@
+
+#include "minishell.h"
+
+// TODO: return values from the builtin functions
+// TODO: finish builtin functions
+
+int	exec_current_builtin(char **cmd)
+{
+	if (ft_strcmp(cmd[0], "echo") == 0)
+		return (builtin_echo(cmd), 9000);
+	if (ft_strcmp(cmd[0], "cd") == 0)
+		return (builtin_cd(cmd), 9000);
+	if (ft_strcmp(cmd[0], "pwd") == 0)
+		return (builtin_pwd(), 9000);
+	if (ft_strcmp(cmd[0], "export") == 0)
+		return 9000;
+	if (ft_strcmp(cmd[0], "unset") == 0)
+		return 9000;
+	if (ft_strcmp(cmd[0], "env") == 0)
+		return 9000;
+	if (ft_strcmp(cmd[0], "exit") == 0)
+		return 9000;
+	else
+		return (false);
+}
+
+int	exec_builtin(t_ast *ast)
+{
+	int	exit_code;
+	int	copy_stdin;
+	int	copy_stdout;
+
+	if (ast->redirect)
+	{
+		copy_stdin = dup(STDIN_FILENO);
+		copy_stdout = dup(STDOUT_FILENO);
+		exit_code = open_redirections(ast->redirect);
+		if (exit_code != 0)
+			return (exit_code);
+	}
+	exit_code = exec_current_builtin(ast->cmd);
+	if (ast->redirect)
+	{
+		dup2(copy_stdin, STDIN_FILENO);
+		dup2(copy_stdout, STDOUT_FILENO);
+		close(copy_stdin);
+		close(copy_stdout);
+	}
+	return (exit_code);
+}

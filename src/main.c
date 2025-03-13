@@ -29,16 +29,17 @@ int	main(void)
 				free(input);
 				continue ;
 			}
-			printf("%sCreating Command-List...%s\n", YELLOW, NC);
+			// printf("%sCreating Command-List...%s\n", YELLOW, NC);
 			create_command_list(input, &tokens);
 			// tokens_backup_pointer = tokens;
-			printf("%sCreating AST...%s\n", YELLOW, NC);
+			// printf("%sCreating AST...%s\n", YELLOW, NC);
 			ast = ast_create_tree(&tokens);
 			free_tokens(tokens);
 			tokens = NULL;
 			if (PRINT_TREE == 1)
-				ast_print(ast);
-			// exec_ast(ast); // TODO: exec part
+			ast_print(ast);
+			// printf("%sStarting Execution...%s\n", YELLOW, NC);
+			exec_ast(ast); // TODO: exec part
 			free_ast(ast);
 			}
 		// free(input); // wird in create_command_list freigegeben
