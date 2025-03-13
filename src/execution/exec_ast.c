@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dquotes.c                                          :+:      :+:    :+:   */
+/*   exec_ast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/26 09:57:01 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/13 12:18:03 by ghambrec         ###   ########.fr       */
+/*   Created: 2025/03/12 13:15:20 by ghambrec          #+#    #+#             */
+/*   Updated: 2025/03/12 13:34:44 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "minishell.h"
 
-void	handle_quotes(t_tokens **token_list)
+void	exec_ast(t_ast *ast)
 {
-	char		**commands;
-	int			i;
-	t_tokens	*temp;
+	pid_t	pid;
 
-	temp = *token_list;
-	while (*token_list)
+	pid = fork();
+	if (pid == 0)
 	{
-		commands = (*token_list)->token;
-		i = 0;
-		while (commands[i])
+		if (ast->ttype == TT_CMD)
 		{
-			commands[i] = replace_env_vars(commands[i]);
-			commands[i] = remove_quotes(commands[i]);
-			i++;
-		}
-		*token_list = (*token_list)->next;
+			execute_command(ast->cmd);
+		}	
 	}
-	*token_list = temp;
-	// ft_printlist(temp);
+	else
+	{
+		waitpid(pid, NULL, 0);
+
+	}
 }

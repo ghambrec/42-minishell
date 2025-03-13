@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 10:21:25 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/13 13:11:48 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/13 13:13:27 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,10 @@ void	create_command_list(char *input, t_tokens **token_list)
 	char		**splitted_tokens;
 
 	updated_input = change_input_string(input);
+	free(input);
 	splitted_tokens = split_into_tokens(updated_input);
 	free(updated_input);
 	create_token_list(splitted_tokens, token_list);
+	free_split(splitted_tokens);
 	handle_quotes(token_list);
 }

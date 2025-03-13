@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   envs.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:31:02 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/12 12:53:07 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/13 12:18:07 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,14 @@ static char	*replace_env_var_in_string(char *input, int i)
 	env_key = ft_substr(input, i + 1, env_key_end - i - 1);
 	env_value = getenv(env_key);
 	free(env_key);
-	new_len = ft_strlen(input) - (env_key_end - i) + ft_strlen(env_value) + 1;
+	if (env_value)
+		new_len = ft_strlen(input) - (env_key_end - i) + ft_strlen(env_value) + 1;
+	else
+		new_len = ft_strlen(input) - (env_key_end - i) + 1;
 	output = (char *)malloc(new_len * sizeof(char));
 	ft_strlcpy(output, input, i + 1);
-	ft_strlcat(output, env_value, new_len);
+	if (env_value)
+		ft_strlcat(output, env_value, new_len);
 	ft_strlcat(output, input + env_key_end, new_len);
 	return (output);
 }

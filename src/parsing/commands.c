@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 10:21:55 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/11 15:32:30 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/12 18:19:25 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ void	handle_commands(char **all_tokens, t_tokens **token_list, int i)
 	commands = get_commands(&all_tokens[i]);
 	if (!commands)
 		return ;
-	ft_lstadd_back_token(token_list,
-		ft_newtoken(TT_CMD, commands));
+	ft_lstadd_back_token(token_list, ft_newtoken(TT_CMD, commands));
 	return ;
 }
 
@@ -42,7 +41,7 @@ char	**get_commands(char **tokens)
 	j = 0;
 	while (j < i)
 	{
-		commands[j] = tokens[j];
+		commands[j] = ft_strdup(tokens[j]);
 		j++;
 	}
 	commands[i] = NULL;

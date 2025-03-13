@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 11:08:14 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/04 11:12:57 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/12 17:55:03 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,19 @@ void	ft_print2d(char **array2d)
 		array2d++;
 	}
 	printf("\n");
+}
+
+void	ft_print2d_gha(char **array2d)
+{
+	int	i;
+
+	i = 0;
+	while (*array2d)
+	{
+		printf("%i: [%s]\n", i, *array2d);
+		array2d++;
+		i++;
+	}
 }
 
 void	ft_printlist(t_tokens *token)
