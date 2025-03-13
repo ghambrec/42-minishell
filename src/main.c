@@ -29,8 +29,10 @@ int	main(void)
 				free(input);
 				continue ;
 			}
+			printf("%sCreating Command-List...%s\n", YELLOW, NC);
 			create_command_list(input, &tokens);
 			// tokens_backup_pointer = tokens;
+			printf("%sCreating AST...%s\n", YELLOW, NC);
 			ast = ast_create_tree(&tokens);
 			free_tokens(tokens);
 			tokens = NULL;
