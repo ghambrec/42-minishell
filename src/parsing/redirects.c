@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirects.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 19:13:18 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/02/28 15:52:10 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/13 11:41:22 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ char	**get_redirects_2d(char **all_tokens)
 	commands = (char **)malloc((3) * sizeof(char *));
 	if (commands == NULL)
 		return (NULL);
-	commands[0] = all_tokens[i];
-	commands[1] = all_tokens[i + 1];
+	commands[0] = ft_strdup(all_tokens[i]);
+	commands[1] = ft_strdup(all_tokens[i + 1]);
 	commands[2] = NULL;
 	return (commands);
 }
