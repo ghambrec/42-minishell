@@ -13,7 +13,7 @@ int	main(void)
 	char		*input;
 	t_tokens	*tokens;
 	// t_tokens	*tokens_backup_pointer;
-	t_ast		*ast;
+	// t_ast		*ast;
 	// atexit(leaks);
 	while (1)
 	{
@@ -29,17 +29,18 @@ int	main(void)
 				free(input);
 				continue ;
 			}
-			printf("%sCreating Command-List...%s\n", YELLOW, NC);
+			// printf("%sCreating Command-List...%s\n", YELLOW, NC);
 			create_command_list(input, &tokens);
+			ft_printlist(tokens);
 			// tokens_backup_pointer = tokens;
-			printf("%sCreating AST...%s\n", YELLOW, NC);
-			ast = ast_create_tree(&tokens);
-			free_tokens(tokens);
-			tokens = NULL;
-			if (PRINT_TREE == 1)
-				ast_print(ast);
-			// exec_ast(ast); // TODO: exec part
-			free_ast(ast);
+			// printf("%sCreating AST...%s\n", YELLOW, NC);
+			// ast = ast_create_tree(&tokens);
+			// free_tokens(tokens);
+			// tokens = NULL;
+			// if (PRINT_TREE == 1)
+			// 	ast_print(ast);
+			// // exec_ast(ast); // TODO: exec part
+			// free_ast(ast);
 			}
 		// free(input); // wird in create_command_list freigegeben
 		// leaks();

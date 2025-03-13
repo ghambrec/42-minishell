@@ -3,23 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   operator.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 11:04:58 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/12 18:25:00 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/03/13 13:22:32 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	handle_operator(char **all_tokens, t_tokens **token_list, int i)
+void	handle_operator(char **all_tokens, t_tokens **token_list, int *i)
 {
 	int		token_type;
 	char	**operator;
 
-	operator = get_operator(all_tokens[i]);
+	operator = get_operator(all_tokens[*i]);
 	token_type = get_token_type(operator);
 	ft_lstadd_back_token(token_list, ft_newtoken(token_type, operator));
+	(*i)++;
 	return ;
 }
 
@@ -60,15 +61,16 @@ char	*join_tokens(char *token1, char *token2)
 }
 
 void	handle_heredoc_and_append(
-	char **all_tokens, t_tokens **token_list, int i)
+	char **all_tokens, t_tokens **token_list, int *i)
 {
 	int		token_type;
 	char	**token;
 	char	*joined_token;
 
-	joined_token = join_tokens(all_tokens[i], all_tokens[i + 1]);
+	joined_token = join_tokens(all_tokens[*i], all_tokens[*i + 1]);
 	token = get_heredoc_or_append(joined_token);
 	token_type = get_token_type(token);
 	ft_lstadd_back_token(token_list, ft_newtoken(token_type, token));
 	free(joined_token);
+	(*i) += 2;
 }

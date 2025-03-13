@@ -41,7 +41,8 @@ SOURCES += bools.c \
 			token_list.c \
 			utils.c \
 			utils2.c \
-			check_errors.c
+			check_errors.c \
+			join_commands.c
 
 # FREEING
 SOURCES += free_split.c \

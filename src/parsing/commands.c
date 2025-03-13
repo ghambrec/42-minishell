@@ -3,23 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 10:21:55 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/12 18:19:25 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/03/13 13:46:02 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	handle_commands(char **all_tokens, t_tokens **token_list, int i)
+void	handle_commands(char **all_tokens, t_tokens **token_list, int *i)
 {
 	char	**commands;
 
-	commands = get_commands(&all_tokens[i]);
+	commands = get_commands(&all_tokens[*i]);
 	if (!commands)
 		return ;
 	ft_lstadd_back_token(token_list, ft_newtoken(TT_CMD, commands));
+	while (all_tokens[*i] && is_operator(all_tokens[*i][0]) == false
+		&& is_redirector(all_tokens[*i]) == false)
+		(*i)++;
 	return ;
 }
 
