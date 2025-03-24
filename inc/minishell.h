@@ -20,6 +20,9 @@
 #  define PRINT_TREE 0
 # endif
 
+#define PIPE_READ 0
+#define PIPE_WRITE 1
+
 // typedef enum e_builtins
 // {
 // 	NO_BIN,
@@ -178,6 +181,7 @@ int		open_redirections(t_redirection *redirect);
 void	exec_ast(t_ast *ast);
 int		exec_cmd(t_ast *ast);
 int		exec_builtin(t_ast *ast);
+int		exec_pipe(t_ast *ast);
 
 
 

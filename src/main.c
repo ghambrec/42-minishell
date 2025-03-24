@@ -12,9 +12,10 @@ int	main(void)
 {
 	char		*input;
 	t_tokens	*tokens;
-	t_tokens	*tokens_backup_pointer;
+	// t_tokens	*tokens_backup_pointer;
 	t_ast		*ast;
 	// atexit(leaks);
+	printf("entered minishell\n");
 	while (1)
 	{
 		tokens = NULL;
@@ -31,10 +32,12 @@ int	main(void)
 			}
 			// printf("%sCreating Command-List...%s\n", YELLOW, NC);
 			create_command_list(input, &tokens);
-			ft_printlist(tokens);
+			// ft_printlist(tokens);
+			// printf("%sFinished Command-List%s\n", YELLOW, NC);
 			// tokens_backup_pointer = tokens;
 			// printf("%sCreating AST...%s\n", YELLOW, NC);
 			ast = ast_create_tree(&tokens);
+			// printf("%sFinished AST...%s\n", YELLOW, NC);
 			free_tokens(tokens);
 			tokens = NULL;
 			if (PRINT_TREE == 1)

@@ -34,6 +34,8 @@ void	execute_command(char **cmd)
 	char	*path;
 
 	path = get_path(cmd[0]);
+	if (ft_strchr(cmd[0], '/'))
+		path = cmd[0];
 	if (!path)
 	{
 		ft_putstr_fd("Command not found: ", STDERR_FILENO);
@@ -43,11 +45,11 @@ void	execute_command(char **cmd)
 	}
 	if (execve(path, cmd, NULL) == -1)
 	{
-		ft_putstr_fd("Error executing command '", STDERR_FILENO);
+		ft_putstr_fd("Error executing '", STDERR_FILENO);
 		ft_putstr_fd(cmd[0], STDERR_FILENO);
 		perror("'");
 		free_split(cmd);
-		// hier errno auf $? setzen?
+		// hier errno auf $? setzen bzw returnen?
 		return ;
 	}
 }
