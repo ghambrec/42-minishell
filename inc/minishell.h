@@ -102,14 +102,14 @@ void			create_token_list(
 					char **all_tokens, t_tokens **token_list);
 int				get_array_size(char **array);
 void			handle_operator(
-					char **all_tokens, t_tokens **token_list, int i);
+					char **all_tokens, t_tokens **token_list, int *i);
 int				get_token_type(char **token);
 int				handle_redirects(
-					char **all_tokens, t_tokens **token_list, int i);
+					char **all_tokens, t_tokens **token_list, int *i);
 char			**get_re_out(char **tokens);
 char			**get_redirects_2d(char **all_tokens);
 void			handle_commands(
-					char **all_tokens, t_tokens **token_list, int i);
+					char **all_tokens, t_tokens **token_list, int *i);
 void			create_command_list(char *input, t_tokens **token_list);
 void			copy_with_spaces(char *input, char *updatet_input);
 char			*insert_spaces(char *input);
@@ -117,7 +117,7 @@ int				count_extra_spaces(char *input);
 void			handle_operator_with_spaces(
 					char *input, char *updatet_input, int *i, int *j);
 void			handle_heredoc_and_append(
-					char **all_tokens, t_tokens **token_list, int i);
+					char **all_tokens, t_tokens **token_list, int *i);
 char			**split_into_tokens(char *input);
 
 // HANDLE_QUOTES
@@ -128,6 +128,9 @@ char			*remove_quotes(char *commands);
 void			handle_envs(char **commands, int i);
 void			handle_envs_in_string(char *string);
 char			*replace_env_vars(char *output);
+
+//Join Commands
+void	join_commands(t_tokens  *token_list);
 
 
 // BOOL
