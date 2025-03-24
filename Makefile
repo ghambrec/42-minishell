@@ -69,7 +69,8 @@ SOURCES += execute_command.c \
 			redirections.c \
 			exec_ast.c \
 			exec_cmd.c \
-			exec_builtin.c
+			exec_builtin.c \
+			exec_pipe.c
 
 # ---------- OBJECTS ---------- #
 OBJECT_DIR = obj

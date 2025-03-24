@@ -20,6 +20,9 @@
 #  define PRINT_TREE 0
 # endif
 
+#define PIPE_READ 0
+#define PIPE_WRITE 1
+
 // typedef enum e_builtins
 // {
 // 	NO_BIN,
@@ -172,11 +175,20 @@ char			**ast_dup_tokens(char **tokens);
 void			ast_add_redirection(t_ast *ast, t_token_type ttype, char **token);
 
 // EXECUTION
+<<<<<<< HEAD
 void			execute_command(char **cmd);
 int				open_redirections(t_redirection *redirect);
 void			exec_ast(t_ast *ast);
 int				exec_cmd(t_ast *ast);
 int				exec_builtin(t_ast *ast);
+=======
+void	execute_command(char **cmd);
+int		open_redirections(t_redirection *redirect);
+void	exec_ast(t_ast *ast);
+int		exec_cmd(t_ast *ast);
+int		exec_builtin(t_ast *ast);
+int		exec_pipe(t_ast *ast);
+>>>>>>> 3643f9818d0a8c5ffbf14f0422a1c4cb8b959649
 
 
 

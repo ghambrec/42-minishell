@@ -15,6 +15,7 @@ int	main(void)
 	// t_tokens	*tokens_backup_pointer;
 	t_ast		*ast;
 	// atexit(leaks);
+	printf("entered minishell\n");
 	while (1)
 	{
 		tokens = NULL;
@@ -35,6 +36,7 @@ int	main(void)
 			// tokens_backup_pointer = tokens;
 			// printf("%sCreating AST...%s\n", YELLOW, NC);
 			ast = ast_create_tree(&tokens);
+			// printf("%sFinished AST...%s\n", YELLOW, NC);
 			free_tokens(tokens);
 			tokens = NULL;
 			if (PRINT_TREE == 1)
