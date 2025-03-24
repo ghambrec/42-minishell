@@ -2,7 +2,7 @@
 
 #include "minishell.h"
 
-void	builtin_pwd(void)
+int	builtin_pwd(void)
 {
 	char	*path;
 
@@ -15,6 +15,7 @@ void	builtin_pwd(void)
 	else
 	{
 		perror("pwd");
-		get_shell()->exit_code = errno;
+		return (1);
 	}
+	return (0);
 }

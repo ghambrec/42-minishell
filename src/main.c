@@ -12,7 +12,7 @@ int	main(void)
 {
 	char		*input;
 	t_tokens	*tokens;
-	t_tokens	*tokens_backup_pointer;
+	// t_tokens	*tokens_backup_pointer;
 	t_ast		*ast;
 	// atexit(leaks);
 	while (1)
@@ -31,7 +31,7 @@ int	main(void)
 			}
 			// printf("%sCreating Command-List...%s\n", YELLOW, NC);
 			create_command_list(input, &tokens);
-			ft_printlist(tokens);
+			// ft_printlist(tokens);
 			// tokens_backup_pointer = tokens;
 			// printf("%sCreating AST...%s\n", YELLOW, NC);
 			ast = ast_create_tree(&tokens);

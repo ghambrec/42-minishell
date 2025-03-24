@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:49:17 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/13 19:11:53 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/24 18:11:59 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,64 +61,60 @@ static char	**duplicate_commands(t_tokens *tokens, int to_allocate)
 	return (commands);
 }
 
-static void	join_commands_to_one_token(t_tokens *tokens, char **commands)
+static t_tokens	*find_first_cmd_token(t_tokens *tokens)
 {
-	bool		first_command;
-	t_tokens	*temp;
-
-	first_command = true;
-	while (tokens)
-	{
-		if (tokens->token_type == TT_CMD && first_command == true)
-		{
-			temp = tokens;
-			first_command = false;
-		}
-		tokens = tokens->next;
-	}
-	free_split(temp->token);
-	temp->token = commands;
-}
-
-static void	remove_joined_tokens(t_tokens *tokens)
-{
-	t_tokens	*last_token;
-	t_tokens	*temp;
-	bool		first_command;
-
-	first_command = true;
-	last_token = NULL;
-	while (tokens)
+	while (tokens && tokens->token_type != TT_PIPE)
 	{
 		if (tokens->token_type == TT_CMD)
-		{
-			if (first_command)
-			{
-				first_command = false;
-				last_token = tokens;
-				tokens = tokens->next;
-				continue ;
-			}
-			free_split(tokens->token);
-			if (last_token)
-				last_token->next = tokens->next;
-			temp = tokens;
-			tokens = tokens->next;
-			free(temp);
-			continue ;
-		}
-		last_token = tokens;
+			return (tokens);
 		tokens = tokens->next;
+	}
+	return (NULL);
+}
+
+static void	remove_joined_cmd_tokens(t_tokens *first_token)
+{
+	t_tokens	*current;
+	t_tokens	*prev;
+
+	current = first_token->next;
+	prev = first_token;
+	while (current && current->token_type != TT_PIPE)
+	{
+		if (current->token_type == TT_CMD)
+		{
+			prev->next = current->next;
+			free_split(current->token);
+			free(current);
+			current = prev->next;
+		}
+		else
+		{
+			prev = current;
+			current = current->next;
+		}
 	}
 }
 
 void	join_commands(t_tokens *tokens)
 {
-	char	**commands;
-	int		to_allocate;
+	t_tokens	*first_cmd_token;
+	char		**commands;
+	int			to_allocate;
 
-	to_allocate = get_number_of_commands(tokens);
-	commands = duplicate_commands(tokens, to_allocate);
-	join_commands_to_one_token(tokens, commands);
-	remove_joined_tokens(tokens);
+	while (tokens)
+	{
+		first_cmd_token = find_first_cmd_token(tokens);
+		if (!first_cmd_token)
+			break ;
+		to_allocate = get_number_of_commands(first_cmd_token);
+		commands = duplicate_commands(first_cmd_token, to_allocate);
+		free_split(first_cmd_token->token);
+		first_cmd_token->token = commands;
+		remove_joined_cmd_tokens(first_cmd_token);
+		while (tokens && tokens->token_type != TT_PIPE)
+			tokens = tokens->next;
+		if (tokens)
+			tokens = tokens->next;
+	}
 }

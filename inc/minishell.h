@@ -130,7 +130,8 @@ void			handle_envs_in_string(char *string);
 char			*replace_env_vars(char *output);
 
 //Join Commands
-void	join_commands(t_tokens  *token_list);
+void	join_commands(t_tokens *token_list);
+void		handle_redirects_in_between(t_tokens *tokens);
 
 
 // BOOL
@@ -142,42 +143,40 @@ bool			is_heredoc_or_append(char c, char d);
 bool			is_in_quotes(char *input, int i);
 
 // FREEING
-void	free_split(char **split);
-void	free_tokens(t_tokens *tokens);
-void	free_ast(t_ast *ast);
-
-
+void			free_split(char **split);
+void			free_tokens(t_tokens *tokens);
+void			free_ast(t_ast *ast);
 
 // BUILTINS
-bool		check_builtin(char **cmd);
-void		builtin_echo(char **cmd);
-void		builtin_pwd(void);
-void		builtin_cd(char **cmd);
+bool			check_builtin(char **cmd);
+void			builtin_echo(char **cmd);
+int				builtin_pwd(void);
+int				builtin_cd(char **cmd);
 
 // SHELL-UTILS
-t_shell		*get_shell(void);
+t_shell			*get_shell(void);
 
 // Errors
-bool	parsing_errors(char *input);
+bool			parsing_errors(char *input);
 
 // AST
-void	ast_print(t_ast *ast);
-t_ast	*ast_parse_logical_operator(t_tokens **tokens);
-t_ast	*ast_create_tree(t_tokens **tokens);
-t_ast	*ast_parse_pipe(t_tokens **tokens);
-t_ast	*ast_parse_cmd(t_tokens **tokens);
-t_ast	*ast_parse_parenthesis(t_tokens **tokens);
-void	ast_parse_redirections(t_ast *cmd, t_tokens **tokens);
-t_ast	*ast_create_node(t_token_type ttype, char **cmd, t_ast *left, t_ast *right);
-char	**ast_dup_tokens(char **tokens);
-void	ast_add_redirection(t_ast *ast, t_token_type ttype, char **token);
+void			ast_print(t_ast *ast);
+t_ast			*ast_parse_logical_operator(t_tokens **tokens);
+t_ast			*ast_create_tree(t_tokens **tokens);
+t_ast			*ast_parse_pipe(t_tokens **tokens);
+t_ast			*ast_parse_cmd(t_tokens **tokens);
+t_ast			*ast_parse_parenthesis(t_tokens **tokens);
+void			ast_parse_redirections(t_ast *cmd, t_tokens **tokens);
+t_ast			*ast_create_node(t_token_type ttype, char **cmd, t_ast *left, t_ast *right);
+char			**ast_dup_tokens(char **tokens);
+void			ast_add_redirection(t_ast *ast, t_token_type ttype, char **token);
 
 // EXECUTION
-void	execute_command(char **cmd);
-int		open_redirections(t_redirection *redirect);
-void	exec_ast(t_ast *ast);
-int		exec_cmd(t_ast *ast);
-int		exec_builtin(t_ast *ast);
+void			execute_command(char **cmd);
+int				open_redirections(t_redirection *redirect);
+void			exec_ast(t_ast *ast);
+int				exec_cmd(t_ast *ast);
+int				exec_builtin(t_ast *ast);
 
 
 
