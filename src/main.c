@@ -16,9 +16,9 @@ int	main(int ac, char **argv, char **envp)
 	// t_tokens	*tokens_backup_pointer;
 	t_ast		*ast;
 	// atexit(leaks);
-	printf("entered minishell\n");
-	ac = 0;
-	argv = NULL;
+	
+	if (input_errors(ac, argv))
+		return (1);
 	shell.envp = envp;
 	while (1)
 	{

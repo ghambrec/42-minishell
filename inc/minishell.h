@@ -156,12 +156,15 @@ void			builtin_echo(char **cmd);
 int				builtin_pwd(void);
 int				builtin_cd(char **cmd);
 int				builtin_export(char **cmd, t_shell *shell);
+int				builtin_env(char **cmd, t_shell *shell);
+int				builtin_unset(char **cmd, t_shell *shell);
 
 // SHELL-UTILS
 t_shell			*get_shell(void);
 
 // Errors
 bool			parsing_errors(char *input);
+bool			input_errors(int argc, char **argv);
 
 // AST
 void			ast_print(t_ast *ast);
@@ -174,6 +177,7 @@ void			ast_parse_redirections(t_ast *cmd, t_tokens **tokens);
 t_ast			*ast_create_node(t_token_type ttype, char **cmd, t_ast *left, t_ast *right);
 char			**ast_dup_tokens(char **tokens);
 void			ast_add_redirection(t_ast *ast, t_token_type ttype, char **token);
+
 
 // EXECUTION
 void			execute_command(char **cmd);

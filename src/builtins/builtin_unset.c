@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_export.c                                   :+:      :+:    :+:   */
+/*   builtin_unset.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/25 10:38:33 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/25 14:35:16 by rstumpf          ###   ########.fr       */
+/*   Created: 2025/03/25 16:05:46 by rstumpf           #+#    #+#             */
+/*   Updated: 2025/03/25 17:23:28 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	print_declare_exports(t_shell *shell)
+int	builtin_unset(char **cmd, t_shell *shell)
 {
-	char	**temp;
 	int		i;
+	char	**envp;
 
-	temp = shell->envp;
+	envp = shell->envp;
 	i = 0;
-	while (temp[i])
-	{
-		printf("declare -x %s\n", temp[i]);
+	cmd = NULL;
+	while (envp[i])
 		i++;
-	}
-}
-
-int	builtin_export(char **cmd, t_shell *shell)
-{
-	if (!cmd[1])
-		print_declare_exports(shell);
-	
-	return (0);
+	printf("envs: %d\n", i);
+	return (1);
 }
