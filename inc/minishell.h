@@ -54,7 +54,7 @@ typedef enum e_token_type
 // ob befehl vorher erfolgreich bzw nicht erfolgreich war
 typedef struct s_shell
 {
-	char	**env;
+	char	**envp;
 	int		exit_code;
 }	t_shell;
 
@@ -155,6 +155,7 @@ bool			check_builtin(char **cmd);
 void			builtin_echo(char **cmd);
 int				builtin_pwd(void);
 int				builtin_cd(char **cmd);
+int				builtin_export(char **cmd, t_shell *shell);
 
 // SHELL-UTILS
 t_shell			*get_shell(void);
@@ -175,20 +176,11 @@ char			**ast_dup_tokens(char **tokens);
 void			ast_add_redirection(t_ast *ast, t_token_type ttype, char **token);
 
 // EXECUTION
-<<<<<<< HEAD
 void			execute_command(char **cmd);
 int				open_redirections(t_redirection *redirect);
-void			exec_ast(t_ast *ast);
-int				exec_cmd(t_ast *ast);
-int				exec_builtin(t_ast *ast);
-=======
-void	execute_command(char **cmd);
-int		open_redirections(t_redirection *redirect);
-void	exec_ast(t_ast *ast);
-int		exec_cmd(t_ast *ast);
-int		exec_builtin(t_ast *ast);
-int		exec_pipe(t_ast *ast);
->>>>>>> 3643f9818d0a8c5ffbf14f0422a1c4cb8b959649
+void			exec_ast(t_ast *ast, t_shell *shell);
+int				exec_cmd(t_ast *ast, t_shell *shell);
+int				exec_builtin(t_ast *ast, t_shell *shell);
 
 
 

@@ -1,12 +1,12 @@
 
 # include "minishell.h"
 
-int	exec_cmd(t_ast *ast)
+int	exec_cmd(t_ast *ast, t_shell *shell)
 {
 	pid_t	pid;
 
 	if (check_builtin(ast->cmd) == true)
-		return (exec_builtin(ast));
+		return (exec_builtin(ast, shell));
 
 	pid = fork();
 	if (pid == 0)

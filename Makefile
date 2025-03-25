@@ -62,7 +62,8 @@ SOURCES += ast_create_node.c \
 SOURCES += check_builtin.c \
 			builtin_echo.c \
 			builtin_pwd.c \
-			builtin_cd.c
+			builtin_cd.c \
+			builtin_export.c
 
 # EXECUTING
 SOURCES += execute_command.c \

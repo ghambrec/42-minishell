@@ -8,14 +8,18 @@
 // 	system("leaks minishell");
 // }
 
-int	main(void)
+int	main(int ac, char **argv, char **envp)
 {
 	char		*input;
 	t_tokens	*tokens;
+	t_shell		shell;
 	// t_tokens	*tokens_backup_pointer;
 	t_ast		*ast;
 	// atexit(leaks);
 	printf("entered minishell\n");
+	ac = 0;
+	argv = NULL;
+	shell.envp = envp;
 	while (1)
 	{
 		tokens = NULL;
@@ -42,7 +46,7 @@ int	main(void)
 			if (PRINT_TREE == 1)
 			ast_print(ast);
 			// printf("%sStarting Execution...%s\n", YELLOW, NC);
-			exec_ast(ast); // TODO: exec part
+			exec_ast(ast, &shell); // TODO: exec part
 			free_ast(ast);
 			}
 		// free(input); // wird in create_command_list freigegeben

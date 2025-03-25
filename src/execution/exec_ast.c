@@ -1,12 +1,12 @@
 
 #include "minishell.h"
 
-void	exec_ast(t_ast *ast)
+void	exec_ast(t_ast *ast, t_shell *shell)
 {	
 	if (ast->ttype == TT_CMD)
-		get_shell()->exit_code = exec_cmd(ast);
-	else if (ast->ttype == TT_PIPE)
-		get_shell()->exit_code = exec_pipe(ast);
+		get_shell()->exit_code = exec_cmd(ast, shell);
+	// else if (ast->ttype == TT_PIPE)
+	// 	get_shell()->exit_code = exec_pipe(ast);
 
 
 	// TEMPORARY EXIT-CODES:

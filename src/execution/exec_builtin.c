@@ -4,7 +4,7 @@
 // TODO: return values from the builtin functions
 // TODO: finish builtin functions
 
-int	exec_current_builtin(char **cmd)
+int	exec_current_builtin(char **cmd, t_shell *shell)
 {
 	if (ft_strcmp(cmd[0], "echo") == 0)
 		return (builtin_echo(cmd), 9000);
@@ -13,7 +13,7 @@ int	exec_current_builtin(char **cmd)
 	if (ft_strcmp(cmd[0], "pwd") == 0)
 		return (builtin_pwd(), 9000);
 	if (ft_strcmp(cmd[0], "export") == 0)
-		return 9000;
+		return (builtin_export(cmd, shell));
 	if (ft_strcmp(cmd[0], "unset") == 0)
 		return 9000;
 	if (ft_strcmp(cmd[0], "env") == 0)
@@ -24,7 +24,7 @@ int	exec_current_builtin(char **cmd)
 		return (false);
 }
 
-int	exec_builtin(t_ast *ast)
+int	exec_builtin(t_ast *ast, t_shell *shell)
 {
 	int	exit_code;
 	int	copy_stdin;
@@ -38,7 +38,7 @@ int	exec_builtin(t_ast *ast)
 		if (exit_code != 0)
 			return (exit_code);
 	}
-	exit_code = exec_current_builtin(ast->cmd);
+	exit_code = exec_current_builtin(ast->cmd, shell);
 	if (ast->redirect)
 	{
 		dup2(copy_stdin, STDIN_FILENO);
