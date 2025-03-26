@@ -185,6 +185,7 @@ int				open_redirections(t_redirection *redirect);
 void			exec_ast(t_ast *ast);
 int				exec_cmd(t_ast *ast);
 int				exec_builtin(t_ast *ast);
+int				exec_pipe(t_ast *ast);
 
 
 

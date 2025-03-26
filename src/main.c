@@ -43,7 +43,7 @@ int	main(int ac, char **argv, char **envp)
 			free_tokens(tokens);
 			tokens = NULL;
 			if (PRINT_TREE == 1)
-			ast_print(ast);
+				ast_print(ast);
 			// printf("%sStarting Execution...%s\n", YELLOW, NC);
 			exec_ast(ast); // TODO: exec part
 			free_ast(ast);
