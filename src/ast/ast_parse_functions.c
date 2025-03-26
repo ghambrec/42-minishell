@@ -31,10 +31,6 @@ t_ast	*ast_parse_pipe(t_tokens **tokens)
 	return (left);
 }
 
-// Token Type: 2 < infile
-// Token Type: 0 grep hallo
-// Token Type: 3 > outfile
-
 // parse cmd
 t_ast	*ast_parse_cmd(t_tokens **tokens)
 {
