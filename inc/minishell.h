@@ -177,6 +177,7 @@ void			ast_parse_redirections(t_ast *cmd, t_tokens **tokens);
 t_ast			*ast_create_node(t_token_type ttype, char **cmd, t_ast *left, t_ast *right);
 char			**ast_dup_tokens(char **tokens);
 void			ast_add_redirection(t_ast *ast, t_token_type ttype, char **token);
+bool			is_redirection(t_token_type ttype);
 
 
 // EXECUTION

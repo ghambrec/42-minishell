@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_errors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 14:46:06 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/25 15:54:54 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/26 19:56:56 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	input_errors(int argc, char **argv)
 {
-	argv = NULL;
+	(void)argv;
 	if (argc > 1)
 		return (ft_putendl_fd("no arguments for minishell allowed", 2), true);
 	return (false);
