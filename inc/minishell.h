@@ -155,9 +155,9 @@ bool			check_builtin(char **cmd);
 void			builtin_echo(char **cmd);
 int				builtin_pwd(void);
 int				builtin_cd(char **cmd);
-int				builtin_export(char **cmd, t_shell *shell);
-int				builtin_env(char **cmd, t_shell *shell);
-int				builtin_unset(char **cmd, t_shell *shell);
+int				builtin_export(char **cmd);
+int				builtin_env(char **cmd);
+int				builtin_unset(char **cmd);
 
 // SHELL-UTILS
 t_shell			*get_shell(void);
@@ -182,9 +182,9 @@ void			ast_add_redirection(t_ast *ast, t_token_type ttype, char **token);
 // EXECUTION
 void			execute_command(char **cmd);
 int				open_redirections(t_redirection *redirect);
-void			exec_ast(t_ast *ast, t_shell *shell);
-int				exec_cmd(t_ast *ast, t_shell *shell);
-int				exec_builtin(t_ast *ast, t_shell *shell);
+void			exec_ast(t_ast *ast);
+int				exec_cmd(t_ast *ast);
+int				exec_builtin(t_ast *ast);
 
 
 

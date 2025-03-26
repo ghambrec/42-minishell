@@ -12,14 +12,13 @@ int	main(int ac, char **argv, char **envp)
 {
 	char		*input;
 	t_tokens	*tokens;
-	t_shell		shell;
 	// t_tokens	*tokens_backup_pointer;
 	t_ast		*ast;
 	// atexit(leaks);
 	
 	if (input_errors(ac, argv))
 		return (1);
-	shell.envp = envp;
+	get_shell()->envp = ast_dup_tokens(envp);
 	while (1)
 	{
 		tokens = NULL;
@@ -46,7 +45,7 @@ int	main(int ac, char **argv, char **envp)
 			if (PRINT_TREE == 1)
 			ast_print(ast);
 			// printf("%sStarting Execution...%s\n", YELLOW, NC);
-			exec_ast(ast, &shell); // TODO: exec part
+			exec_ast(ast); // TODO: exec part
 			free_ast(ast);
 			}
 		// free(input); // wird in create_command_list freigegeben

@@ -6,18 +6,18 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 10:38:33 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/25 14:35:16 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/26 13:03:46 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	print_declare_exports(t_shell *shell)
+static void	print_declare_exports()
 {
 	char	**temp;
 	int		i;
 
-	temp = shell->envp;
+	temp = get_shell()->envp;
 	i = 0;
 	while (temp[i])
 	{
@@ -26,10 +26,10 @@ static void	print_declare_exports(t_shell *shell)
 	}
 }
 
-int	builtin_export(char **cmd, t_shell *shell)
+int	builtin_export(char **cmd)
 {
 	if (!cmd[1])
-		print_declare_exports(shell);
+		print_declare_exports();
 	
 	return (0);
 }
