@@ -35,14 +35,14 @@ int	main(int ac, char **argv, char **envp)
 			}
 			// printf("%sCreating Command-List...%s\n", YELLOW, NC);
 			create_command_list(input, &tokens);
-			ft_printlist(tokens);
+			// ft_printlist(tokens);
 			// tokens_backup_pointer = tokens;
 			// printf("%sCreating AST...%s\n", YELLOW, NC);
 			ast = ast_create_tree(&tokens);
 			// printf("%sFinished AST...%s\n", YELLOW, NC);
 			free_tokens(tokens);
 			tokens = NULL;
-			// if (PRINT_TREE == 1)
+			if (PRINT_TREE == 1)
 				ast_print(ast);
 			// printf("%sStarting Execution...%s\n", YELLOW, NC);
 			exec_ast(ast); // TODO: exec part

@@ -48,19 +48,22 @@ int	redirect_append(t_redirection *redirect)
 
 int	open_redirections(t_redirection *redirect)
 {
+	int	exit_code;
+
+	exit_code = 0;
 	while (redirect)
 	{
 		if (redirect->ttype == TT_RE_INPUT)
 		{
-			return (redirect_input(redirect));
+			exit_code = redirect_input(redirect);
 		}
 		else if (redirect->ttype == TT_RE_OUTPUT)
 		{
-			return (redirect_output(redirect));
+			exit_code = redirect_output(redirect);
 		}
 		else if (redirect->ttype == TT_RE_APPEND)
 		{
-			return (redirect_append(redirect));
+			exit_code = redirect_append(redirect);
 		}
 		else if (redirect->ttype == TT_HEREDOC)
 		{
@@ -68,5 +71,5 @@ int	open_redirections(t_redirection *redirect)
 		}
 		redirect = redirect->next;
 	}
-	return (0);
+	return (exit_code);
 }
