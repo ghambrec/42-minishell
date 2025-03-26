@@ -69,6 +69,8 @@ int	open_redirections(t_redirection *redirect)
 		{
 			printf("heredoc missing :((((((\n");
 		}
+		if (exit_code != 0)
+			return (exit_code);
 		redirect = redirect->next;
 	}
 	return (exit_code);

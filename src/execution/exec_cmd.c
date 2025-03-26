@@ -18,7 +18,7 @@ int	exec_cmd(t_ast *ast)
 		{
 			exit_code = open_redirections(ast->redirect);
 			if (exit_code != 0)
-				return (exit_code);
+				exit(exit_code);
 			execute_command(ast->cmd);
 		}	
 	}
