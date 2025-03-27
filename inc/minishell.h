@@ -165,6 +165,7 @@ t_ast			*ast_create_node(t_token_type ttype, char **cmd,
 					t_ast *left, t_ast *right);
 void			ast_add_redirection(t_ast *ast, t_token_type ttype,
 					char **token);
+bool			is_redirection(t_token_type ttype);
 
 // EXECUTION
 void			execute_command(char **cmd);

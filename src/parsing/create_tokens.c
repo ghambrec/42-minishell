@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_tokens.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 10:21:25 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/27 13:53:04 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/27 13:57:44 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,4 @@ void	create_command_list(char *input, t_tokens **token_list)
 	free_split(splitted_tokens);
 	handle_quotes(token_list);
 	join_commands(*token_list);
-	ft_printlist(*token_list);
 }
