@@ -12,7 +12,6 @@ int	main(int ac, char **argv, char **envp)
 {
 	char		*input;
 	t_tokens	*tokens;
-	// t_tokens	*tokens_backup_pointer;
 	t_ast		*ast;
 	// atexit(leaks);
 	
@@ -35,8 +34,7 @@ int	main(int ac, char **argv, char **envp)
 			}
 			// printf("%sCreating Command-List...%s\n", YELLOW, NC);
 			create_command_list(input, &tokens);
-			// ft_printlist(tokens);
-			// tokens_backup_pointer = tokens;
+			ft_printlist(tokens);
 			// printf("%sCreating AST...%s\n", YELLOW, NC);
 			ast = ast_create_tree(&tokens);
 			// printf("%sFinished AST...%s\n", YELLOW, NC);
