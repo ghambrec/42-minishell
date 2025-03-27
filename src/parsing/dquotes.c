@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dquotes.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 09:57:01 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/13 12:18:03 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/03/27 13:19:40 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,4 @@ void	handle_quotes(t_tokens **token_list)
 		*token_list = (*token_list)->next;
 	}
 	*token_list = temp;
-	// ft_printlist(temp);
 }

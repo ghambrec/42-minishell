@@ -90,7 +90,7 @@ typedef struct s_quote_state
 }	t_quote_state;
 
 void			ft_print2d(char **array2d);
-void	ft_print2d_gha(char **array2d);
+void			ft_print2d_gha(char **array2d);
 t_tokens		*ft_newtoken(int token_type, char **token);
 void			ft_printlist(t_tokens *token);
 char			*ft_strcpy(char *dest, const char *src);
@@ -99,13 +99,6 @@ char			*ft_strcpy(char *dest, const char *src);
 t_tokens		*ft_newtoken(int token_type, char **token);
 void			ft_lstadd_back_token(t_tokens **lst, t_tokens *new);
 t_tokens		*ft_lstlast_token(t_tokens *lst);
-char			**get_commands(char **tokens);
-char			**get_operator(char *operator);
-void			create_token_list(
-					char **all_tokens, t_tokens **token_list);
-int				get_array_size(char **array);
-void			handle_operator(
-					char **all_tokens, t_tokens **token_list, int *i);
 int				get_token_type(char **token);
 int				handle_redirects(
 					char **all_tokens, t_tokens **token_list, int *i);
@@ -114,28 +107,21 @@ char			**get_redirects_2d(char **all_tokens);
 void			handle_commands(
 					char **all_tokens, t_tokens **token_list, int *i);
 void			create_command_list(char *input, t_tokens **token_list);
-void			copy_with_spaces(char *input, char *updatet_input);
 char			*insert_spaces(char *input);
-int				count_extra_spaces(char *input);
-void			handle_operator_with_spaces(
-					char *input, char *updatet_input, int *i, int *j);
 void			handle_heredoc_and_append(
 					char **all_tokens, t_tokens **token_list, int *i);
 char			**split_into_tokens(char *input);
+void			handle_operator(char **all_tokens, t_tokens **token_list, int *i);
 
 // HANDLE_QUOTES
 void			handle_quotes(t_tokens **tokenList);
 char			*remove_quotes(char *commands);
 
 //HANDLE ENVS
-void			handle_envs(char **commands, int i);
-void			handle_envs_in_string(char *string);
 char			*replace_env_vars(char *output);
 
 //Join Commands
-void	join_commands(t_tokens *token_list);
-void		handle_redirects_in_between(t_tokens *tokens);
-
+void			join_commands(t_tokens *token_list);
 
 // BOOL
 bool			is_redirector(char *c);
@@ -174,10 +160,11 @@ t_ast			*ast_parse_pipe(t_tokens **tokens);
 t_ast			*ast_parse_cmd(t_tokens **tokens);
 t_ast			*ast_parse_parenthesis(t_tokens **tokens);
 void			ast_parse_redirections(t_ast *cmd, t_tokens **tokens);
-t_ast			*ast_create_node(t_token_type ttype, char **cmd, t_ast *left, t_ast *right);
 char			**ast_dup_tokens(char **tokens);
-void			ast_add_redirection(t_ast *ast, t_token_type ttype, char **token);
-
+t_ast			*ast_create_node(t_token_type ttype, char **cmd,
+					t_ast *left, t_ast *right);
+void			ast_add_redirection(t_ast *ast, t_token_type ttype,
+					char **token);
 
 // EXECUTION
 void			execute_command(char **cmd);
