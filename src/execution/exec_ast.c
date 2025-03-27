@@ -12,5 +12,5 @@ void	exec_ast(t_ast *ast)
 	// TEMPORARY EXIT-CODES:
 	// 9000 -> builtin
 	// 9001 -> normal command
-	// printf("%s%sEXIT-CODE: %i%s\n",PURPLE, ITALIC, get_shell()->exit_code, NC);
+	printf("%s%sEXIT-CODE: %i%s\n",PURPLE, ITALIC, get_shell()->exit_code, NC);
 }
