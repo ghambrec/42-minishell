@@ -7,11 +7,11 @@
 int	exec_current_builtin(char **cmd)
 {
 	if (ft_strcmp(cmd[0], "echo") == 0)
-		return (builtin_echo(cmd), 9000);
+		return (builtin_echo(cmd));
 	if (ft_strcmp(cmd[0], "cd") == 0)
-		return (builtin_cd(cmd), 9000);
+		return (builtin_cd(cmd));
 	if (ft_strcmp(cmd[0], "pwd") == 0)
-		return (builtin_pwd(), 9000);
+		return (builtin_pwd());
 	if (ft_strcmp(cmd[0], "export") == 0)
 		return (builtin_export(cmd));
 	if (ft_strcmp(cmd[0], "unset") == 0)

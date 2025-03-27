@@ -12,9 +12,11 @@
 # define YELLOW "\033[0;33m"
 # define CYAN "\033[0;36m"
 # define ITALIC "\033[3m"
-# define NC "\033[0m"
 # define GREY "\033[1;30m"
 # define PURPLE "\033[0;35m"
+# define RED "\033[0;31m"
+# define GREEN "\033[0;32m"
+# define NC "\033[0m"
 
 # ifndef PRINT_TREE
 #  define PRINT_TREE 0
@@ -138,7 +140,7 @@ void			free_ast(t_ast *ast);
 
 // BUILTINS
 bool			check_builtin(char **cmd);
-void			builtin_echo(char **cmd);
+int				builtin_echo(char **cmd);
 int				builtin_pwd(void);
 int				builtin_cd(char **cmd);
 int				builtin_export(char **cmd);

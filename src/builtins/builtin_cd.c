@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_cd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 13:34:34 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/24 13:50:04 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/27 16:30:40 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	cd_dir(char **cmd)
 		perror("cd");
 		return (errno);
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 static int	cd_home(char *path)
@@ -38,7 +38,7 @@ static int	cd_home(char *path)
 		perror("cd");
 		return (free(path), errno);
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 static int	cd_path(char *path, char *slashed_path, char *new_path, char **cmd)
@@ -54,9 +54,9 @@ static int	cd_path(char *path, char *slashed_path, char *new_path, char **cmd)
 	if (chdir(new_path) == -1)
 	{
 		perror("cd");
-		return (free_pointers(path, slashed_path, new_path), errno);
+		return (errno);
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	builtin_cd(char **cmd)
@@ -75,5 +75,6 @@ int	builtin_cd(char **cmd)
 		err_code = cd_dir(cmd);
 	else
 		err_code = cd_path(path, slashed_path, new_path, cmd);
-	return (free_pointers(path, slashed_path, new_path), err_code);
+	free_pointers(path, slashed_path, new_path);
+	return (err_code);
 }

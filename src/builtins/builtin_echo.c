@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_echo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 13:52:23 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/24 13:52:26 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/27 16:17:35 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	builtin_echo(char **cmd)
+int	builtin_echo(char **cmd)
 {
 	int		i;
 	bool	option_n;
@@ -33,4 +33,5 @@ void	builtin_echo(char **cmd)
 	}
 	if (option_n == false)
 		ft_putchar_fd('\n', STDOUT_FILENO);
+	return (EXIT_SUCCESS);
 }
