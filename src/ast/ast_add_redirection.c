@@ -31,3 +31,10 @@ void	ast_add_redirection(t_ast *ast, t_token_type ttype, char **token)
 		tmp->next = ast_create_redirection(ttype, token[1]);
 	}
 }
+
+bool	is_redirection(t_token_type ttype)
+{
+	if (ttype == TT_RE_INPUT || ttype == TT_RE_OUTPUT || ttype == TT_RE_APPEND || ttype == TT_HEREDOC)
+		return (true);
+	return (false);
+}

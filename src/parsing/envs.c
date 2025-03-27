@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:31:02 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/13 12:18:07 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/03/27 11:32:37 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static char	*replace_env_var_in_string(char *input, int i)
 	int		env_key_end;
 	int		new_len;
 	char	*env_key;
-	char	*env_value;
+	char	*env_val;
 	char	*output;
 
 	env_key_end = i;
@@ -57,17 +57,33 @@ static char	*replace_env_var_in_string(char *input, int i)
 			|| ft_strchr("$_", input[env_key_end])) && input[env_key_end])
 		env_key_end++;
 	env_key = ft_substr(input, i + 1, env_key_end - i - 1);
-	env_value = getenv(env_key);
+	env_val = getenv(env_key);
 	free(env_key);
-	if (env_value)
-		new_len = ft_strlen(input) - (env_key_end - i) + ft_strlen(env_value) + 1;
+	if (env_val)
+		new_len = ft_strlen(input) - (env_key_end - i) + ft_strlen(env_val) + 1;
 	else
 		new_len = ft_strlen(input) - (env_key_end - i) + 1;
 	output = (char *)malloc(new_len * sizeof(char));
 	ft_strlcpy(output, input, i + 1);
-	if (env_value)
-		ft_strlcat(output, env_value, new_len);
+	if (env_val)
+		ft_strlcat(output, env_val, new_len);
 	ft_strlcat(output, input + env_key_end, new_len);
+	return (output);
+}
+
+static char	*replace_exit_code(char *input, int i)
+{
+	char	*output;
+	int		new_len;
+	char	*exit_code_str;
+
+	exit_code_str = ft_itoa(get_shell()->exit_code);
+	new_len = ft_strlen(input) - 2 + ft_strlen(exit_code_str) + 1;
+	output = (char *)malloc(new_len);
+	ft_strlcpy(output, input, i + 1);
+	ft_strlcat(output, exit_code_str, new_len);
+	ft_strlcat(output, &input[i + 2], new_len);
+	free(exit_code_str);
 	return (output);
 }
 
@@ -89,6 +105,11 @@ char	*replace_env_vars(char *input)
 		if (input[i] == '$' && !state.in_single_quotes)
 			break ;
 		i++;
+	}
+	if (input[i] == '$' && input[i + 1] == '?')
+	{
+		output = replace_exit_code(input, i);
+		return (free(input), replace_env_vars(output));
 	}
 	output = replace_env_var_in_string(input, i);
 	free(input);

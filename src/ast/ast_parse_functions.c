@@ -36,9 +36,18 @@ t_ast	*ast_parse_cmd(t_tokens **tokens)
 {
 	t_ast	*cmd;
 
+	cmd = NULL;
+	if (*tokens && is_redirection((*tokens)->token_type))
+	{
+		cmd = ast_create_node(TT_CMD, NULL, NULL, NULL);
+		ast_parse_redirections(cmd, tokens);
+	}
 	if (*tokens && (*tokens)->token_type == TT_PARENTESIS_OPEN)
 		return (ast_parse_parenthesis(tokens));
-	cmd = ast_create_node(TT_CMD, ast_dup_tokens((*tokens)->token), NULL, NULL);
+	if (cmd)
+		cmd->cmd = ast_dup_tokens((*tokens)->token);
+	else
+		cmd = ast_create_node(TT_CMD, ast_dup_tokens((*tokens)->token), NULL, NULL);
 	*tokens = (*tokens)->next;
 	ast_parse_redirections(cmd, tokens);
 	return (cmd);
@@ -58,7 +67,7 @@ t_ast	*ast_parse_parenthesis(t_tokens **tokens)
 // parse redirections for the command
 void	ast_parse_redirections(t_ast *cmd, t_tokens **tokens)
 {
-	while (*tokens && ((*tokens)->token_type == TT_RE_APPEND || (*tokens)->token_type == TT_RE_INPUT || (*tokens)->token_type == TT_RE_OUTPUT || (*tokens)->token_type == TT_HEREDOC))
+	while (*tokens && is_redirection((*tokens)->token_type))
 	{
 		ast_add_redirection(cmd, (*tokens)->token_type, (*tokens)->token);
 		(*tokens) = (*tokens)->next;

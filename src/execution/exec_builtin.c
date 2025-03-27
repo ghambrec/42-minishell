@@ -36,7 +36,11 @@ int	exec_builtin(t_ast *ast)
 		copy_stdout = dup(STDOUT_FILENO);
 		exit_code = open_redirections(ast->redirect);
 		if (exit_code != 0)
-			return (exit_code);
+		{
+			dup2(copy_stdin, STDIN_FILENO);
+			dup2(copy_stdout, STDOUT_FILENO);
+			return (close(copy_stdin), close(copy_stdout), exit_code);
+		}
 	}
 	exit_code = exec_current_builtin(ast->cmd);
 	if (ast->redirect)

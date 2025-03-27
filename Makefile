@@ -43,8 +43,7 @@ SOURCES += bools.c \
 			utils.c \
 			utils2.c \
 			check_errors.c \
-			join_commands.c \
-			redirects_between.c
+			join_commands.c
 
 # FREEING
 SOURCES += free_split.c \
