@@ -106,7 +106,7 @@ char			**get_re_out(char **tokens);
 char			**get_redirects_2d(char **all_tokens);
 void			handle_commands(
 					char **all_tokens, t_tokens **token_list, int *i);
-void			create_command_list(char *input, t_tokens **token_list);
+int				create_command_list(char *input, t_tokens **token_list);
 char			*insert_spaces(char *input);
 void			handle_heredoc_and_append(
 					char **all_tokens, t_tokens **token_list, int *i);
