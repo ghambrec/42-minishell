@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 16:05:46 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/28 14:13:34 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/28 16:58:06 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static int	array_2d_len(char **env, char **cmd)
 		}
 		i++;
 	}
-	printf("len to alloc: %d\n", i - remove + 1);
 	return (i - remove + 1);
 }
 
@@ -69,18 +68,23 @@ static char	**remove_env(char **envp, char **cmd)
 	return (new_envs);
 }
 
-
-
 int	builtin_unset(char **cmd)
 {
 	char	**envp;
 	char	**new_envs;
+	int		i;
 
 	if (!cmd[1])
 		return (1);
+	i = 0;
+	while (cmd[i])
+	{
+		env_error(cmd[i], "unset");
+		i++;
+	}
 	envp = get_shell()->envp;
 	new_envs = remove_env(envp, cmd);
 	free_split(get_shell()->envp);
 	get_shell()->envp = new_envs;
-	return (1);
+	return (EXIT_SUCCESS);
 }

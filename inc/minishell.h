@@ -155,6 +155,7 @@ t_shell			*get_shell(void);
 // Errors
 bool			parsing_errors(char *input);
 bool			input_errors(int argc, char **argv);
+bool			env_error(char *key, char *builtin);
 
 // AST
 void			ast_print(t_ast *ast);
