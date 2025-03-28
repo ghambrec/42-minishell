@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 10:38:33 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/28 16:33:01 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/28 19:32:39 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,48 @@ static char	**add_export_env(char **envs, char *new_env)
 	return (new_envs);
 }
 
+static bool	env_exists(char *cmd)
+{
+	char	**envp;
+	char	**key_value;
+	char	*key;
+	char	*new_env;
+	int		i;
+
+	envp = get_shell()->envp;
+	key_value = ft_split(cmd, '=');
+	key = ft_strjoin(key_value[0], "=");
+	i = 0;
+	while (envp[i])
+	{
+		if (!key_value[1] && ft_strncmp(key, envp[i], ft_strlen(envp[i])) == 0)
+				return (free(key), free_split(key_value), true);
+		else if (ft_strncmp(key, envp[i], ft_strlen(envp[i])) == 0)
+		{
+			new_env = ft_strjoin(key, key_value[1]);
+			free(envp[i]);
+			envp[i] = new_env;
+			return (true);
+		}
+		else if (ft_strncmp(envp[i], key, ft_strlen(key)) == 0)
+		{
+			if (!key_value[1])
+			{
+				new_env = key_value[0];
+				free(envp[i]);
+				envp[i] = new_env;
+				return (free(key), free_split(key_value), true);
+			}
+			new_env = ft_strjoin(key, key_value[1]);
+			free(envp[i]);
+			envp[i] = new_env;
+			return (free(key), free_split(key_value), true);
+		}
+		i++;
+	}
+	return (false);
+}
+
 int	builtin_export(char **cmd)
 {
 	char	**envs;
@@ -65,7 +107,7 @@ int	builtin_export(char **cmd)
 	i = 1;
 	while (cmd[i])
 	{
-		if (env_error(cmd[i], "export"))
+		if (env_error(cmd[i], "export") || env_exists(cmd[i]))
 		{
 			i++;
 			continue ;
