@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 10:38:33 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/27 17:44:24 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/28 09:49:46 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	builtin_export(char **cmd)
 	envs = get_shell()->envp;
 	if (!cmd[1])
 		return (print_declare_exports(envs), 0);
-		get_shell()->envp = add_export_env(envs, cmd[1]);
+	get_shell()->envp = add_export_env(envs, cmd[1]);
 	free_split(envs);
 	return (0);
 }

@@ -111,7 +111,9 @@ char			*insert_spaces(char *input);
 void			handle_heredoc_and_append(
 					char **all_tokens, t_tokens **token_list, int *i);
 char			**split_into_tokens(char *input);
-void			handle_operator(char **all_tokens, t_tokens **token_list, int *i);
+void			handle_operator(char **all_tokens,
+					t_tokens **token_list, int *i);
+char			*ft_getenv(char *env_key);
 
 // HANDLE_QUOTES
 void			handle_quotes(t_tokens **tokenList);

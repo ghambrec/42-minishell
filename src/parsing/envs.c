@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   envs.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:31:02 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/27 11:32:37 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/03/28 10:08:25 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static char	*replace_env_var_in_string(char *input, int i)
 			|| ft_strchr("$_", input[env_key_end])) && input[env_key_end])
 		env_key_end++;
 	env_key = ft_substr(input, i + 1, env_key_end - i - 1);
-	env_val = getenv(env_key);
+	env_val = ft_getenv(env_key);
 	free(env_key);
 	if (env_val)
 		new_len = ft_strlen(input) - (env_key_end - i) + ft_strlen(env_val) + 1;

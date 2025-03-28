@@ -43,7 +43,8 @@ SOURCES += bools.c \
 			utils.c \
 			utils2.c \
 			check_errors.c \
-			join_commands.c
+			join_commands.c \
+			ft_getenv.c
 
 # FREEING
 SOURCES += free_split.c \
