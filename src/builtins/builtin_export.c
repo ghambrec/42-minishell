@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 10:38:33 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/28 09:49:46 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/28 11:17:14 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,20 @@ char	**add_export_env(char **envs, char *new_env)
 int	builtin_export(char **cmd)
 {
 	char	**envs;
+	char	**temp;
+	int		i;
 
-	envs = get_shell()->envp;
+	envs = ft_sort_2d_strings(get_shell()->envp);
 	if (!cmd[1])
 		return (print_declare_exports(envs), 0);
-	get_shell()->envp = add_export_env(envs, cmd[1]);
-	free_split(envs);
+	i = 1;
+	while (cmd[i])
+	{
+		temp = add_export_env(envs, cmd[i]);
+		free_split(envs);
+		envs = temp;
+		i++;
+	}
+	get_shell()->envp = envs;
 	return (0);
 }
