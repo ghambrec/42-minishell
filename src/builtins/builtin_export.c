@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 10:38:33 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/28 11:17:14 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/28 13:28:40 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,14 @@
 static void	print_declare_exports(char **envs)
 {
 	int		i;
+	char	**key_value;
 
 	i = 0;
 	while (envs[i])
 	{
-		printf("declare -x %s\n", envs[i]);
+		key_value = ft_split(envs[i], '=');
+		printf("declare -x %s=\"%s\"\n", key_value[0], key_value[1]);
+		free(key_value);
 		i++;
 	}
 }
