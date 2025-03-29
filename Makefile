@@ -19,7 +19,8 @@ SOURCE_DIRS = src \
 				src/parsing \
 				src/freeing \
 				src/execution \
-				src/errors
+				src/errors \
+				src/signals
 
 VPATH = $(SOURCE_DIRS)
 
@@ -77,7 +78,11 @@ SOURCES += execute_command.c \
 			exec_builtin.c \
 			exec_pipe.c
 
+# Errors
 SOURCES += input_errors.c
+
+# Signals
+SOURCES += signals.c
 
 # ---------- OBJECTS ---------- #
 OBJECT_DIR = obj
