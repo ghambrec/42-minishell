@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 10:38:33 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/29 14:35:23 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/29 14:57:18 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static char	**add_export_env(char **envs, char *new_env)
 
 	i = 0;
 	while (envs[i])
-		i++;
+	i++;
 	new_envs = (char **)malloc((i + 2) * sizeof(char *));
 	j = 0;
 	while (envs[j])
@@ -81,15 +81,13 @@ static bool	check_env(char **key_value, char **envp, char *key, char *new_env)
 	return (false);
 }
 
-static bool	env_exists(char *cmd)
+static bool	env_exists(char *cmd, char **envp)
 {
-	char	**envp;
 	char	**key_value;
 	char	*key;
 	char	*new_env;
 	int		i;
 
-	envp = get_shell()->envp;
 	key_value = ft_split(cmd, '=');
 	key = ft_strjoin(key_value[0], "=");
 	new_env = NULL;
@@ -115,7 +113,7 @@ int	builtin_export(char **cmd)
 	i = 1;
 	while (cmd[i])
 	{
-		if (env_error(cmd[i], "export") || env_exists(cmd[i]))
+		if (env_error(cmd[i], "export") || env_exists(cmd[i], envs))
 		{
 			i++;
 			continue ;
