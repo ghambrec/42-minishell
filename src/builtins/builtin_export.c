@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 10:38:33 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/28 19:32:39 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/29 14:35:23 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,34 @@ static char	**add_export_env(char **envs, char *new_env)
 	return (new_envs);
 }
 
+static bool	check_env(char **key_value, char **envp, char *key, char *new_env)
+{
+	if (!key_value[1] && ft_strncmp(key, *envp, ft_strlen(*envp)) == 0)
+		return (true);
+	else if (ft_strncmp(key, *envp, ft_strlen(*envp)) == 0)
+	{
+		new_env = ft_strjoin(key, key_value[1]);
+		free(*envp);
+		*envp = new_env;
+		return (true);
+	}
+	else if (ft_strncmp(*envp, key, ft_strlen(key)) == 0)
+	{
+		if (!key_value[1])
+		{
+			new_env = ft_strdup(key_value[0]);
+			free(*envp);
+			*envp = new_env;
+			return (true);
+		}
+		new_env = ft_strjoin(key, key_value[1]);
+		free(*envp);
+		*envp = new_env;
+		return (true);
+	}
+	return (false);
+}
+
 static bool	env_exists(char *cmd)
 {
 	char	**envp;
@@ -64,32 +92,12 @@ static bool	env_exists(char *cmd)
 	envp = get_shell()->envp;
 	key_value = ft_split(cmd, '=');
 	key = ft_strjoin(key_value[0], "=");
+	new_env = NULL;
 	i = 0;
 	while (envp[i])
 	{
-		if (!key_value[1] && ft_strncmp(key, envp[i], ft_strlen(envp[i])) == 0)
-				return (free(key), free_split(key_value), true);
-		else if (ft_strncmp(key, envp[i], ft_strlen(envp[i])) == 0)
-		{
-			new_env = ft_strjoin(key, key_value[1]);
-			free(envp[i]);
-			envp[i] = new_env;
-			return (true);
-		}
-		else if (ft_strncmp(envp[i], key, ft_strlen(key)) == 0)
-		{
-			if (!key_value[1])
-			{
-				new_env = key_value[0];
-				free(envp[i]);
-				envp[i] = new_env;
-				return (free(key), free_split(key_value), true);
-			}
-			new_env = ft_strjoin(key, key_value[1]);
-			free(envp[i]);
-			envp[i] = new_env;
+		if (check_env(key_value, &envp[i], key, new_env))
 			return (free(key), free_split(key_value), true);
-		}
 		i++;
 	}
 	return (false);
