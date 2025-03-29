@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 10:38:33 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/29 14:57:18 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/29 16:46:55 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ static bool	env_exists(char *cmd, char **envp)
 			return (free(key), free_split(key_value), true);
 		i++;
 	}
-	return (false);
+	return (free(key), free_split(key_value), false);
 }
 
 int	builtin_export(char **cmd)

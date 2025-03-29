@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 16:05:46 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/29 15:24:10 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/29 16:53:01 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	array_2d_len(char **env, char *cmd)
 		key = ft_strjoin(key_value[0], "=");
 		if (ft_strncmp(cmd, key, ft_strlen(key)) == 0)
 			remove++;
-		free(key_value);
+		free_split(key_value);
 		free(key);
 		i++;
 	}
@@ -50,14 +50,12 @@ static char	**remove_env(char **envp, char *cmd)
 		if (ft_strcmp(env[0], cmd) == 0)
 		{
 			i++;
+			free_split(env);
 			continue ;
 		}
 		else
-		{
-			new_envs[j] = ft_strdup(envp[i]);
-			j++;
-		}
-		i++;
+			new_envs[j++] = ft_strdup(envp[i++]);
+		free_split(env);
 	}
 	new_envs[j] = NULL;
 	return (new_envs);
