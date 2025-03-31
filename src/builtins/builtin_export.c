@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 10:38:33 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/29 16:46:55 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/31 14:08:37 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ int	builtin_export(char **cmd)
 	char	**envs;
 	char	**temp;
 	int		i;
+	int		exit_code;
+	int		exit_code_loop;
 
 	if (!cmd[1])
 		return (print_declare_exports(), EXIT_SUCCESS);
@@ -113,7 +115,10 @@ int	builtin_export(char **cmd)
 	i = 1;
 	while (cmd[i])
 	{
-		if (env_error(cmd[i], "export") || env_exists(cmd[i], envs))
+		exit_code_loop = env_error(cmd[i], "unset");
+		if (exit_code_loop > EXIT_SUCCESS)
+			exit_code = exit_code_loop;
+		if (exit_code_loop || env_exists(cmd[i], envs))
 		{
 			i++;
 			continue ;
@@ -124,5 +129,5 @@ int	builtin_export(char **cmd)
 		i++;
 	}
 	get_shell()->envp = envs;
-	return (EXIT_SUCCESS);
+	return (exit_code_loop);
 }

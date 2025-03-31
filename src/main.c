@@ -13,7 +13,10 @@ int	main(int ac, char **argv, char **envp)
 	while (1)
 	{
 		tokens = NULL;
-		input = readline("\033[0;36m> \033[0m");
+		if (get_shell()->exit_code)
+			input = readline("\033[0;31m• \033[0;36m➜ \033[0m");
+		else
+			input = readline("\033[0;32m• \033[0;36m➜ \033[0m");
 		if (!input) // STRG-D closes the shell
 			break ;
 		add_history(input);
@@ -29,8 +32,8 @@ int	main(int ac, char **argv, char **envp)
 			// printf("%sFinished AST...%s\n", YELLOW, NC);
 			free_tokens(tokens);
 			tokens = NULL;
-			// if (PRINT_TREE == 1)
-				// ast_print(ast);
+			if (PRINT_TREE == 1)
+				ast_print(ast);
 			// printf("%sStarting Execution...%s\n", YELLOW, NC);
 			exec_ast(ast);
 			free_ast(ast);

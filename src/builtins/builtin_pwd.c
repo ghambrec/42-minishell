@@ -15,7 +15,7 @@ int	builtin_pwd(void)
 	else
 	{
 		perror("pwd");
-		return (1);
+		return (errno);
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }

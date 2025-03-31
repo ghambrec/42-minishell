@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_env.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:58:56 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/26 13:03:27 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/27 16:37:42 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,15 @@ int	builtin_env(char **cmd)
 	int	i;
 
 	if (cmd[1])
-		return (ft_putendl_fd("call env without arguments", 1), 1);
+	{
+		ft_putendl_fd("No options or arguments allowed!", STDERR_FILENO);
+		return (EXIT_FAILURE);
+	}
 	i = 0;
 	while (get_shell()->envp[i])
 	{
 		printf("%s\n", get_shell()->envp[i]);
 		i++;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }

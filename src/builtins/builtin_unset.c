@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_unset.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 16:05:46 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/29 16:53:01 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/31 14:08:28 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,20 +66,24 @@ int	builtin_unset(char **cmd)
 	char	**envp;
 	char	**new_envs;
 	int		i;
+	int		exit_code;
+	int		exit_code_loop;
+
 
 	if (!cmd[1])
-		return (1);
+		return (EXIT_FAILURE);
 	i = 1;
 	envp = get_shell()->envp;
 	while (cmd[i])
 	{
-		env_error(cmd[i], "unset");
-		printf("debug\n");
+		exit_code_loop = env_error(cmd[i], "unset");
+		if (exit_code_loop > EXIT_SUCCESS)
+			exit_code = exit_code_loop;
 		new_envs = remove_env(envp, cmd[i]);
 		free_split(envp);
 		envp = new_envs;
 		i++;
 	}
 	get_shell()->envp = envp;
-	return (EXIT_SUCCESS);
+	return (exit_code_loop);
 }
