@@ -38,7 +38,7 @@ int	main(int ac, char **argv, char **envp)
 			tokens = NULL;
 			if (PRINT_TREE == 1)
 				ast_print(ast);
-			printf("%sStarting Execution...%s\n", YELLOW, NC);
+			// printf("%sStarting Execution...%s\n", YELLOW, NC);
 			exec_ast(ast);
 			free_ast(ast);
 		}
