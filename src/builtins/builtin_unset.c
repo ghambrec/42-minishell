@@ -6,42 +6,80 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 16:05:46 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/26 13:04:45 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/03/29 16:53:01 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	builtin_unset(char **cmd)
+static int	array_2d_len(char **env, char *cmd)
 {
 	int		i;
-	int		j;
-	char	**envp;
-	char	**env;
-	char	**new_envs;
+	int		remove;
+	char	**key_value;
+	char	*key;
 
-	envp = get_shell()->envp;
-	env = NULL;
+	i = 0;
+	remove = 0;
+	while (env[i])
+	{
+		key_value = ft_split(env[i], '=');
+		key = ft_strjoin(key_value[0], "=");
+		if (ft_strncmp(cmd, key, ft_strlen(key)) == 0)
+			remove++;
+		free_split(key_value);
+		free(key);
+		i++;
+	}
+	return (i - remove);
+}
+
+static char	**remove_env(char **envp, char *cmd)
+{
+	char	**new_envs;
+	char	**env;
+	int		i;
+	int		j;
+
+	new_envs = (char **)malloc((array_2d_len(envp, cmd) + 1) * sizeof(char *));
 	i = 0;
 	j = 0;
 	while (envp[i])
-		i++;
-	new_envs = (char **)malloc((i + 1) * sizeof(char *));
-	i = 0;
-	while (envp[i])
 	{
 		env = ft_split(envp[i], '=');
-		if (ft_strcmp(env[0], cmd[1]) == 0)
-			i++;
-		else
+		if (ft_strcmp(env[0], cmd) == 0)
 		{
-			new_envs[j] = envp[i];
-			j++;
+			i++;
+			free_split(env);
+			continue ;
 		}
-		i++;
+		else
+			new_envs[j++] = ft_strdup(envp[i++]);
+		free_split(env);
 	}
 	new_envs[j] = NULL;
-	free_split(get_shell()->envp);
-	get_shell()->envp = new_envs;
-	return (1);
+	return (new_envs);
+}
+
+int	builtin_unset(char **cmd)
+{
+	char	**envp;
+	char	**new_envs;
+	int		i;
+
+	if (!cmd[1])
+		return (1);
+	i = 1;
+	envp = get_shell()->envp;
+	while (cmd[i])
+	{
+		env_error(cmd[i], "unset");
+		printf("debug\n");
+		new_envs = remove_env(envp, cmd[i]);
+		free_split(envp);
+		envp = new_envs;
+		i++;
+	}
+	get_shell()->envp = envp;
+	return (EXIT_SUCCESS);
 }

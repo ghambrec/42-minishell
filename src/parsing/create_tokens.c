@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_tokens.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 10:21:25 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/27 13:57:44 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/03/29 14:02:53 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char	*change_input_string(char *input)
 	return (updatet_input);
 }
 
-static void	create_token_list(char **all_tokens, t_tokens **token_list)
+static int	create_token_list(char **all_tokens, t_tokens **token_list)
 {
 	int		i;
 
@@ -39,16 +39,14 @@ static void	create_token_list(char **all_tokens, t_tokens **token_list)
 			&& is_redirector(all_tokens[i]))
 			handle_redirects(all_tokens, token_list, &i);
 		else if (!all_tokens[i + 1])
-		{
-			ft_putendl_fd("parse error near `newline'", 2);
-			break ;
-		}
+			return (ft_putendl_fd("parse error near `newline'", 2), -1);
 		else
 			i++;
 	}
+	return (0);
 }
 
-void	create_command_list(char *input, t_tokens **token_list)
+int	create_command_list(char *input, t_tokens **token_list)
 {
 	char		*updated_input;
 	char		**splitted_tokens;
@@ -57,8 +55,10 @@ void	create_command_list(char *input, t_tokens **token_list)
 	free(input);
 	splitted_tokens = split_into_tokens(updated_input);
 	free(updated_input);
-	create_token_list(splitted_tokens, token_list);
+	if (create_token_list(splitted_tokens, token_list) == -1)
+		return (free_split(splitted_tokens), -1);
 	free_split(splitted_tokens);
 	handle_quotes(token_list);
 	join_commands(*token_list);
+	return (1);
 }

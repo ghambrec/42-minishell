@@ -1,20 +1,12 @@
 
 #include "minishell.h"
 
-
-
-// void	leaks(void)
-// {
-// 	system("leaks minishell");
-// }
-
 int	main(int ac, char **argv, char **envp)
 {
 	char		*input;
 	t_tokens	*tokens;
 	t_ast		*ast;
-	// atexit(leaks);
-	
+
 	if (input_errors(ac, argv))
 		return (1);
 	get_shell()->envp = ast_dup_tokens(envp);
@@ -35,22 +27,20 @@ int	main(int ac, char **argv, char **envp)
 				free(input);
 				continue ;
 			}
-			// printf("%sCreating Command-List...%s\n", YELLOW, NC);
-			create_command_list(input, &tokens);
+			if (create_command_list(input, &tokens) == -1)
+				continue ;
 			// ft_printlist(tokens);
 			// printf("%sCreating AST...%s\n", YELLOW, NC);
 			ast = ast_create_tree(&tokens);
 			// printf("%sFinished AST...%s\n", YELLOW, NC);
 			free_tokens(tokens);
 			tokens = NULL;
-			if (PRINT_TREE == 1)
-				ast_print(ast);
+			// if (PRINT_TREE == 1)
+				// ast_print(ast);
 			// printf("%sStarting Execution...%s\n", YELLOW, NC);
-			exec_ast(ast); // TODO: exec part
+			exec_ast(ast);
 			free_ast(ast);
-			}
-		// free(input); // wird in create_command_list freigegeben
-		// leaks();
+		}
 	}
 	clear_history();
 	return (EXIT_SUCCESS);

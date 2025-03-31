@@ -19,7 +19,8 @@ SOURCE_DIRS = src \
 				src/parsing \
 				src/freeing \
 				src/execution \
-				src/errors
+				src/errors \
+				src/signals
 
 VPATH = $(SOURCE_DIRS)
 
@@ -43,7 +44,8 @@ SOURCES += bools.c \
 			utils.c \
 			utils2.c \
 			check_errors.c \
-			join_commands.c
+			join_commands.c \
+			ft_getenv.c
 
 # FREEING
 SOURCES += free_split.c \
@@ -65,7 +67,8 @@ SOURCES += check_builtin.c \
 			builtin_cd.c \
 			builtin_export.c \
 			builtin_env.c \
-			builtin_unset.c
+			builtin_unset.c \
+			builtin_errors.c
 
 # EXECUTING
 SOURCES += execute_command.c \
@@ -75,7 +78,11 @@ SOURCES += execute_command.c \
 			exec_builtin.c \
 			exec_pipe.c
 
+# Errors
 SOURCES += input_errors.c
+
+# Signals
+SOURCES += signals.c
 
 # ---------- OBJECTS ---------- #
 OBJECT_DIR = obj
