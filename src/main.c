@@ -20,10 +20,7 @@ int	main(int ac, char **argv, char **envp)
 		if (input[0])
 		{
 			if (parsing_errors(input))
-			{
-				free(input);
 				continue ;
-			}
 			if (create_command_list(input, &tokens) == -1)
 				continue ;
 			// ft_printlist(tokens);

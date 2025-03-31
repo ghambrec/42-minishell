@@ -8,6 +8,7 @@
 # include <errno.h>
 # include <limits.h>
 # include <sys/wait.h>
+# include <signal.h>
 
 # define YELLOW "\033[0;33m"
 # define CYAN "\033[0;36m"
@@ -20,8 +21,8 @@
 #  define PRINT_TREE 0
 # endif
 
-#define PIPE_READ 0
-#define PIPE_WRITE 1
+# define PIPE_READ 0
+# define PIPE_WRITE 1
 
 // typedef enum e_builtins
 // {
