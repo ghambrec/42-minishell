@@ -27,6 +27,7 @@ int	main(int ac, char **argv, char **envp)
 				free(input);
 				continue ;
 			}
+			// printf("%sCreate command list...%s\n", YELLOW, NC);
 			if (create_command_list(input, &tokens) == -1)
 				continue ;
 			// ft_printlist(tokens);
@@ -35,9 +36,9 @@ int	main(int ac, char **argv, char **envp)
 			// printf("%sFinished AST...%s\n", YELLOW, NC);
 			free_tokens(tokens);
 			tokens = NULL;
-			// if (PRINT_TREE == 1)
-				// ast_print(ast);
-			// printf("%sStarting Execution...%s\n", YELLOW, NC);
+			if (PRINT_TREE == 1)
+				ast_print(ast);
+			printf("%sStarting Execution...%s\n", YELLOW, NC);
 			exec_ast(ast);
 			free_ast(ast);
 		}
