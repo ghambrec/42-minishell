@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:43:18 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/04/02 17:49:01 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/02 19:33:46 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ static bool	no_open_quotes(char *input)
 bool	parsing_errors(char *input)
 {
 	if (no_open_quotes(input))
-		return (true);
+		return (free(input), true);
 	return (false);
 }
