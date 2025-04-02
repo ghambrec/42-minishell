@@ -76,7 +76,8 @@ SOURCES += execute_command.c \
 			exec_ast.c \
 			exec_cmd.c \
 			exec_builtin.c \
-			exec_pipe.c
+			exec_pipe.c \
+			heredoc.c
 
 # Errors
 SOURCES += input_errors.c

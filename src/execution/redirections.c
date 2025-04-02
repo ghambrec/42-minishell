@@ -67,7 +67,7 @@ int	open_redirections(t_redirection *redirect)
 		}
 		else if (redirect->ttype == TT_HEREDOC)
 		{
-			printf("heredoc missing :((((((\n");
+			exit_code = redirect_heredoc(redirect);
 		}
 		if (exit_code != 0)
 			return (exit_code);
