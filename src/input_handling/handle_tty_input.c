@@ -17,6 +17,11 @@ void	handle_tty_input(void)
 			ft_putendl_fd("\033[A\033[2K\033[0;30m• \033[0;36m➜\033[0m exit", STDOUT_FILENO);
 			break ;
 		}
+		if (ft_strlen(input) == 0 || ft_str_only_whitespaces(input))
+		{
+			free(input);
+			continue ;
+		}
 		add_history(input);
 		handle_input(input);
 	}

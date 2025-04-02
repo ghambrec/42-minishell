@@ -38,7 +38,8 @@ SOURCES += handle_input.c \
 			handle_nontty_input.c
 
 # UTILS
-SOURCES += ft_strarr_dup.c
+SOURCES += ft_strarr_dup.c \
+			ft_str_only_whitespaces.c
 
 # PARSING
 SOURCES += bools.c \
