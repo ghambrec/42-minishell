@@ -12,15 +12,15 @@ void	handle_input(char *input)
 	if (create_command_list(input, &tokens) == -1)
 		return ;
 	// ft_printlist(tokens);
-	printf("%sCreating AST...%s\n", YELLOW, NC);
+	// printf("%sCreating AST...%s\n", YELLOW, NC);
 	ast = ast_create_tree(&tokens);
-	printf("%sFinished AST...%s\n", YELLOW, NC);
+	// printf("%sFinished AST...%s\n", YELLOW, NC);
 	free_tokens(tokens);
 	tokens = NULL;
-	// if (PRINT_TREE == 1)
+	if (PRINT_TREE == 1)
 		ast_print(ast);
-	printf("%sStarting Execution...%s\n", YELLOW, NC);
+	// printf("%sStarting Execution...%s\n", YELLOW, NC);
 	exec_ast(ast);
 	free_ast(ast);
-	printf("%sFinished Execution...%s\n", YELLOW, NC);
+	// printf("%sFinished Execution...%s\n", YELLOW, NC);
 }
