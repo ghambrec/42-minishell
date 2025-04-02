@@ -45,9 +45,9 @@ t_ast	*ast_parse_cmd(t_tokens **tokens)
 	if (*tokens && (*tokens)->token_type == TT_PARENTESIS_OPEN)
 		return (ast_parse_parenthesis(tokens));
 	if (cmd)
-		cmd->cmd = ast_dup_tokens((*tokens)->token);
+		cmd->cmd = ft_strarr_dup((*tokens)->token);
 	else
-		cmd = ast_create_node(TT_CMD, ast_dup_tokens((*tokens)->token), NULL, NULL);
+		cmd = ast_create_node(TT_CMD, ft_strarr_dup((*tokens)->token), NULL, NULL);
 	*tokens = (*tokens)->next;
 	ast_parse_redirections(cmd, tokens);
 	return (cmd);
