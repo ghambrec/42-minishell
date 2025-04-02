@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_errors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 12:43:18 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/31 16:26:04 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/04/02 17:49:01 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ static bool	no_open_quotes(char *input)
 bool	parsing_errors(char *input)
 {
 	if (no_open_quotes(input))
-		return (free(input), true);
+		return (true);
 	return (false);
 }

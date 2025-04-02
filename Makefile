@@ -20,14 +20,25 @@ SOURCE_DIRS = src \
 				src/freeing \
 				src/execution \
 				src/errors \
-				src/signals
+				src/signals \
+				src/utils \
+				src/input_handling
 
 VPATH = $(SOURCE_DIRS)
 
 SOURCES = main.c main2.c
 
 # SHELL_UTILS
-SOURCES += get_shell.c
+SOURCES += get_shell.c \
+			init_shell.c
+
+# INPUT_HANDLING
+SOURCES += handle_input.c \
+			handle_tty_input.c \
+			handle_nontty_input.c
+
+# UTILS
+SOURCES += ft_strarr_dup.c
 
 # PARSING
 SOURCES += bools.c \
@@ -57,7 +68,6 @@ SOURCES += ast_create_node.c \
 			ast_create_tree.c \
 			ast_parse_functions.c \
 			ast_print.c \
-			ast_dup_tokens.c \
 			ast_add_redirection.c
 
 # BUILTINS
@@ -77,9 +87,6 @@ SOURCES += execute_command.c \
 			exec_cmd.c \
 			exec_builtin.c \
 			exec_pipe.c
-
-# Errors
-SOURCES += input_errors.c
 
 # Signals
 SOURCES += signals.c
