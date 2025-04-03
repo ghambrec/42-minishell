@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 16:05:46 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/31 14:08:28 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/03 14:07:06 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,5 @@ int	builtin_unset(char **cmd)
 		i++;
 	}
 	get_shell()->envp = envp;
-	return (exit_code_loop);
+	return (exit_code);
 }
