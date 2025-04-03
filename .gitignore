@@ -4,3 +4,5 @@ minishell
 .vscode/
 .DS_Store
 a.out
+.heredoc
+cmds/

@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 10:38:33 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/31 14:08:37 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/03 14:07:04 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int	builtin_export(char **cmd)
 	i = 1;
 	while (cmd[i])
 	{
-		exit_code_loop = env_error(cmd[i], "unset");
+		exit_code_loop = env_error(cmd[i], "export");
 		if (exit_code_loop > EXIT_SUCCESS)
 			exit_code = exit_code_loop;
 		if (exit_code_loop || env_exists(cmd[i], envs))
@@ -129,5 +129,5 @@ int	builtin_export(char **cmd)
 		i++;
 	}
 	get_shell()->envp = envs;
-	return (exit_code_loop);
+	return (exit_code);
 }

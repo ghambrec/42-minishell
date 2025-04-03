@@ -1,21 +1,21 @@
 
 #include "minishell.h"
 
-char	**ast_dup_tokens(char **tokens)
+char	**ft_strarr_dup(char **arr)
 {
 	int		i;
 	char	**copy;
 
 	i = 0;
-	while (tokens[i])
+	while (arr[i])
 		i++;
 	copy = (char **)malloc((i + 1) * sizeof(*copy));
 	if (!copy)
 		return (NULL);
 	i = 0;
-	while (tokens[i])
+	while (arr[i])
 	{
-		copy[i] = ft_strdup(tokens[i]);
+		copy[i] = ft_strdup(arr[i]);
 		if (!copy[i])
 		{
 			while (--i >= 0)

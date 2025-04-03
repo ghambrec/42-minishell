@@ -17,7 +17,10 @@
 # define PURPLE "\033[0;35m"
 # define RED "\033[0;31m"
 # define GREEN "\033[0;32m"
+# define BLACK "\033[0;30m"
 # define NC "\033[0m"
+# define CLEAR_LINE "\033[2K"
+
 
 # ifndef PRINT_TREE
 #  define PRINT_TREE 0
@@ -98,6 +101,16 @@ t_tokens		*ft_newtoken(int token_type, char **token);
 void			ft_printlist(t_tokens *token);
 char			*ft_strcpy(char *dest, const char *src);
 
+// UTILS
+char	**ft_strarr_dup(char **arr);
+int		ft_str_only_whitespaces(char *str);
+
+// INPUT HANDLING
+void	handle_input(char *input);
+void	handle_tty_input(void);
+void	handle_nontty_input(void);
+
+
 // TOKEN LIST
 t_tokens		*ft_newtoken(int token_type, char **token);
 void			ft_lstadd_back_token(t_tokens **lst, t_tokens *new);
@@ -154,10 +167,10 @@ int				builtin_unset(char **cmd);
 
 // SHELL-UTILS
 t_shell			*get_shell(void);
+int				init_shell(int argc, char **argv, char **envp);
 
 // Errors
 bool			parsing_errors(char *input);
-bool			input_errors(int argc, char **argv);
 int				env_error(char *key, char *builtin);
 
 // AST
@@ -168,7 +181,6 @@ t_ast			*ast_parse_pipe(t_tokens **tokens);
 t_ast			*ast_parse_cmd(t_tokens **tokens);
 t_ast			*ast_parse_parenthesis(t_tokens **tokens);
 void			ast_parse_redirections(t_ast *cmd, t_tokens **tokens);
-char			**ast_dup_tokens(char **tokens);
 t_ast			*ast_create_node(t_token_type ttype, char **cmd,
 					t_ast *left, t_ast *right);
 void			ast_add_redirection(t_ast *ast, t_token_type ttype,

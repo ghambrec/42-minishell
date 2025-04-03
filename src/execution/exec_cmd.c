@@ -8,7 +8,7 @@ int	exec_cmd(t_ast *ast)
 	int		status;
 
 	exit_code = 0;
-	if (check_builtin(ast->cmd) == true)
+	if (ast->cmd && check_builtin(ast->cmd) == true)
 		return (exec_builtin(ast));
 	pid = fork();
 	if (pid == 0)
@@ -17,7 +17,7 @@ int	exec_cmd(t_ast *ast)
 		{
 			exit_code = open_redirections(ast->redirect);
 			if (exit_code != 0)
-			exit(exit_code);
+				exit(exit_code);
 			execute_command(ast->cmd);
 		}
 	}
