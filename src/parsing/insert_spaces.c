@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 17:04:01 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/04/02 19:08:53 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/04/03 20:28:52 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	count_extra_spaces(char *input)
 	{
 		if (need_space(input[i]))
 		{
-			if (i == 0 || input[i - 1] != ' ')
+			if ((i == 0 || input[i - 1] != ' '))
 				spaces_needed++;
 			if (input[i + 1] == '\0' || input[i + 1] != ' ')
 				spaces_needed++;

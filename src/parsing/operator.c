@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 11:04:58 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/27 13:23:30 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/04/03 20:47:49 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ static char	**get_heredoc_or_append(char **all_tokens, int *i)
 {
 	char	**token_return;
 
+	if (!all_tokens[*i + 2] || all_tokens[*i + 2][0] == '<')
+		return (ft_putendl_fd("parse error near `newline'", 2), NULL);
 	token_return = (char **)malloc(3 * sizeof(char *));
 	if (!token_return)
 		return (NULL);
@@ -61,14 +63,17 @@ static char	**get_heredoc_or_append(char **all_tokens, int *i)
 }
 
 
-void	handle_heredoc_and_append(
+int	handle_heredoc_and_append(
 	char **all_tokens, t_tokens **token_list, int *i)
 {
 	int		token_type;
 	char	**token;
 
 	token = get_heredoc_or_append(all_tokens, i);
+	if (token == NULL)
+		return (-1);
 	token_type = get_token_type(token);
 	ft_lstadd_back_token(token_list, ft_newtoken(token_type, token));
 	(*i) += 3;
+	return (1);
 }

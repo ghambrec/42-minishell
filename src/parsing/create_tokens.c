@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_tokens.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 10:21:25 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/04/02 19:34:03 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/03 20:58:56 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ static int	create_token_list(char **all_tokens, t_tokens **token_list)
 			handle_commands(all_tokens, token_list, &i);
 		else if (all_tokens[i + 1]
 			&& is_heredoc_or_append(all_tokens[i][0], all_tokens[i + 1][0]))
-			handle_heredoc_and_append(all_tokens, token_list, &i);
+		{
+			if (handle_heredoc_and_append(all_tokens, token_list, &i) == -1)
+				return (-1);
+		}
 		else if (all_tokens[i + 1]
 			&& is_operator(all_tokens[i][0]))
 			handle_operator(all_tokens, token_list, &i);

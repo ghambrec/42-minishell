@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:31:02 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/28 10:08:25 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/04/03 19:54:32 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ static char	*replace_env_var_in_string(char *input, int i)
 			|| ft_strchr("$_", input[env_key_end])) && input[env_key_end])
 		env_key_end++;
 	env_key = ft_substr(input, i + 1, env_key_end - i - 1);
+	if (ft_strchr(env_key, '=') == NULL)
+		return (ft_strdup(""));
 	env_val = ft_getenv(env_key);
 	free(env_key);
 	if (env_val)

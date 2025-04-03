@@ -7,7 +7,7 @@ bool	check_builtin(char **cmd)
 		return (true);
 	if (ft_strcmp(cmd[0], "cd") == 0)
 		return (true);
-	if (ft_strcmp(cmd[0], "pwd") == 0)
+	if (ft_strcmp(cmd[0], "pwd") == 0) 
 		return (true);
 	if (ft_strcmp(cmd[0], "export") == 0)
 		return (true);
