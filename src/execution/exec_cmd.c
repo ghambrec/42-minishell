@@ -6,7 +6,7 @@ int	exec_cmd(t_ast *ast)
 	pid_t	pid;
 	int		exit_code;
 	int		status;
-	
+
 	exit_code = 0;
 	if (check_builtin(ast->cmd) == true)
 		return (exec_builtin(ast));
