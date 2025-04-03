@@ -41,7 +41,7 @@ void	execute_command(char **cmd)
 		ft_putstr_fd("Command not found: ", STDERR_FILENO);
 		ft_putendl_fd(cmd[0], STDERR_FILENO);
 		free_split(cmd);
-		return ;
+		exit(127);
 	}
 	if (execve(path, cmd, NULL) == -1)
 	{
@@ -49,7 +49,6 @@ void	execute_command(char **cmd)
 		ft_putstr_fd(cmd[0], STDERR_FILENO);
 		perror("'");
 		free_split(cmd);
-		// hier errno auf $? setzen bzw returnen?
-		return ;
+		exit(127);
 	}
 }
