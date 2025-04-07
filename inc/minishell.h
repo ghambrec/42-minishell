@@ -101,10 +101,6 @@ t_tokens		*ft_newtoken(int token_type, char **token);
 void			ft_printlist(t_tokens *token);
 char			*ft_strcpy(char *dest, const char *src);
 
-// UTILS
-char	**ft_strarr_dup(char **arr);
-int		ft_str_only_whitespaces(char *str);
-
 // INPUT HANDLING
 void	handle_input(char *input);
 void	handle_tty_input(void);
