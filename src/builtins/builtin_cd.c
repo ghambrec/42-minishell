@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 13:34:34 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/27 16:30:40 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/07 16:43:56 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	builtin_cd(char **cmd)
 	path = NULL;
 	slashed_path = NULL;
 	new_path = NULL;
-	if (!cmd[1])
+	if (!cmd[1] || ft_strcmp(cmd[1], "~") == 0)
 		err_code = cd_home(path);
 	else if (cmd[1][0] == '/')
 		err_code = cd_dir(cmd);
