@@ -79,7 +79,8 @@ SOURCES += check_builtin.c \
 			builtin_export.c \
 			builtin_env.c \
 			builtin_unset.c \
-			builtin_errors.c
+			builtin_errors.c \
+			builtin_exit.c
 
 # EXECUTING
 SOURCES += execute_command.c \

@@ -164,6 +164,7 @@ int				builtin_cd(char **cmd);
 int				builtin_export(char **cmd);
 int				builtin_env(char **cmd);
 int				builtin_unset(char **cmd);
+void			builtin_exit(char **cmd);
 
 // SHELL-UTILS
 t_shell			*get_shell(void);
