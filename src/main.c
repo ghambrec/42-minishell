@@ -16,5 +16,6 @@ int	main(int argc, char **argv, char **envp)
 	{
 		handle_nontty_input();
 	}
-	return (EXIT_SUCCESS);
+	// return (EXIT_SUCCESS);
+	return (get_shell()->exit_code);
 }
