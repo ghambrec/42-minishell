@@ -43,7 +43,7 @@ void	execute_command(char **cmd)
 		free_split(cmd);
 		exit(127);
 	}
-	if (execve(path, cmd, NULL) == -1)
+	if (execve(path, cmd, get_shell()->envp) == -1)
 	{
 		ft_putstr_fd("Error executing '", STDERR_FILENO);
 		ft_putstr_fd(cmd[0], STDERR_FILENO);
