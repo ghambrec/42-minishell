@@ -120,7 +120,7 @@ void			handle_commands(
 					char **all_tokens, t_tokens **token_list, int *i);
 int				create_command_list(char *input, t_tokens **token_list);
 char			*insert_spaces(char *input);
-void			handle_heredoc_and_append(
+int				handle_heredoc_and_append(
 					char **all_tokens, t_tokens **token_list, int *i);
 char			**split_into_tokens(char *input);
 void			handle_operator(char **all_tokens,
