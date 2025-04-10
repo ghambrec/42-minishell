@@ -29,18 +29,6 @@
 # define PIPE_READ 0
 # define PIPE_WRITE 1
 
-// typedef enum e_builtins
-// {
-// 	NO_BIN,
-// 	BIN_ECHO,
-// 	BIN_CD,
-// 	BIN_PWD,
-// 	BIN_EXPORT,
-// 	BIN_UNSET,
-// 	BIN_ENV,
-// 	BIN_EXIT
-// } t_buildins;
-
 typedef enum e_token_type
 {
 	TT_CMD,
@@ -193,7 +181,10 @@ int				exec_builtin(t_ast *ast);
 int				exec_pipe(t_ast *ast);
 int				redirect_heredoc(t_redirection *redirect);
 
-
-
+// SIGNALS
+void	init_signals(void);
+void	set_sigaction(int signum, void (*handler)(int));
+void	handle_sigint_interactive(int signum);
+void	handle_sigint_child(int signum);
 
 #endif

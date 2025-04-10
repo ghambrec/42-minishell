@@ -35,6 +35,8 @@ int	exec_pipe(t_ast *ast)
 	}
 	if (pid1 == 0) // sind im child process
 	{
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
 		dup2(pipe_fd[PIPE_WRITE], STDOUT_FILENO);
 		close_pipe(pipe_fd);
 		exec_ast(ast->left);
@@ -52,12 +54,16 @@ int	exec_pipe(t_ast *ast)
 	}
 	if (pid2 == 0) // sind im child process
 	{
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
 		dup2(pipe_fd[PIPE_READ], STDIN_FILENO);
 		close_pipe(pipe_fd);
 		exec_ast(ast->right);
 		exit(get_shell()->exit_code);
 	}
 	close_pipe(pipe_fd);
+
+	set_sigaction(SIGINT, handle_sigint_child);
 	// wait pid1
 	waitpid(pid1, &status, 0);
 	if (WIFEXITED(status))
@@ -78,5 +84,6 @@ int	exec_pipe(t_ast *ast)
 	}
 	else if (WIFSIGNALED(status))
 		exit_status = 128 + WTERMSIG(status);
+	set_sigaction(SIGINT, handle_sigint_interactive);
 	return (exit_status);
 }

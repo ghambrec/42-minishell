@@ -3,8 +3,6 @@
 
 int	main(int argc, char **argv, char **envp)
 {
-
-
 	if (init_shell(argc, argv, envp))
 		return (EXIT_FAILURE);
 
@@ -16,6 +14,5 @@ int	main(int argc, char **argv, char **envp)
 	{
 		handle_nontty_input();
 	}
-	// return (EXIT_SUCCESS);
 	return (get_shell()->exit_code);
 }

@@ -15,6 +15,8 @@ int	exec_cmd(t_ast *ast)
 		return (perror("Error creating child"), errno);
 	if (pid == 0)
 	{
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
 		if (ast->ttype == TT_CMD)
 		{
 			exit_code = open_redirections(ast->redirect);
@@ -25,7 +27,9 @@ int	exec_cmd(t_ast *ast)
 	}
 	else
 	{
+		set_sigaction(SIGINT, handle_sigint_child);
 		waitpid(pid, &status, 0);
+		set_sigaction(SIGINT, handle_sigint_interactive);
 		if (WIFEXITED(status))
 			exit_code = WEXITSTATUS(status);
 		else if (WIFSIGNALED(status))
