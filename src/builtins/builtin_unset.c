@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 16:05:46 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/04/03 14:12:07 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/10 14:29:27 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	builtin_unset(char **cmd)
 	int		exit_code;
 	int		exit_code_loop;
 
-
+	exit_code = EXIT_SUCCESS;
 	if (!cmd[1])
 		return (EXIT_FAILURE);
 	i = 1;

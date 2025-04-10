@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 10:38:33 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/04/03 14:11:40 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/10 14:28:44 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ int	builtin_export(char **cmd)
 	int		exit_code;
 	int		exit_code_loop;
 
+	exit_code = EXIT_SUCCESS;
 	if (!cmd[1])
 		return (print_declare_exports(), EXIT_SUCCESS);
 	envs = ft_sort_2d_strings(get_shell()->envp);
