@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 16:05:46 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/04/10 14:29:27 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/11 13:22:14 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	builtin_unset(char **cmd)
 
 	exit_code = EXIT_SUCCESS;
 	if (!cmd[1])
-		return (EXIT_FAILURE);
+		return (exit_code);
 	i = 1;
 	envp = get_shell()->envp;
 	while (cmd[i])
@@ -79,11 +79,13 @@ int	builtin_unset(char **cmd)
 		exit_code_loop = env_error(cmd[i], "unset");
 		if (exit_code_loop > EXIT_SUCCESS)
 			exit_code = exit_code_loop;
-		new_envs = remove_env(envp, cmd[i]);
-		free_split(envp);
-		envp = new_envs;
+		if (exit_code_loop == 0)
+		{
+			new_envs = remove_env(envp, cmd[i]);
+			free_split(envp);
+			envp = new_envs;	
+		}
 		i++;
 	}
-	get_shell()->envp = envp;
-	return (exit_code);
+	return (get_shell()->envp = envp, exit_code);
 }

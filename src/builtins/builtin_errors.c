@@ -6,33 +6,40 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 15:36:31 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/31 17:41:25 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/11 13:12:06 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	env_error(char *cmd, char *string)
+static void print_env_error(char *prog, char *key)
+{
+	ft_putstr_fd(prog, STDERR_FILENO);
+	ft_putstr_fd(": `", STDERR_FILENO);
+	ft_putstr_fd(key, STDERR_FILENO);
+	ft_putendl_fd("': not a valid identifier", STDERR_FILENO);
+}
+
+int	env_error(char *key, char *prog)
 {
 	int	i;
 
-	if (!ft_isalpha(cmd[0]) && cmd[0] != '_')
+	if (ft_strcmp(prog, "unset") == 0 && ft_strchr(key, '='))
 	{
-		ft_putstr_fd(string, STDERR_FILENO);
-		ft_putstr_fd(": `", STDERR_FILENO);
-		ft_putstr_fd(cmd, STDERR_FILENO);
-		ft_putendl_fd("': not a valid identifier", STDERR_FILENO);
+		print_env_error(prog, key);
+		return (EXIT_FAILURE);
+	}
+	if (!ft_isalpha(key[0]) && key[0] != '_')
+	{
+		print_env_error(prog, key);
 		return (EXIT_FAILURE);
 	}
 	i = 0;
-	while (cmd[i] && cmd[i] != '=')
+	while (key[i] && key[i] != '=')
 	{
-		if (!ft_isalnum(cmd[i]) && cmd[i] != '_')
+		if (!ft_isalnum(key[i]) && key[i] != '_')
 		{
-			ft_putstr_fd(string, STDERR_FILENO);
-			ft_putstr_fd(": `", STDERR_FILENO);
-			ft_putstr_fd(cmd, STDERR_FILENO);
-			ft_putendl_fd("': not a valid identifier", STDERR_FILENO);
+			print_env_error(prog, key);
 			return (EXIT_FAILURE);	
 		}
 		i++;

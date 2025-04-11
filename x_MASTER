@@ -427,10 +427,10 @@
   202:  STD_OUT: ❌  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_builtins.sh:496  
   203:  STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_builtins.sh:501  
   204:  STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_builtins.sh:505  
-  205:  /Users/ghambrec/42_minishell_tester/tester.sh: line 217: 19316 Done                    echo -n "$INPUT"
-     19317 Segmentation fault: 11  | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+  205:  /Users/ghambrec/42_minishell_tester/tester.sh: line 217: 19871 Done                    echo -n "$INPUT"
+     19872 Segmentation fault: 11  | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
 STD_OUT: ❌  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(139)  bash(0) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/1_builtins.sh:509  
-  206:  STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(1)  bash(0) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/1_builtins.sh:516  
+  206:  STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_builtins.sh:516  
   207:  STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_builtins.sh:518  
   208:  STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_builtins.sh:520  
   209:  STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_builtins.sh:522  
@@ -451,7 +451,7 @@ STD_OUT: ❌  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(139)  bash(0) ]  /Users/g
   224:  STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(1)  bash(127) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/1_builtins.sh:552  
   225:  STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_builtins.sh:554  
   226:  STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_builtins.sh:556  
-  227:  STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(0)  bash(1) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/1_builtins.sh:558  
+  227:  STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_builtins.sh:558  
   228:  STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_builtins.sh:560  
   229:  STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_builtins.sh:562  
   230:  STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_builtins.sh:564  
@@ -768,8 +768,8 @@ STD_OUT: ❌  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(139)  bash(0) ]  /Users/g
   51:   STD_OUT: ❌  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_variables.sh:148  
   52:   STD_OUT: ❌  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_variables.sh:151  
   53:   STD_OUT: ❌  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_variables.sh:154  
-  54:   /Users/ghambrec/42_minishell_tester/tester.sh: line 217: 26433 Done                    echo -n "$INPUT"
-     26434 Segmentation fault: 11  | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+  54:   /Users/ghambrec/42_minishell_tester/tester.sh: line 217: 26950 Done                    echo -n "$INPUT"
+     26951 Segmentation fault: 11  | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
 STD_OUT: ❌  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(139)  bash(0) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/1_variables.sh:157  
   55:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_variables.sh:160  
   56:   STD_OUT: ❌  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_variables.sh:163  
@@ -871,7 +871,7 @@ STD_OUT: ❌  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(139)  bash(0) ]  /Users/g
   90:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/2_correction.sh:194  
   91:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/2_correction.sh:196  
   92:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/2_correction.sh:198  
-  93:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(1)  bash(0) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/2_correction.sh:200  
+  93:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/2_correction.sh:200  
   94:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/2_correction.sh:202  
   95:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/2_correction.sh:204  
   96:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/2_correction.sh:211  
@@ -943,8 +943,8 @@ STD_OUT: ❌  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(139)  bash(0) ]  /Users/g
   28:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(1)  bash(2) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/8_syntax_errors.sh:62  
   29:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(127)  bash(2) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/8_syntax_errors.sh:64  
   30:   STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(0)  bash(2) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/8_syntax_errors.sh:66  
-  31:   /Users/ghambrec/42_minishell_tester/tester.sh: line 217: 27609 Done                    echo -n "$INPUT"
-     27610 Segmentation fault: 11  | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+  31:   /Users/ghambrec/42_minishell_tester/tester.sh: line 217: 28120 Done                    echo -n "$INPUT"
+     28121 Segmentation fault: 11  | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
 STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(139)  bash(2) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/8_syntax_errors.sh:68  
   32:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(0)  bash(2) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/8_syntax_errors.sh:74  
   33:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(0)  bash(2) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/8_syntax_errors.sh:76  
@@ -954,8 +954,8 @@ STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(139)  bash(2) ]  /Users/g
   37:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/8_syntax_errors.sh:84  
   38:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(127)  bash(2) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/8_syntax_errors.sh:86  
   39:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/8_syntax_errors.sh:88  
-  40:   /Users/ghambrec/42_minishell_tester/tester.sh: line 217: 27689 Done                    echo -n "$INPUT"
-     27690 Segmentation fault: 11  | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+  40:   /Users/ghambrec/42_minishell_tester/tester.sh: line 217: 28200 Done                    echo -n "$INPUT"
+     28201 Segmentation fault: 11  | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
 STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(139)  bash(2) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/8_syntax_errors.sh:96  
   41:   STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(0)  bash(2) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/8_syntax_errors.sh:98  
   42:   STD_OUT: ✅  STD_ERR: ❌  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/8_syntax_errors.sh:100  
@@ -989,8 +989,8 @@ STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ❌ [ minishell(139)  bash(2) ]  /Users/g
 🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
 🏁                                    RESULT                                    🏁
 🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
-             TOTAL TEST COUNT: 941  TESTS PASSED: 670  LEAKING: 0 
-                     STD_OUT: 132  STD_ERR: 59  EXIT_CODE: 157  
+             TOTAL TEST COUNT: 941  TESTS PASSED: 673  LEAKING: 0 
+                     STD_OUT: 132  STD_ERR: 58  EXIT_CODE: 154  
                          TOTAL FAILED AND PASSED CASES:
-                                     ❌ 348   
-                                     ✅ 2475
+                                     ❌ 344   
+                                     ✅ 2479
