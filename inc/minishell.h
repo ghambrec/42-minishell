@@ -153,6 +153,7 @@ void			builtin_exit(char **cmd);
 // SHELL-UTILS
 t_shell			*get_shell(void);
 int				init_shell(int argc, char **argv, char **envp);
+int	exit_shell(t_shell *shell, bool call_exit);
 
 // Errors
 bool			parsing_errors(char *input);

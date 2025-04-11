@@ -30,7 +30,8 @@ SOURCES = main.c
 
 # SHELL_UTILS
 SOURCES += get_shell.c \
-			init_shell.c
+			init_shell.c \
+			exit_shell.c
 
 # INPUT_HANDLING
 SOURCES += handle_input.c \

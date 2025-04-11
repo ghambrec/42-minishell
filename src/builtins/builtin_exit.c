@@ -42,6 +42,5 @@ void	builtin_exit(char **cmd)
 	else
 		ft_putendl_fd("exit", STDERR_FILENO);
 	get_shell()->exit_code %= 256;
-	// TODO: exit_shell funktion die alles offene noch freet und dann die shell mit exit code beendet
-	exit(get_shell()->exit_code);
+	exit_shell(get_shell(), true);
 }
