@@ -53,8 +53,8 @@ static char	*replace_env_var_in_string(char *input, int i)
 	char	*output;
 
 	env_key_end = i;
-	while ((ft_isalnum(input[env_key_end])
-			|| ft_strchr("$_", input[env_key_end])) && input[env_key_end])
+	env_key_end++;
+	while ((ft_isalnum(input[env_key_end])) && input[env_key_end])
 		env_key_end++;
 	env_key = ft_substr(input, i + 1, env_key_end - i - 1);
 	env_val = ft_getenv(env_key);
