@@ -11,7 +11,10 @@ void	handle_nontty_input()
 	{
 		input = ft_strtrim(new_line, "\n");
 		free(new_line);
-		handle_input(input);
+		if (ft_strlen(input) == 0)
+			free(input);
+		else
+			handle_input(input);
 		new_line = get_next_line(STDIN_FILENO);
 	}
 }

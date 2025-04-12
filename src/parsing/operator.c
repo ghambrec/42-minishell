@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   operator.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 11:04:58 by rstumpf           #+#    #+#             */
 /*   Updated: 2025/04/03 20:47:49 by rstumpf          ###   ########.fr       */
@@ -75,5 +75,5 @@ int	handle_heredoc_and_append(
 	token_type = get_token_type(token);
 	ft_lstadd_back_token(token_list, ft_newtoken(token_type, token));
 	(*i) += 3;
-	return (1);
+	return (EXIT_SUCCESS);
 }

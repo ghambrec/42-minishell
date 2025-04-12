@@ -19,7 +19,7 @@ int	exec_current_builtin(char **cmd)
 	if (ft_strcmp(cmd[0], "env") == 0)
 		return (builtin_env(cmd));
 	if (ft_strcmp(cmd[0], "exit") == 0)
-		return (exit(0), 0);
+		return (builtin_exit(cmd), EXIT_FAILURE);
 	else
 		return (false);
 }

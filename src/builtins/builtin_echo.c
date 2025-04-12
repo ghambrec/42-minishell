@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 13:52:23 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/27 16:17:35 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/10 15:58:19 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	builtin_echo(char **cmd)
 
 	i = 1;
 	option_n = false;
-	if (cmd[1] && ft_strcmp(cmd[1], "-n") == 0)
+	while (cmd[i] && ft_strcmp(cmd[i], "-n") == 0)
 	{
-		i = 2;
+		i++;
 		option_n = true;
 	}
 	while (cmd[i])

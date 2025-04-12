@@ -43,14 +43,15 @@ void	execute_command(char **cmd)
 	{
 		ft_putstr_fd("Command not found: ", STDERR_FILENO);
 		ft_putendl_fd(cmd[0], STDERR_FILENO);
-		return ;
+		free_split(cmd);
+		exit(127);
 	}
-	if (execve(path, cmd, NULL) == -1)
+	if (execve(path, cmd, get_shell()->envp) == -1)
 	{
 		ft_putstr_fd("Error executing '", STDERR_FILENO);
 		ft_putstr_fd(cmd[0], STDERR_FILENO);
 		perror("'");
-		// hier errno auf $? setzen bzw returnen?
-		return ;
+		free_split(cmd);
+		exit(127);
 	}
 }

@@ -6,6 +6,7 @@ int	init_shell(int argc, char **argv, char **envp)
 	t_shell *shell;
 
 	(void)argv;
+	init_signals();
 	shell = get_shell();
 	if (argc == 1)
 	{

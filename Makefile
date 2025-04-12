@@ -30,16 +30,13 @@ SOURCES = main.c
 
 # SHELL_UTILS
 SOURCES += get_shell.c \
-			init_shell.c
+			init_shell.c \
+			exit_shell.c
 
 # INPUT_HANDLING
 SOURCES += handle_input.c \
 			handle_tty_input.c \
 			handle_nontty_input.c
-
-# UTILS
-SOURCES += ft_strarr_dup.c \
-			ft_str_only_whitespaces.c
 
 # PARSING
 SOURCES += bools.c \
@@ -79,7 +76,8 @@ SOURCES += check_builtin.c \
 			builtin_export.c \
 			builtin_env.c \
 			builtin_unset.c \
-			builtin_errors.c
+			builtin_errors.c \
+			builtin_exit.c
 
 # EXECUTING
 SOURCES += execute_command.c \

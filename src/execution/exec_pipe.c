@@ -12,6 +12,12 @@ int	exec_pipe(t_ast *ast)
 	int	pipe_fd[2];
 	int	pid1;
 	int	pid2;
+	int	exit_status;
+	int	status;
+	int	child1_exit_code;
+	int	child2_exit_code;
+
+	exit_status = EXIT_SUCCESS;
 
 	// pipe erstellen
 	if (pipe(pipe_fd) == -1)
@@ -29,10 +35,12 @@ int	exec_pipe(t_ast *ast)
 	}
 	if (pid1 == 0) // sind im child process
 	{
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
 		dup2(pipe_fd[PIPE_WRITE], STDOUT_FILENO);
 		close_pipe(pipe_fd);
 		exec_ast(ast->left);
-		exit(50001);
+		exit(get_shell()->exit_code);
 	}
 
 	// pid2 erstellen
@@ -41,17 +49,41 @@ int	exec_pipe(t_ast *ast)
 	{
 		close_pipe(pipe_fd);
 		perror("Error opening child-process");
+		kill(pid1, SIGTERM);
 		return (errno);
 	}
 	if (pid2 == 0) // sind im child process
 	{
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
 		dup2(pipe_fd[PIPE_READ], STDIN_FILENO);
 		close_pipe(pipe_fd);
 		exec_ast(ast->right);
-		exit(5002);
+		exit(get_shell()->exit_code);
 	}
 	close_pipe(pipe_fd);
-	waitpid(pid1, NULL, 0);
-	waitpid(pid2, NULL, 0);
-	return (EXIT_SUCCESS);
+
+	set_sigaction(SIGINT, handle_sigint_child);
+	// wait pid1
+	waitpid(pid1, &status, 0);
+	if (WIFEXITED(status))
+	{
+		child1_exit_code = WEXITSTATUS(status);
+		if (child1_exit_code != EXIT_SUCCESS)
+			exit_status = child1_exit_code;
+	}
+	else if (WIFSIGNALED(status))
+		exit_status = 128 + WTERMSIG(status);
+	// wait pid2
+	waitpid(pid2, &status, 0);
+	if (WIFEXITED(status))
+	{
+		child2_exit_code = WEXITSTATUS(status);
+		if (child2_exit_code != EXIT_SUCCESS)
+			exit_status = child2_exit_code;
+	}
+	else if (WIFSIGNALED(status))
+		exit_status = 128 + WTERMSIG(status);
+	set_sigaction(SIGINT, handle_sigint_interactive);
+	return (exit_status);
 }

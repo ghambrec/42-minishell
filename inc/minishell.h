@@ -29,18 +29,6 @@
 # define PIPE_READ 0
 # define PIPE_WRITE 1
 
-// typedef enum e_builtins
-// {
-// 	NO_BIN,
-// 	BIN_ECHO,
-// 	BIN_CD,
-// 	BIN_PWD,
-// 	BIN_EXPORT,
-// 	BIN_UNSET,
-// 	BIN_ENV,
-// 	BIN_EXIT
-// } t_buildins;
-
 typedef enum e_token_type
 {
 	TT_CMD,
@@ -101,10 +89,6 @@ t_tokens		*ft_newtoken(int token_type, char **token);
 void			ft_printlist(t_tokens *token);
 char			*ft_strcpy(char *dest, const char *src);
 
-// UTILS
-char	**ft_strarr_dup(char **arr);
-int		ft_str_only_whitespaces(char *str);
-
 // INPUT HANDLING
 void	handle_input(char *input);
 void	handle_tty_input(void);
@@ -164,10 +148,12 @@ int				builtin_cd(char **cmd);
 int				builtin_export(char **cmd);
 int				builtin_env(char **cmd);
 int				builtin_unset(char **cmd);
+void			builtin_exit(char **cmd);
 
 // SHELL-UTILS
 t_shell			*get_shell(void);
 int				init_shell(int argc, char **argv, char **envp);
+int	exit_shell(t_shell *shell, bool call_exit);
 
 // Errors
 bool			parsing_errors(char *input);
@@ -196,7 +182,10 @@ int				exec_builtin(t_ast *ast);
 int				exec_pipe(t_ast *ast);
 int				redirect_heredoc(t_redirection *redirect);
 
-
-
+// SIGNALS
+void	init_signals(void);
+void	set_sigaction(int signum, void (*handler)(int));
+void	handle_sigint_interactive(int signum);
+void	handle_sigint_child(int signum);
 
 #endif

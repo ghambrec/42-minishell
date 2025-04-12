@@ -25,5 +25,4 @@ void	handle_tty_input(void)
 		add_history(input);
 		handle_input(input);
 	}
-	clear_history(); // in exit_shell mit rein, falls shell mit befehl exit etc beendet wird
 }
