@@ -57,8 +57,6 @@ static char	*replace_env_var_in_string(char *input, int i)
 	while ((ft_isalnum(input[env_key_end])) && input[env_key_end])
 		env_key_end++;
 	env_key = ft_substr(input, i + 1, env_key_end - i - 1);
-	if (ft_strchr(env_key, '=') == NULL)
-		return (ft_strdup(""));
 	env_val = ft_getenv(env_key);
 	free(env_key);
 	if (env_val)

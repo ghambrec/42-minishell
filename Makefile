@@ -3,7 +3,7 @@
 NAME := minishell
 CC := cc
 INCLUDE_DIR := ./inc
-CFLAGS = -Wall -Wextra -Werror -I $(INCLUDE_DIR) -g
+CFLAGS = -Wall -Wextra -Werror -I $(INCLUDE_DIR) -I /usr/local/opt/readline/include -g
 
 # ---------- LIB ---------- #
 LIB_DIR = ./lib
@@ -107,7 +107,8 @@ all: $(NAME)
 
 $(NAME): checkMyLibft $(LIBFT_NAME) $(OBJECTS)
 	@echo "$(YELLOW)Compiling $(NAME)...$(NC)"
-	@cc $(CFLAGS) $(OBJECTS) $(LIBFT_FULL) $(MLX_FULL) -lreadline -o $(NAME)
+	@cc $(CFLAGS) $(OBJECTS) $(LIBFT_FULL) -L /usr/local/opt/readline/lib -lreadline -o $(NAME)
+
 	@if [ -f $(NAME) ]; then \
 		echo "$(CYAN)--------------------------------------$(NC)"; \
 		echo "$(GREEN)BUILD PROCESS COMPLETED SUCCESSFULLY!$(NC)"; \
