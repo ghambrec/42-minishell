@@ -27,6 +27,7 @@ void	handle_quotes(t_tokens **token_list)
 		{
 			commands[i] = replace_env_vars(commands[i]);
 			commands[i] = remove_quotes(commands[i]);
+			replace_char(commands[i], '%', '$');
 			i++;
 		}
 		*token_list = (*token_list)->next;

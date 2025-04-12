@@ -99,3 +99,13 @@ bool	is_in_quotes(char *input, int i)
 	}
 	return (in_quotes);
 }
+
+void replace_char(char *str, char old_char, char new_char)
+{
+    while (*str) {
+        if (*str == old_char) {
+            *str = new_char;
+        }
+        str++;
+    }
+}
