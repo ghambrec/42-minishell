@@ -20,7 +20,7 @@ static bool	full_numeric(char *str)
 
 void	builtin_exit(char **cmd)
 {
-	if (cmd[2] && full_numeric(cmd[1]) == true)
+	if (cmd[1] && cmd[2] && full_numeric(cmd[1]) == true)
 	{
 		ft_putendl_fd("exit", STDERR_FILENO);
 		ft_putendl_fd("exit: too many arguments", STDERR_FILENO);
