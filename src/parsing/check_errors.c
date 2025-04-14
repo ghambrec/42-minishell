@@ -41,22 +41,27 @@ bool	parsing_errors(char *input)
 	return (false);
 }
 
-// int	check_for_parse_errors(t_tokens *token)
-// {
-// 	while (token)
-// 	{
-// 		if (token->token_type == TT_RE_INPUT
-// 			|| token->token_type == TT_RE_OUTPUT)
-// 		{
-// 			if (!ft_isalnum(token->token[1][0]))
-// 				return (ft_putendl_fd("Parse Error", 2), EXIT_FAILURE);
-// 		}
-// 		// else if (token->token_type == TT_PIPE)
-// 		// {
-// 		// 	if (!token->next || token->next->token_type == TT_PIPE)
-// 		// 		return (ft_putendl_fd("Parse Error", 2), EXIT_FAILURE);
-// 		// }
-// 		token = token->next;
-// 	}
-// 	return (EXIT_SUCCESS);
-// }
+int	check_for_parse_errors(t_tokens *token)
+{
+	while (token)
+	{
+		if (token->token_type == TT_RE_INPUT
+			|| token->token_type == TT_RE_OUTPUT)
+		{
+			if (!ft_isalnum(token->token[1][0]))
+				return (ft_putendl_fd("Parse Error", 2), EXIT_FAILURE);
+		}
+		else if (token->token_type == TT_PIPE)
+		{
+			if (!token->next || token->next->token_type == TT_PIPE)
+				return (ft_putendl_fd("Parse Error", 2), EXIT_FAILURE);
+		}
+		else if (token->token_type == TT_HEREDOC)
+		{
+			if (token->token[1][0] == '|')
+				return (ft_putendl_fd("Parse Error", 2), EXIT_FAILURE);
+		}
+		token = token->next;
+	}
+	return (EXIT_SUCCESS);
+}
