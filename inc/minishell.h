@@ -120,6 +120,7 @@ void 			replace_char(char *str, char old_char, char new_char);
 // HANDLE_QUOTES
 void			handle_quotes(t_tokens **tokenList);
 char			*remove_quotes(char *commands);
+void			check_quotes(char c, t_quote_state *state);
 
 //HANDLE ENVS
 char			*replace_env_vars(char *output);

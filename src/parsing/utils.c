@@ -86,17 +86,17 @@ char	*ft_strcpy(char *dest, const char *src)
 
 bool	is_in_quotes(char *input, int i)
 {
-	bool	in_quotes;
-	int		j;
+	bool			in_quotes;
 
-	j = 0;
 	in_quotes = false;
-	while (j < i)
-	{
-		if (input[j] == '"' || input[j] == 39)
+	if (input[i] == '"' || input[i] == 39)
+		{
 			in_quotes = !in_quotes;
-		j++;
-	}
+			if (in_quotes == true)
+				printf("opened\n");
+			else
+				printf("clodes\n");
+		}
 	return (in_quotes);
 }
 

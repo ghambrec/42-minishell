@@ -14,14 +14,19 @@
 
 static int	count_extra_spaces(char *input)
 {
-	int	i;
-	int	spaces_needed;
+	int				i;
+	int				spaces_needed;
+	t_quote_state	state;
 
 	i = 0;
 	spaces_needed = 0;
+	state.in_double_quotes = false;
+	state.in_single_quotes = false;
 	while (input[i])
 	{
-		if (need_space(input[i]))
+		check_quotes(input[i], &state);
+		if (need_space(input[i]) && state.in_double_quotes == false
+			&& state.in_single_quotes == false)
 		{
 			if ((i == 0 || input[i - 1] != ' '))
 				spaces_needed++;
@@ -51,14 +56,19 @@ static void	handle_operator_with_spaces(char *input,
 
 static void	copy_with_spaces(char *input, char *updated_input)
 {
-	int	i;
-	int	j;
+	int				i;
+	int				j;
+	t_quote_state	state;
 
 	i = 0;
 	j = 0;
+	state.in_double_quotes = false;
+	state.in_single_quotes = false;
 	while (input[i])
 	{
-		if (!is_in_quotes(input, i) && !need_space(input[i]))
+		check_quotes(input[i], &state);
+		if (!need_space(input[i]) || state.in_double_quotes == true
+			|| state.in_single_quotes == true)
 			updated_input[j++] = input[i++];
 		else
 			handle_operator_with_spaces(input, updated_input, &i, &j);

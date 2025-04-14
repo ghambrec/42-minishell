@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-static void	check_quotes(char c, t_quote_state *state)
+void	check_quotes(char c, t_quote_state *state)
 {
 	if (c == '"' && !state->in_single_quotes)
 	{
