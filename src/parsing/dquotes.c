@@ -23,7 +23,7 @@ void	handle_quotes(t_tokens **token_list)
 	{
 		commands = (*token_list)->token;
 		i = 0;
-		while (commands[i])
+		while (commands[i] && ft_strcmp(commands[0], "export"))
 		{
 			commands[i] = replace_env_vars(commands[i]);
 			commands[i] = remove_quotes(commands[i]);

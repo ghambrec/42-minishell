@@ -116,7 +116,8 @@ int	builtin_export(char **cmd)
 	i = 1;
 	while (cmd[i])
 	{
-		exit_code_loop = env_error(cmd[i], "export");
+		if (cmd[i] && ft_strrchr(cmd[i], '='))
+			exit_code_loop = env_error(cmd[i], "export");
 		if (exit_code_loop > EXIT_SUCCESS)
 			exit_code = exit_code_loop;
 		if (exit_code_loop || env_exists(cmd[i], envs))
