@@ -63,7 +63,5 @@ int	create_command_list(char *input, t_tokens **token_list)
 	free_split(splitted_tokens);
 	handle_quotes(token_list);
 	join_commands(*token_list);
-	// if (check_for_parse_errors(*token_list) == EXIT_FAILURE)
-	// 	return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

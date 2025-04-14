@@ -25,7 +25,7 @@ static int	cd_dir(char **cmd)
 	if (chdir(cmd[1]) == -1)
 	{
 		perror("cd");
-		return (errno);
+		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
 }
@@ -36,7 +36,7 @@ static int	cd_home(char *path)
 	if (chdir(path) == -1)
 	{
 		perror("cd");
-		return (free(path), errno);
+		return (free(path), EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
 }
@@ -47,7 +47,7 @@ static int	cd_path(char *path, char *slashed_path, char *new_path, char **cmd)
 	if (!path)
 	{
 		perror("cd, error get pwd");
-		return (errno);
+		return (EXIT_FAILURE);
 	}
 	slashed_path = ft_strjoin(path, "/");
 	new_path = ft_strjoin(slashed_path, cmd[1]);

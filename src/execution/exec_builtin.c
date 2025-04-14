@@ -50,5 +50,7 @@ int	exec_builtin(t_ast *ast)
 		close(copy_stdin);
 		close(copy_stdout);
 	}
+	if (exit_code > 0)
+		exit_code = EXIT_FAILURE;
 	return (exit_code);
 }

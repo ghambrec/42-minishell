@@ -9,7 +9,7 @@ int	redirect_input(t_redirection *redirect)
 	if (fd == -1)
 	{
 		perror(redirect->filename);
-		return (errno);
+		return (EXIT_FAILURE);
 	}
 	dup2(fd, STDIN_FILENO);
 	close(fd);
@@ -24,7 +24,7 @@ int	redirect_output(t_redirection *redirect)
 	if (fd == -1)
 	{
 		perror(redirect->filename);
-		return (errno);
+		return (EXIT_FAILURE);
 	}
 	dup2(fd, STDOUT_FILENO);
 	close(fd);
@@ -39,7 +39,7 @@ int	redirect_append(t_redirection *redirect)
 	if (fd == -1)
 	{
 		perror(redirect->filename);
-		return (errno);
+		return (EXIT_FAILURE);
 	}
 	dup2(fd, STDOUT_FILENO);
 	close(fd);
@@ -70,8 +70,8 @@ int	open_redirections(t_redirection *redirect)
 			exit_code = redirect_heredoc(redirect);
 		}
 		if (exit_code != 0)
-			return (exit_code);
+			return (EXIT_FAILURE);
 		redirect = redirect->next;
 	}
-	return (exit_code);
+	return (EXIT_SUCCESS);
 }
