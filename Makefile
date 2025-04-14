@@ -107,8 +107,7 @@ all: $(NAME)
 
 $(NAME): checkMyLibft $(LIBFT_NAME) $(OBJECTS)
 	@echo "$(YELLOW)Compiling $(NAME)...$(NC)"
-	@cc $(CFLAGS) $(OBJECTS) $(LIBFT_FULL) -L /usr/local/opt/readline/lib -lreadline -o $(NAME)
-
+	@cc $(CFLAGS) $(OBJECTS) $(LIBFT_FULL) -lreadline -o $(NAME)
 	@if [ -f $(NAME) ]; then \
 		echo "$(CYAN)--------------------------------------$(NC)"; \
 		echo "$(GREEN)BUILD PROCESS COMPLETED SUCCESSFULLY!$(NC)"; \
