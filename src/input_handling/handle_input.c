@@ -9,7 +9,7 @@ void	handle_input(char *input)
 	tokens = NULL;
 	if (parsing_errors(input))
 		return ;
-	if (create_command_list(input, &tokens) == -1)
+	if (create_command_list(input, &tokens) == EXIT_FAILURE)
 		return ;
 	// ft_printlist(tokens);
 	// printf("%sCreating AST...%s\n", YELLOW, NC);

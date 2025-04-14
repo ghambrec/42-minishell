@@ -159,6 +159,8 @@ int	exit_shell(t_shell *shell, bool call_exit);
 // Errors
 bool			parsing_errors(char *input);
 int				env_error(char *key, char *builtin);
+int				check_for_parse_errors(t_tokens *token);
+
 
 // AST
 void			ast_print(t_ast *ast);
