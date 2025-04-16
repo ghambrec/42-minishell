@@ -116,6 +116,8 @@ void			handle_operator(char **all_tokens,
 char			*ft_getenv(char *env_key);
 char			**ft_sort_2d_strings(char **strings2d);
 void 			replace_char(char *str, char old_char, char new_char);
+char			*ft_strdup_no_spaces(char *str);
+
 
 // HANDLE_QUOTES
 void			handle_quotes(t_tokens **tokenList);

@@ -71,7 +71,7 @@ int	handle_heredoc_and_append(
 
 	token = get_heredoc_or_append(all_tokens, i);
 	if (token == NULL)
-		return (-1);
+		return (EXIT_FAILURE);
 	token_type = get_token_type(token);
 	ft_lstadd_back_token(token_list, ft_newtoken(token_type, token));
 	(*i) += 3;
