@@ -11,7 +11,7 @@ void	handle_nontty_input()
 	{
 		input = ft_strtrim(new_line, "\n");
 		free(new_line);
-		if (ft_strlen(input) == 0)
+		if (ft_strlen(input) == 0 || ft_str_only_whitespaces(input))
 			free(input);
 		else
 			handle_input(input);
