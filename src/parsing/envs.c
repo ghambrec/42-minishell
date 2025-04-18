@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:31:02 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/04/03 19:54:32 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/04/18 14:15:30 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ static char	*replace_env_var_in_string(char *input, int i)
 	char	*output;
 
 	env_key_end = i;
-	if (!input[i + 1])
+	if (!ft_isalnum(input[i + 1]))
 	{
-		replace_char(input, '$', '%');
+		replace_char(input, '$', '\e');
 		output = ft_strdup(input);
 		return (output);
 	}

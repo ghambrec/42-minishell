@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 10:38:33 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/04/10 14:28:44 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/18 14:30:22 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	print_declare_exports(void)
 {
 	int		i;
+	int		j;
 	char	**key_value;
 	char	**envs;
 
@@ -24,7 +25,13 @@ static void	print_declare_exports(void)
 	{
 		key_value = ft_split(envs[i], '=');
 		if (key_value[1])
-			printf("declare -x %s=\"%s\"\n", key_value[0], key_value[1]);
+		{
+			printf("declare -x %s=\"%s\"", key_value[0], key_value[1]);
+			j = 2;
+			while (key_value[j])
+				printf("=%s", key_value[j++]);
+			printf("\n");
+		}
 		else
 			printf("declare -x %s\n", key_value[0]);
 		free(key_value);
