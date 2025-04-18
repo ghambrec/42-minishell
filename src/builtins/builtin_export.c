@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 10:38:33 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/04/18 14:30:22 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/04/18 15:33:57 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static char	**add_export_env(char **envs, char *new_env)
 
 	i = 0;
 	while (envs[i])
-	i++;
+		i++;
 	new_envs = (char **)malloc((i + 2) * sizeof(char *));
 	j = 0;
 	while (envs[j])
@@ -117,6 +117,7 @@ int	builtin_export(char **cmd)
 	int		exit_code_loop;
 
 	exit_code = EXIT_SUCCESS;
+	exit_code_loop = 0;
 	if (!cmd[1])
 		return (print_declare_exports(), EXIT_SUCCESS);
 	envs = ft_sort_2d_strings(get_shell()->envp);

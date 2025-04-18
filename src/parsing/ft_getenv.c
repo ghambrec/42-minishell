@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 09:52:25 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/28 10:31:01 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/04/18 15:28:17 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*ft_getenv(char *env_key)
 		i++;
 	}
 	if (split_env == NULL)
-		return (NULL);
+		return ("");
 	env_value = ft_strdup(split_env[1]);
 	free_split(split_env);
 	free(key);
