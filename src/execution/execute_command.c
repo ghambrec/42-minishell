@@ -8,7 +8,7 @@ char	*get_path(char *programm)
 	char	*full_path;
 	int		i;
 
-	paths = ft_split(getenv("PATH"), ':');
+	paths = ft_split(ft_getenv("PATH"), ':');
 	if (!paths)
 		return (NULL);
 	i = 0;
