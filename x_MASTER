@@ -20,8 +20,8 @@
   14:   STD_OUT: ❌  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/0_compare_parsing.sh:32  
   15:   STD_OUT: ❌  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/0_compare_parsing.sh:34  
   16:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/0_compare_parsing.sh:36  
-  17:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(1)  bash(0) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/0_compare_parsing.sh:38  
-  18:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(1)  bash(0) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/0_compare_parsing.sh:40  
+  17:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/0_compare_parsing.sh:38  
+  18:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/0_compare_parsing.sh:40  
   19:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/0_compare_parsing.sh:42  
   20:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/0_compare_parsing.sh:44  
   21:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/0_compare_parsing.sh:46  
@@ -242,8 +242,8 @@
   17:   STD_OUT: ❌  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_builtins.sh:39  
   18:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_builtins.sh:41  
   19:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_builtins.sh:43  
-  20:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(1)  bash(0) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/1_builtins.sh:45  
-  21:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(1)  bash(0) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/1_builtins.sh:47  
+  20:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_builtins.sh:45  
+  21:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_builtins.sh:47  
   22:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_builtins.sh:49  
   23:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_builtins.sh:51  
   24:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_builtins.sh:53  
@@ -427,8 +427,8 @@
   202:  STD_OUT: ❌  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_builtins.sh:496  
   203:  STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_builtins.sh:501  
   204:  STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_builtins.sh:505  
-  205:  /Users/ghambrec/42_minishell_tester/tester.sh: line 217: 99812 Done                    echo -n "$INPUT"
-     99813 Segmentation fault: 11  | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
+  205:  /Users/ghambrec/42_minishell_tester/tester.sh: line 217: 88164 Done                    echo -n "$INPUT"
+     88165 Segmentation fault: 11  | $MINISHELL_PATH/$EXECUTABLE 2> tmp_err_minishell > tmp_out_minishell
 STD_OUT: ❌  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(139)  bash(0) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/1_builtins.sh:509  
   206:  STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_builtins.sh:516  
   207:  STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_builtins.sh:518  
@@ -527,8 +527,8 @@ STD_OUT: ❌  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(139)  bash(0) ]  /Users/g
   # **************************************************************************** #
   #                                  PIPELINES                                   #
   # **************************************************************************** #
-  1:    STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(141)  bash(0) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/1_pipelines.sh:4  
-  2:    STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(141)  bash(0) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/1_pipelines.sh:6  
+  1:    STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_pipelines.sh:4  
+  2:    STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_pipelines.sh:6  
   3:    STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_pipelines.sh:8  
   4:    STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_pipelines.sh:10  
   5:    STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_pipelines.sh:12  
@@ -540,7 +540,7 @@ STD_OUT: ❌  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(139)  bash(0) ]  /Users/g
   11:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_pipelines.sh:24  
   12:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_pipelines.sh:26  
   13:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_pipelines.sh:28  
-  14:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(141)  bash(0) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/1_pipelines.sh:30  
+  14:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_pipelines.sh:30  
   15:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_pipelines.sh:32  
   16:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_pipelines.sh:34  
   17:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_pipelines.sh:36  
@@ -584,14 +584,14 @@ STD_OUT: ❌  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(139)  bash(0) ]  /Users/g
   9:    STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:20  
   10:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:22  
   11:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:24  
-  12:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(1)  bash(0) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:26  
+  12:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:26  
   13:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:28  
-  14:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(1)  bash(0) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:30  
+  14:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:30  
   15:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:32  
-  16:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(1)  bash(0) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:34  
-  17:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(1)  bash(0) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:36  
+  16:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:34  
+  17:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:36  
   18:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:38  
-  19:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(1)  bash(0) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:40  
+  19:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:40  
   20:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:42  
   21:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:44  
   22:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:46  
@@ -601,11 +601,11 @@ STD_OUT: ❌  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(139)  bash(0) ]  /Users/g
   26:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:54  
   27:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:56  
   28:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:58  
-  29:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(1)  bash(0) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:60  
-  30:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(1)  bash(0) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:62  
-  31:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(1)  bash(0) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:64  
-  32:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(1)  bash(0) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:66  
-  33:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(1)  bash(0) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:68  
+  29:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:60  
+  30:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:62  
+  31:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:64  
+  32:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:66  
+  33:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:68  
   34:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:70  
   35:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:72  
   36:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:74  
@@ -625,12 +625,12 @@ STD_OUT: ❌  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(139)  bash(0) ]  /Users/g
   50:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:102  
   51:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:104  
   52:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:106  
-  53:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(1)  bash(0) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:108  
-  54:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(1)  bash(0) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:110  
-  55:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(1)  bash(0) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:112  
-  56:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(1)  bash(0) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:114  
+  53:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:108  
+  54:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:110  
+  55:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:112  
+  56:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:114  
   57:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:116  
-  58:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(1)  bash(0) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:118  
+  58:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:118  
   59:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:121  
   60:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:125  
   61:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/1_redirs.sh:129  
@@ -964,13 +964,13 @@ STD_OUT: ❌  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(139)  bash(0) ]  /Users/g
   #                                     WILD                                     #
   # **************************************************************************** #
   1:    STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/9_go_wild.sh:5  
-  2:    STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(141)  bash(0) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/9_go_wild.sh:7  
+  2:    STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/9_go_wild.sh:7  
   3:    STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/9_go_wild.sh:9  
   4:    STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/9_go_wild.sh:11  
   5:    STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/9_go_wild.sh:16  
   6:    STD_OUT: ❌  STD_ERR: ❌  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/9_go_wild.sh:18  
   7:    STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/9_go_wild.sh:22  
-  8:    STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(141)  bash(0) ]  /Users/ghambrec/42_minishell_tester/cmds/mand/9_go_wild.sh:26  
+  8:    STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/9_go_wild.sh:26  
   9:    STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/9_go_wild.sh:28  
   10:   STD_OUT: ❌  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/9_go_wild.sh:30  
   11:   STD_OUT: ✅  STD_ERR: ✅  EXIT_CODE: ✅  /Users/ghambrec/42_minishell_tester/cmds/mand/9_go_wild.sh:37  
@@ -983,8 +983,8 @@ STD_OUT: ❌  STD_ERR: ✅  EXIT_CODE: ❌ [ minishell(139)  bash(0) ]  /Users/g
 🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
 🏁                                    RESULT                                    🏁
 🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁🏁
-             TOTAL TEST COUNT: 941  TESTS PASSED: 760  LEAKING: 0 
-                     STD_OUT: 123  STD_ERR: 47  EXIT_CODE: 75  
+             TOTAL TEST COUNT: 941  TESTS PASSED: 784  LEAKING: 0 
+                     STD_OUT: 123  STD_ERR: 47  EXIT_CODE: 51  
                          TOTAL FAILED AND PASSED CASES:
-                                     ❌ 245   
-                                     ✅ 2578
+                                     ❌ 221   
+                                     ✅ 2602

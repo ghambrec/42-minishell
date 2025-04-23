@@ -14,7 +14,6 @@ int	exec_pipe(t_ast *ast)
 	int	pid2;
 	int	exit_status;
 	int	status;
-	int	child2_exit_code;
 
 	exit_status = EXIT_SUCCESS;
 
@@ -38,8 +37,7 @@ int	exec_pipe(t_ast *ast)
 		signal(SIGQUIT, SIG_DFL);
 		dup2(pipe_fd[PIPE_WRITE], STDOUT_FILENO);
 		close_pipe(pipe_fd);
-		exec_ast(ast->left);
-		exit(get_shell()->exit_code);
+		exit(exec_ast(ast->left));
 	}
 
 	// pid2 erstellen
@@ -57,8 +55,7 @@ int	exec_pipe(t_ast *ast)
 		signal(SIGQUIT, SIG_DFL);
 		dup2(pipe_fd[PIPE_READ], STDIN_FILENO);
 		close_pipe(pipe_fd);
-		exec_ast(ast->right);
-		exit(get_shell()->exit_code);
+		exit(exec_ast(ast->right));
 	}
 	close_pipe(pipe_fd);
 
@@ -69,9 +66,7 @@ int	exec_pipe(t_ast *ast)
 	waitpid(pid2, &status, 0);
 	if (WIFEXITED(status))
 	{
-		child2_exit_code = WEXITSTATUS(status);
-		if (child2_exit_code != EXIT_SUCCESS)
-			exit_status = child2_exit_code;
+		exit_status = WEXITSTATUS(status);
 	}
 	else if (WIFSIGNALED(status))
 		exit_status = 128 + WTERMSIG(status);
