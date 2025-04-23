@@ -14,7 +14,6 @@ int	exec_pipe(t_ast *ast)
 	int	pid2;
 	int	exit_status;
 	int	status;
-	int	child1_exit_code;
 	int	child2_exit_code;
 
 	exit_status = EXIT_SUCCESS;
@@ -64,16 +63,8 @@ int	exec_pipe(t_ast *ast)
 	close_pipe(pipe_fd);
 
 	set_sigaction(SIGINT, handle_sigint_child);
-	// wait pid1
+	// wait pid1 --> exit code irrelevant
 	waitpid(pid1, &status, 0);
-	if (WIFEXITED(status))
-	{
-		child1_exit_code = WEXITSTATUS(status);
-		if (child1_exit_code != EXIT_SUCCESS)
-			exit_status = child1_exit_code;
-	}
-	else if (WIFSIGNALED(status))
-		exit_status = 128 + WTERMSIG(status);
 	// wait pid2
 	waitpid(pid2, &status, 0);
 	if (WIFEXITED(status))
