@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/24 17:32:16 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/04/24 18:03:32 by rstumpf          ###   ########.fr       */
+/*   Created: 2025/04/24 18:29:33 by ghambrec          #+#    #+#             */
+/*   Updated: 2025/04/24 18:30:02 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,43 +32,10 @@ int	exec_current_builtin(char **cmd)
 		return (false);
 }
 
-static int	handle_redirections(t_ast *ast, int *copy_stdin, int *copy_stdout)
+static void	dup_helper(int copy_stdin, int copy_stdout)
 {
-	int	exit_code;
-
-	if (ast->redirect)
-	{
-		*copy_stdin = dup(STDIN_FILENO);
-		*copy_stdout = dup(STDOUT_FILENO);
-		exit_code = open_redirections(ast->redirect);
-		if (exit_code != 0)
-		{
-			dup2(*copy_stdin, STDIN_FILENO);
-			dup2(*copy_stdout, STDOUT_FILENO);
-			close(*copy_stdin);
-			close(*copy_stdout);
-			return (exit_code);
-		}
-	}
-	return (0);
-}
-
-static int	exec_builtin_with_redirections(t_ast *ast,
-		int *copy_stdin, int *copy_stdout)
-{
-	int	exit_code;
-
-	exit_code = exec_current_builtin(ast->cmd);
-	if (ast->redirect)
-	{
-		dup2(*copy_stdin, STDIN_FILENO);
-		dup2(*copy_stdout, STDOUT_FILENO);
-		close(*copy_stdin);
-		close(*copy_stdout);
-	}
-	if (exit_code > 0)
-		exit_code = EXIT_FAILURE;
-	return (exit_code);
+	dup2(copy_stdin, STDIN_FILENO);
+	dup2(copy_stdout, STDOUT_FILENO);
 }
 
 int	exec_builtin(t_ast *ast)
@@ -77,9 +44,25 @@ int	exec_builtin(t_ast *ast)
 	int	copy_stdin;
 	int	copy_stdout;
 
-	exit_code = handle_redirections(ast, &copy_stdin, &copy_stdout);
-	if (exit_code != 0)
-		return (exit_code);
-	exit_code = exec_builtin_with_redirections(ast, &copy_stdin, &copy_stdout);
+	if (ast->redirect)
+	{
+		copy_stdin = dup(STDIN_FILENO);
+		copy_stdout = dup(STDOUT_FILENO);
+		exit_code = open_redirections(ast->redirect);
+		if (exit_code != 0)
+		{
+			dup_helper(copy_stdin, copy_stdout);
+			return (close(copy_stdin), close(copy_stdout), exit_code);
+		}
+	}
+	exit_code = exec_current_builtin(ast->cmd);
+	if (ast->redirect)
+	{
+		dup_helper(copy_stdin, copy_stdout);
+		close(copy_stdin);
+		close(copy_stdout);
+	}
+	if (exit_code > 0)
+		exit_code = EXIT_FAILURE;
 	return (exit_code);
 }
