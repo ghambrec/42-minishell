@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 10:38:33 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/04/18 15:33:57 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/04/24 16:05:03 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static void	print_declare_exports(void)
 static char	**add_export_env(char **envs, char *new_env)
 {
 	char	**new_envs;
+	char	*check;
 	int		i;
 	int		j;
 
@@ -54,6 +55,17 @@ static char	**add_export_env(char **envs, char *new_env)
 	{
 		new_envs[j] = ft_strdup(envs[j]);
 		j++;
+	}
+	if (ft_strchr(new_env, '='))
+	{
+		check = ft_strchr(new_env, '=');
+		check++;
+		if (*check == '\0')
+		{
+			check = ft_strtrim(new_env, "=");
+			new_env = check;
+			free(check);
+		}
 	}
 	new_envs[j] = ft_strdup(new_env);
 	new_envs[j + 1] = NULL;
@@ -138,6 +150,7 @@ int	builtin_export(char **cmd)
 		envs = temp;
 		i++;
 	}
+	
 	get_shell()->envp = envs;
 	return (exit_code);
 }
