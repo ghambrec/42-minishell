@@ -1,9 +1,17 @@
-
 # ---------- MAIN ---------- #
 NAME := minishell
 CC := cc
 INCLUDE_DIR := ./inc
-CFLAGS = -Wall -Wextra -Werror -I $(INCLUDE_DIR) -I /usr/local/opt/readline/include -g
+
+# ---------- READLINE SETUP (macOS Homebrew) ---------- #
+# Use this if you're on Apple Silicon (M1/M2/M3):
+READLINE_PATH := /usr/local/opt/readline
+
+# If you're on Intel Mac (older Homebrew), use this instead:
+# READLINE_PATH := /usr/local/opt/readline
+
+CFLAGS = -Wall -Wextra -Werror -I $(INCLUDE_DIR) -I $(READLINE_PATH)/include -g
+LDFLAGS = -L$(READLINE_PATH)/lib
 
 # ---------- LIB ---------- #
 LIB_DIR = ./lib
@@ -95,7 +103,7 @@ SOURCES += signals.c
 OBJECT_DIR = obj
 OBJECTS = $(addprefix $(OBJECT_DIR)/, $(SOURCES:.c=.o))
 
-# ---------- COLORS AND STUFF ---------- #
+# ---------- COLORS ---------- #
 GREEN = \033[0;32m
 RED = \033[0;31m
 YELLOW = \033[0;33m
@@ -107,7 +115,7 @@ all: $(NAME)
 
 $(NAME): checkMyLibft $(LIBFT_NAME) $(OBJECTS)
 	@echo "$(YELLOW)Compiling $(NAME)...$(NC)"
-	@cc $(CFLAGS) $(OBJECTS) $(LIBFT_FULL) -lreadline -o $(NAME)
+	@cc $(CFLAGS) $(LDFLAGS) $(OBJECTS) $(LIBFT_FULL) -lreadline -o $(NAME)
 	@if [ -f $(NAME) ]; then \
 		echo "$(CYAN)--------------------------------------$(NC)"; \
 		echo "$(GREEN)BUILD PROCESS COMPLETED SUCCESSFULLY!$(NC)"; \
@@ -137,7 +145,7 @@ checkMyLibft:
 
 $(LIBFT_NAME):
 	@if [ ! -d $(LIBFT_DIR) ]; then \
-		echo "$(RED)myLibft folder doesnt exist! Run 'make checkMyLibft' first to download myLibft$(NC)"; \
+		echo "$(RED)myLibft folder doesn't exist! Run 'make checkMyLibft' first to download myLibft$(NC)"; \
 	else \
 		echo "$(YELLOW)Creating $(LIBFT_NAME)...$(NC)"; \
 		make -C $(LIBFT_DIR) > $(LIBFT_DIR)/make_log.txt; \
@@ -174,17 +182,13 @@ re: fclean all
 test: CFLAGS = -I $(INCLUDE_DIR)
 test: all
 
-# deug rule	- compile with fsanitize
+# debug rule	- compile with fsanitize
 debug: CFLAGS += -g -fsanitize=address -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment
 debug: clean all
 
 # tree rule	- print the ast in the terminal
 tree: CFLAGS += -DPRINT_TREE=1 -I $(INCLUDE_DIR)
 tree: debug
-
-# deug rule - compile with fsanitize
-debug: CFLAGS += -g -fsanitize=address -fsanitize=undefined -fno-sanitize-recover=all -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow -fno-sanitize=null -fno-sanitize=alignment
-debug: clean all
 
 # del rule	- remove lib folder
 del: fclean

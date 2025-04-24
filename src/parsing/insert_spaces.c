@@ -69,7 +69,15 @@ static void	copy_with_spaces(char *input, char *updated_input)
 		check_quotes(input[i], &state);
 		if (!need_space(input[i]) || state.in_double_quotes == true
 			|| state.in_single_quotes == true)
-			updated_input[j++] = input[i++];
+			{
+				if (input[i] == '	')
+				{
+					updated_input[j++] = ' ';
+					i++;
+				}
+				else 
+					updated_input[j++] = input[i++];
+			}
 		else
 			handle_operator_with_spaces(input, updated_input, &i, &j);
 	}
