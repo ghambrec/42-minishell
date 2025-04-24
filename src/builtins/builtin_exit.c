@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 17:32:49 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/04/24 17:32:54 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/04/24 18:50:27 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,6 @@ void	builtin_exit(char **cmd)
 	else
 		ft_putendl_fd("exit", STDERR_FILENO);
 	get_shell()->exit_code %= 256;
+	free_ast(get_shell()->ast);
 	exit_shell(get_shell(), true);
 }
