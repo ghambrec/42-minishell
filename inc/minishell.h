@@ -43,15 +43,6 @@ typedef enum e_token_type
 	TT_PARENTESIS_CLOSE
 }	t_token_type;
 
-
-// hier noch ein error bool flag? zu beginn immer auf false und bei fehler auf true damit verkettungsoperatoren wissen
-// ob befehl vorher erfolgreich bzw nicht erfolgreich war
-typedef struct s_shell
-{
-	char	**envp;
-	int		exit_code;
-}	t_shell;
-
 typedef struct s_tokens
 {
 	t_token_type	token_type;
@@ -74,6 +65,12 @@ typedef struct	s_ast
 	struct s_ast	*left;
 	struct s_ast	*right;
 }	t_ast;
+
+typedef struct s_shell
+{
+	char	**envp;
+	int		exit_code;
+}	t_shell;
 
 typedef struct s_quote_state
 {
