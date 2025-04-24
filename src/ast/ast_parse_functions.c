@@ -1,14 +1,14 @@
 
 #include "minishell.h"
 
-// parse && and ||
 t_ast	*ast_parse_logical_operator(t_tokens **tokens)
 {
 	t_ast			*left;
 	t_token_type	ttype;
 
 	left = ast_parse_pipe(tokens);
-	while (*tokens && ((*tokens)->token_type == TT_AND || (*tokens)->token_type == TT_OR))
+	while (*tokens && ((*tokens)->token_type == TT_AND
+			|| (*tokens)->token_type == TT_OR))
 	{
 		ttype = (*tokens)->token_type;
 		*tokens = (*tokens)->next;
@@ -17,7 +17,6 @@ t_ast	*ast_parse_logical_operator(t_tokens **tokens)
 	return (left);
 }
 
-// parse |
 t_ast	*ast_parse_pipe(t_tokens **tokens)
 {
 	t_ast	*left;
@@ -31,7 +30,6 @@ t_ast	*ast_parse_pipe(t_tokens **tokens)
 	return (left);
 }
 
-// parse cmd
 t_ast	*ast_parse_cmd(t_tokens **tokens)
 {
 	t_ast	*cmd;
@@ -49,14 +47,14 @@ t_ast	*ast_parse_cmd(t_tokens **tokens)
 		if (cmd)
 			cmd->cmd = ft_strarr_dup((*tokens)->token);
 		else
-			cmd = ast_create_node(TT_CMD, ft_strarr_dup((*tokens)->token), NULL, NULL);
+			cmd = ast_create_node(TT_CMD,
+					ft_strarr_dup((*tokens)->token), NULL, NULL);
 		*tokens = (*tokens)->next;
 	}
 	ast_parse_redirections(cmd, tokens);
 	return (cmd);
 }
 
-// parse parenthesis (+ skip the open and close parenthesis)
 t_ast	*ast_parse_parenthesis(t_tokens **tokens)
 {
 	t_ast	*cmd;
@@ -67,7 +65,6 @@ t_ast	*ast_parse_parenthesis(t_tokens **tokens)
 	return (cmd);
 }
 
-// parse redirections for the command
 void	ast_parse_redirections(t_ast *cmd, t_tokens **tokens)
 {
 	while (*tokens && is_redirection((*tokens)->token_type))

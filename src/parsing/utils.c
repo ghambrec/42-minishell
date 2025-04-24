@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 11:08:14 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/12 17:55:03 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/24 14:46:41 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,30 +82,4 @@ char	*ft_strcpy(char *dest, const char *src)
 	}
 	dest[i] = '\0';
 	return (dest);
-}
-
-bool	is_in_quotes(char *input, int i)
-{
-	bool			in_quotes;
-
-	in_quotes = false;
-	if (input[i] == '"' || input[i] == 39)
-		{
-			in_quotes = !in_quotes;
-			if (in_quotes == true)
-				printf("opened\n");
-			else
-				printf("clodes\n");
-		}
-	return (in_quotes);
-}
-
-void replace_char(char *str, char old_char, char new_char)
-{
-    while (*str) {
-        if (*str == old_char) {
-            *str = new_char;
-        }
-        str++;
-    }
 }

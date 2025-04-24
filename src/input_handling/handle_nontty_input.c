@@ -1,7 +1,7 @@
 
 #include "minishell.h"
 
-void	handle_nontty_input()
+void	handle_nontty_input(void)
 {
 	char	*input;
 	char	*new_line;

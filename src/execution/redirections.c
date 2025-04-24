@@ -54,9 +54,7 @@ int	open_redirections(t_redirection *redirect)
 	while (redirect)
 	{
 		if (redirect->ttype == TT_RE_INPUT)
-		{
 			exit_code = redirect_input(redirect);
-		}
 		else if (redirect->ttype == TT_RE_OUTPUT)
 		{
 			exit_code = redirect_output(redirect);

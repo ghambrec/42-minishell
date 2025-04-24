@@ -1,7 +1,8 @@
 
 #include "minishell.h"
 
-t_ast	*ast_create_node(t_token_type ttype, char **cmd, t_ast *left, t_ast *right)
+t_ast	*ast_create_node(t_token_type ttype,
+	char **cmd, t_ast *left, t_ast *right)
 {
 	t_ast	*new_node;
 

@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 10:21:25 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/04/03 20:58:56 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/04/24 14:43:21 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	create_token_list(char **all_tokens, t_tokens **token_list)
 		else if (all_tokens[i + 1]
 			&& is_heredoc_or_append(all_tokens[i][0], all_tokens[i + 1][0]))
 		{
-			if (handle_heredoc_and_append(all_tokens, token_list, &i) == EXIT_FAILURE)
+			if (handle_heredoc_and_append(all_tokens, token_list, &i) == 1)
 				return (EXIT_FAILURE);
 		}
 		else if (all_tokens[i + 1]
@@ -42,7 +42,7 @@ static int	create_token_list(char **all_tokens, t_tokens **token_list)
 			&& is_redirector(all_tokens[i]))
 			handle_redirects(all_tokens, token_list, &i);
 		else if (!all_tokens[i + 1])
-			return (ft_putendl_fd("parse error near `newline'", 2), EXIT_FAILURE);
+			return (ft_putendl_fd("parse error near `newline'", 2), 1);
 		else
 			i++;
 	}

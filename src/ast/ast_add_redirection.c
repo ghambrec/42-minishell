@@ -1,16 +1,13 @@
 
 #include "minishell.h"
 
-t_redirection *ast_create_redirection(t_token_type ttype, char *filename)
+t_redirection	*ast_create_redirection(t_token_type ttype, char *filename)
 {
 	t_redirection	*new_redirection;
 
 	new_redirection = (t_redirection *)malloc(sizeof(t_redirection));
 	if (!new_redirection)
-	{
-		// TODO: wie malloc fehler im parsing handeln?
 		return (NULL);
-	}
 	new_redirection->ttype = ttype;
 	new_redirection->filename = ft_strdup(filename);
 	new_redirection->next = NULL;
@@ -34,7 +31,8 @@ void	ast_add_redirection(t_ast *ast, t_token_type ttype, char **token)
 
 bool	is_redirection(t_token_type ttype)
 {
-	if (ttype == TT_RE_INPUT || ttype == TT_RE_OUTPUT || ttype == TT_RE_APPEND || ttype == TT_HEREDOC)
+	if (ttype == TT_RE_INPUT || ttype == TT_RE_OUTPUT
+		|| ttype == TT_RE_APPEND || ttype == TT_HEREDOC)
 		return (true);
 	return (false);
 }

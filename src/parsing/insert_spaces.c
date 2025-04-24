@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 17:04:01 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/04/03 20:28:52 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/04/24 14:45:06 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,15 @@ static void	copy_with_spaces(char *input, char *updated_input)
 		check_quotes(input[i], &state);
 		if (!need_space(input[i]) || state.in_double_quotes == true
 			|| state.in_single_quotes == true)
+		{
+			if (input[i] == '	')
 			{
-				if (input[i] == '	')
-				{
-					updated_input[j++] = ' ';
-					i++;
-				}
-				else 
-					updated_input[j++] = input[i++];
+				updated_input[j++] = ' ';
+				i++;
 			}
+			else
+				updated_input[j++] = input[i++];
+		}
 		else
 			handle_operator_with_spaces(input, updated_input, &i, &j);
 	}

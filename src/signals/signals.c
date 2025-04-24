@@ -19,11 +19,11 @@ void	handle_sigint_child(int signum)
 void	set_sigaction(int signum, void (*handler)(int))
 {
 	struct sigaction	sa;
-	
+
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = SA_RESTART;
 	sa.sa_handler = handler;
-	sigaction(signum, &sa, NULL);	
+	sigaction(signum, &sa, NULL);
 }
 
 void	init_signals(void)

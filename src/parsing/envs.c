@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:31:02 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/04/18 14:15:30 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/04/24 14:44:10 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ static char	*replace_env_var_in_string(char *input, int i)
 		return (output);
 	}
 	env_key_end++;
-	while ((ft_isalnum(input[env_key_end]) || input[env_key_end] == '_') && input[env_key_end])
+	while ((ft_isalnum(input[env_key_end])
+			|| input[env_key_end] == '_') && input[env_key_end])
 		env_key_end++;
 	env_key = ft_substr(input, i + 1, env_key_end - i - 1);
 	env_val = ft_getenv(env_key);
