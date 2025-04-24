@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_errors.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 15:36:31 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/04/11 13:12:06 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/24 14:59:35 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void print_env_error(char *prog, char *key)
+static void	print_env_error(char *prog, char *key)
 {
 	ft_putstr_fd(prog, STDERR_FILENO);
 	ft_putstr_fd(": `", STDERR_FILENO);
@@ -40,7 +40,7 @@ int	env_error(char *key, char *prog)
 		if (!ft_isalnum(key[i]) && key[i] != '_')
 		{
 			print_env_error(prog, key);
-			return (EXIT_FAILURE);	
+			return (EXIT_FAILURE);
 		}
 		i++;
 	}
