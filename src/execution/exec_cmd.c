@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 18:13:19 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/04/24 18:17:44 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/04/24 18:32:24 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,8 @@ static int	exec_parent_process(pid_t pid, int *status)
 int	exec_cmd(t_ast *ast)
 {
 	pid_t	pid;
-	int		exit_code;
 	int		status;
 
-	exit_code = 0;
 	if (ast->cmd && check_builtin(ast->cmd) == true)
 		return (exec_builtin(ast));
 	pid = fork();
