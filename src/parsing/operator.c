@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operator.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 11:04:58 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/04/03 20:47:49 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/04/24 18:10:34 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ static char	**get_heredoc_or_append(char **all_tokens, int *i)
 	token_return[2] = NULL;
 	return (token_return);
 }
-
 
 int	handle_heredoc_and_append(
 	char **all_tokens, t_tokens **token_list, int *i)

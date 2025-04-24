@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_unset.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 16:05:46 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/04/11 13:22:14 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/24 17:50:41 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	builtin_unset(char **cmd)
 		{
 			new_envs = remove_env(envp, cmd[i]);
 			free_split(envp);
-			envp = new_envs;	
+			envp = new_envs;
 		}
 		i++;
 	}

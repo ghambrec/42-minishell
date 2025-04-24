@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 13:49:17 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/03/24 18:11:59 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/04/24 18:10:20 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static int	get_number_of_commands(t_tokens *tokens)
 {
 	int		i;
 	int		to_allocate;
-
 
 	to_allocate = 0;
 	while (tokens && tokens->token_type != TT_PIPE)

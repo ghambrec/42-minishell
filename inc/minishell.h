@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/24 17:28:57 by rstumpf           #+#    #+#             */
+/*   Updated: 2025/04/24 18:08:08 by rstumpf          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -21,7 +32,6 @@
 # define NC "\033[0m"
 # define CLEAR_LINE "\033[2K"
 
-
 # ifndef PRINT_TREE
 #  define PRINT_TREE 0
 # endif
@@ -43,9 +53,6 @@ typedef enum e_token_type
 	TT_PARENTESIS_CLOSE
 }	t_token_type;
 
-
-// hier noch ein error bool flag? zu beginn immer auf false und bei fehler auf true damit verkettungsoperatoren wissen
-// ob befehl vorher erfolgreich bzw nicht erfolgreich war
 typedef struct s_shell
 {
 	char	**envp;
@@ -59,14 +66,14 @@ typedef struct s_tokens
 	struct s_tokens	*next;
 }	t_tokens;
 
-typedef struct	s_redirection
+typedef struct s_redirection
 {
 	t_token_type			ttype;
 	char					*filename;
-	struct s_redirection	*next; // wird z.b. gebraucht fuer [< infile grep "hallo" >outfile1 >outfile2] TODO: test, does this work?
+	struct s_redirection	*next;
 }	t_redirection;
 
-typedef struct	s_ast
+typedef struct s_ast
 {
 	t_token_type	ttype;
 	char			**cmd;
@@ -79,8 +86,8 @@ typedef struct s_quote_state
 {
 	char	*input;
 	int		j;
-	bool	in_single_quotes;
-	bool	in_double_quotes;
+	bool	sq;
+	bool	dq;
 }	t_quote_state;
 
 void			ft_print2d(char **array2d);
@@ -90,10 +97,9 @@ void			ft_printlist(t_tokens *token);
 char			*ft_strcpy(char *dest, const char *src);
 
 // INPUT HANDLING
-void	handle_input(char *input);
-void	handle_tty_input(void);
-void	handle_nontty_input(void);
-
+void			handle_input(char *input);
+void			handle_tty_input(void);
+void			handle_nontty_input(void);
 
 // TOKEN LIST
 t_tokens		*ft_newtoken(int token_type, char **token);
@@ -115,9 +121,8 @@ void			handle_operator(char **all_tokens,
 					t_tokens **token_list, int *i);
 char			*ft_getenv(char *env_key);
 char			**ft_sort_2d_strings(char **strings2d);
-void 			replace_char(char *str, char old_char, char new_char);
+void			replace_char(char *str, char old_char, char new_char);
 char			*ft_strdup_no_spaces(char *str);
-
 
 // HANDLE_QUOTES
 void			handle_quotes(t_tokens **tokenList);
@@ -126,6 +131,7 @@ void			check_quotes(char c, t_quote_state *state);
 
 //HANDLE ENVS
 char			*replace_env_vars(char *output);
+char			*replace_env_var_in_string(char *input, int i);
 
 //Join Commands
 void			join_commands(t_tokens *token_list);
@@ -156,13 +162,12 @@ void			builtin_exit(char **cmd);
 // SHELL-UTILS
 t_shell			*get_shell(void);
 int				init_shell(int argc, char **argv, char **envp);
-int	exit_shell(t_shell *shell, bool call_exit);
+int				exit_shell(t_shell *shell, bool call_exit);
 
 // Errors
 bool			parsing_errors(char *input);
 int				env_error(char *key, char *builtin);
 int				check_for_parse_errors(t_tokens *token);
-
 
 // AST
 void			ast_print(t_ast *ast);
@@ -188,9 +193,9 @@ int				exec_pipe(t_ast *ast);
 int				redirect_heredoc(t_redirection *redirect);
 
 // SIGNALS
-void	init_signals(void);
-void	set_sigaction(int signum, void (*handler)(int));
-void	handle_sigint_interactive(int signum);
-void	handle_sigint_child(int signum);
+void			init_signals(void);
+void			set_sigaction(int signum, void (*handler)(int));
+void			handle_sigint_interactive(int signum);
+void			handle_sigint_child(int signum);
 
 #endif

@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_cd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 13:34:34 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/04/07 16:43:56 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/24 17:33:03 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 
 static void	free_pointers(char *path, char *slashed_path, char *new_path)
 {

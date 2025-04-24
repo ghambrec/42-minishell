@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:31:02 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/04/24 16:07:14 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/04/24 17:26:33 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,40 +44,6 @@ static bool	all_vars_replaced(char *input)
 	return (true);
 }
 
-static char	*replace_env_var_in_string(char *input, int i)
-{
-	int		env_key_end;
-	int		new_len;
-	char	*env_key;
-	char	*env_val;
-	char	*output;
-
-	env_key_end = i;
-	if (input[i + 1] && !ft_isalnum(input[i + 1]))
-	{
-		replace_char(input, '$', '\e');
-		output = ft_strdup(input);
-		return (output);
-	}
-	env_key_end++;
-	while ((ft_isalnum(input[env_key_end])
-			|| input[env_key_end] == '_') && input[env_key_end])
-		env_key_end++;
-	env_key = ft_substr(input, i + 1, env_key_end - i - 1);
-	env_val = ft_getenv(env_key);
-	free(env_key);
-	if (env_val)
-		new_len = ft_strlen(input) - (env_key_end - i) + ft_strlen(env_val) + 1;
-	else
-		new_len = ft_strlen(input) - (env_key_end - i) + 1;
-	output = (char *)malloc(new_len * sizeof(char));
-	ft_strlcpy(output, input, i + 1);
-	if (env_val)
-		ft_strlcat(output, env_val, new_len);
-	ft_strlcat(output, input + env_key_end, new_len);
-	return (output);
-}
-
 static char	*replace_exit_code(char *input, int i)
 {
 	char	*output;
@@ -113,13 +79,10 @@ char	*replace_env_vars(char *input)
 			break ;
 		i++;
 	}
-	if (input[i] == '$')
+	if (input[i] && input[i + 1] == '?')
 	{
-		if (input[i + 1] == '?')
-		{
-			output = replace_exit_code(input, i);
-			return (free(input), replace_env_vars(output));
-		}
+		output = replace_exit_code(input, i);
+		return (free(input), replace_env_vars(output));
 	}
 	output = replace_env_var_in_string(input, i);
 	free(input);

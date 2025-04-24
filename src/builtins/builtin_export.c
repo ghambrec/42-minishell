@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 10:38:33 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/04/24 16:05:03 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/04/24 17:51:52 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,32 +43,28 @@ static char	**add_export_env(char **envs, char *new_env)
 {
 	char	**new_envs;
 	char	*check;
+	char	*cleaned_env;
 	int		i;
-	int		j;
 
 	i = 0;
 	while (envs[i])
 		i++;
 	new_envs = (char **)malloc((i + 2) * sizeof(char *));
-	j = 0;
-	while (envs[j])
+	if (!new_envs)
+		return (NULL);
+	i = -1;
+	while (envs[++i])
+		new_envs[i] = ft_strdup(envs[i]);
+	if (ft_strchr(new_env, '=') && !ft_strchr(new_env, '=')[1])
 	{
-		new_envs[j] = ft_strdup(envs[j]);
-		j++;
+		check = ft_strtrim(new_env, "=");
+		cleaned_env = ft_strdup(check);
+		free(check);
 	}
-	if (ft_strchr(new_env, '='))
-	{
-		check = ft_strchr(new_env, '=');
-		check++;
-		if (*check == '\0')
-		{
-			check = ft_strtrim(new_env, "=");
-			new_env = check;
-			free(check);
-		}
-	}
-	new_envs[j] = ft_strdup(new_env);
-	new_envs[j + 1] = NULL;
+	else
+		cleaned_env = ft_strdup(new_env);
+	new_envs[i] = cleaned_env;
+	new_envs[i + 1] = NULL;
 	return (new_envs);
 }
 
@@ -126,10 +122,8 @@ int	builtin_export(char **cmd)
 	char	**temp;
 	int		i;
 	int		exit_code;
-	int		exit_code_loop;
 
 	exit_code = EXIT_SUCCESS;
-	exit_code_loop = 0;
 	if (!cmd[1])
 		return (print_declare_exports(), EXIT_SUCCESS);
 	envs = ft_sort_2d_strings(get_shell()->envp);
@@ -137,20 +131,16 @@ int	builtin_export(char **cmd)
 	while (cmd[i])
 	{
 		if (cmd[i] && ft_strrchr(cmd[i], '='))
-			exit_code_loop = env_error(cmd[i], "export");
-		if (exit_code_loop > EXIT_SUCCESS)
-			exit_code = exit_code_loop;
-		if (exit_code_loop || env_exists(cmd[i], envs))
+			exit_code = env_error(cmd[i], "export");
+		if (exit_code || env_exists(cmd[i], envs))
 		{
 			i++;
 			continue ;
 		}
-		temp = add_export_env(envs, cmd[i]);
+		temp = add_export_env(envs, cmd[i++]);
 		free_split(envs);
 		envs = temp;
-		i++;
 	}
-	
 	get_shell()->envp = envs;
 	return (exit_code);
 }

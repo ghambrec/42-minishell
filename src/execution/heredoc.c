@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 17:46:25 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/04/02 18:46:56 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/04/24 18:03:42 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,3 @@ int	redirect_heredoc(t_redirection *eof)
 	close(fd);
 	return (EXIT_SUCCESS);
 }
-

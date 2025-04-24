@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 17:04:01 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/04/24 14:45:06 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/04/24 18:09:25 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ static int	count_extra_spaces(char *input)
 
 	i = 0;
 	spaces_needed = 0;
-	state.in_double_quotes = false;
-	state.in_single_quotes = false;
+	state.dq = false;
+	state.sq = false;
 	while (input[i])
 	{
 		check_quotes(input[i], &state);
-		if (need_space(input[i]) && state.in_double_quotes == false
-			&& state.in_single_quotes == false)
+		if (need_space(input[i]) && state.dq == false
+			&& state.sq == false)
 		{
 			if ((i == 0 || input[i - 1] != ' '))
 				spaces_needed++;
@@ -54,7 +54,8 @@ static void	handle_operator_with_spaces(char *input,
 	}
 }
 
-static void	copy_with_spaces(char *input, char *updated_input)
+static void	copy_with_spaces(char *input,
+		char *updated_input)
 {
 	int				i;
 	int				j;
@@ -62,13 +63,12 @@ static void	copy_with_spaces(char *input, char *updated_input)
 
 	i = 0;
 	j = 0;
-	state.in_double_quotes = false;
-	state.in_single_quotes = false;
+	state.sq = false;
+	state.dq = false;
 	while (input[i])
 	{
 		check_quotes(input[i], &state);
-		if (!need_space(input[i]) || state.in_double_quotes == true
-			|| state.in_single_quotes == true)
+		if (!need_space(input[i]) || state.sq || state.dq)
 		{
 			if (input[i] == '	')
 			{

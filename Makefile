@@ -30,7 +30,7 @@ SOURCE_DIRS = src \
 				src/errors \
 				src/signals \
 				src/utils \
-				src/input_handling
+				src/input_handling \
 
 VPATH = $(SOURCE_DIRS)
 
@@ -62,7 +62,8 @@ SOURCES += bools.c \
 			utils2.c \
 			check_errors.c \
 			join_commands.c \
-			ft_getenv.c
+			ft_getenv.c \
+			replace_env.c
 
 # FREEING
 SOURCES += free_split.c \
@@ -85,7 +86,7 @@ SOURCES += check_builtin.c \
 			builtin_env.c \
 			builtin_unset.c \
 			builtin_errors.c \
-			builtin_exit.c
+			builtin_exit.c 
 
 # EXECUTING
 SOURCES += execute_command.c \

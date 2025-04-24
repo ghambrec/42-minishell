@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_ast.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/24 17:31:31 by rstumpf           #+#    #+#             */
+/*   Updated: 2025/04/24 18:04:08 by rstumpf          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
 void	free_ast_redirections(t_redirection *redirect)
 {
-	t_redirection *tmp;
+	t_redirection	*tmp;
 
 	while (redirect)
 	{
@@ -15,10 +26,10 @@ void	free_ast_redirections(t_redirection *redirect)
 	}
 }
 
-void free_ast(t_ast *ast)
+void	free_ast(t_ast *ast)
 {
 	if (!ast)
-		return;
+		return ;
 	free_ast(ast->left);
 	free_ast(ast->right);
 	free_split(ast->cmd);
