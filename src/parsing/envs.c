@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:31:02 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/04/24 17:26:33 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/04/24 18:27:50 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	check_quotes(char c, t_quote_state *state)
 {
-	if (c == '"' && !state->in_single_quotes)
+	if (c == '"' && !state->sq)
 	{
-		state->in_double_quotes = !state->in_double_quotes;
+		state->dq = !state->dq;
 	}
-	else if (c == 39 && !state->in_double_quotes)
+	else if (c == 39 && !state->dq)
 	{
-		state->in_single_quotes = !state->in_single_quotes;
+		state->sq = !state->sq;
 	}
 }
 
@@ -29,15 +29,15 @@ static bool	all_vars_replaced(char *input)
 	int				i;
 	t_quote_state	state;
 
-	state.in_single_quotes = false;
-	state.in_double_quotes = false;
+	state.sq = false;
+	state.dq = false;
 	i = 0;
 	if (!ft_strchr(input, '$'))
 		return (true);
 	while (input[i])
 	{
 		check_quotes(input[i], &state);
-		if (input[i] == '$' && !state.in_single_quotes)
+		if (input[i] == '$' && !state.sq)
 			return (false);
 		i++;
 	}
@@ -70,12 +70,12 @@ char	*replace_env_vars(char *input)
 		return (input);
 	output = NULL;
 	i = 0;
-	state.in_single_quotes = false;
-	state.in_double_quotes = false;
+	state.sq = false;
+	state.dq = false;
 	while (input[i])
 	{
 		check_quotes(input[i], &state);
-		if (input[i] == '$' && !state.in_single_quotes)
+		if (input[i] == '$' && !state.sq)
 			break ;
 		i++;
 	}

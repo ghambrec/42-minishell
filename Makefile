@@ -63,8 +63,8 @@ SOURCES += bools.c \
 			utils2.c \
 			check_errors.c \
 			join_commands.c \
-			ft_getenv.c \
-			replace_env.c
+			replace_env.c \
+			sort_2d_strings.c
 
 # FREEING
 SOURCES += free_split.c \
