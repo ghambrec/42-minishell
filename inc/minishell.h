@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 17:28:57 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/04/24 18:21:31 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/04/24 18:43:37 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct s_shell
 {
 	char	**envp;
 	int		exit_code;
+	t_ast	*ast;
 }	t_shell;
 
 typedef struct s_quote_state

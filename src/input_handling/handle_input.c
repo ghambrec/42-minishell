@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 17:31:18 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/04/24 17:31:21 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/04/24 18:43:59 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	handle_input(char *input)
 		return ;
 	}
 	ast = ast_create_tree(&tokens);
+	get_shell()->ast = ast;
 	free_tokens(tokens);
 	tokens = NULL;
 	exec_ast(ast);

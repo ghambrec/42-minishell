@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_command.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 17:31:45 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/04/24 17:31:55 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/04/24 18:48:24 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ void	execute_command(char **cmd)
 	{
 		ft_putstr_fd("Command not found: ", STDERR_FILENO);
 		ft_putendl_fd(cmd[0], STDERR_FILENO);
-		free_split(cmd);
+		free_split(get_shell()->envp);
+		free_ast(get_shell()->ast);
 		exit(127);
 	}
 	if (execve(path, cmd, get_shell()->envp) == -1)
