@@ -39,7 +39,8 @@ SOURCES = main.c
 # SHELL_UTILS
 SOURCES += get_shell.c \
 			init_shell.c \
-			exit_shell.c
+			exit_shell.c \
+			ft_getenv.c
 
 # INPUT_HANDLING
 SOURCES += handle_input.c \
@@ -62,8 +63,12 @@ SOURCES += bools.c \
 			utils2.c \
 			check_errors.c \
 			join_commands.c \
+<<<<<<< HEAD
 			ft_getenv.c \
 			replace_env.c
+=======
+			sort_2d_strings.c
+>>>>>>> dc465eb7864c41401c1d6bf7821f869c7f3d00e4
 
 # FREEING
 SOURCES += free_split.c \

@@ -6,7 +6,7 @@
 /*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 17:28:57 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/04/24 18:08:08 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/04/24 18:16:54 by rstumpf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,12 @@ typedef struct s_ast
 	struct s_ast	*left;
 	struct s_ast	*right;
 }	t_ast;
+
+typedef struct s_shell
+{
+	char	**envp;
+	int		exit_code;
+}	t_shell;
 
 typedef struct s_quote_state
 {

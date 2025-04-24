@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_getenv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rstumpf <rstumpf@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 09:52:25 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/04/18 15:28:17 by rstumpf          ###   ########.fr       */
+/*   Updated: 2025/04/24 14:56:55 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,33 +36,4 @@ char	*ft_getenv(char *env_key)
 	free_split(split_env);
 	free(key);
 	return (env_value);
-}
-
-char	**ft_sort_2d_strings(char **strings2d)
-{
-	int		len;
-	int		i;
-	int		j;
-	char	*temp;
-
-	len = 0;
-	while (strings2d[len])
-		len++;
-	i = 0;
-	while (i < len)
-	{
-		j = 0;
-		while (j < len - i - 1)
-		{
-			if (ft_strcmp(strings2d[j], strings2d[j + 1]) > 0)
-			{
-				temp = strings2d[j];
-				strings2d[j] = strings2d[j + 1];
-				strings2d[j + 1] = temp;
-			}
-			j++;
-		}
-		i++;
-	}
-	return (strings2d);
 }
