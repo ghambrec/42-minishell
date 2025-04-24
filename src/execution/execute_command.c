@@ -1,6 +1,17 @@
 
 # include "minishell.h"
 
+static char	**get_paths(void)
+{
+	char	*paths_string;
+	char	**paths;
+
+	paths_string = ft_getenv("PATH");
+	paths = ft_split(paths_string, ':');
+	free(paths_string);
+	return (paths);
+}
+
 char	*get_path(char *programm)
 {
 	char	**paths;
@@ -8,7 +19,8 @@ char	*get_path(char *programm)
 	char	*full_path;
 	int		i;
 
-	paths = ft_split(ft_getenv("PATH"), ':');
+	// paths = ft_split(ft_getenv("PATH"), ':');
+	paths = get_paths();
 	if (!paths)
 		return (NULL);
 	i = 0;
