@@ -2,16 +2,7 @@
 NAME := minishell
 CC := cc
 INCLUDE_DIR := ./inc
-
-# ---------- READLINE SETUP (macOS Homebrew) ---------- #
-# Use this if you're on Apple Silicon (M1/M2/M3):
-READLINE_PATH := /usr/local/opt/readline
-
-# If you're on Intel Mac (older Homebrew), use this instead:
-# READLINE_PATH := /usr/local/opt/readline
-
 CFLAGS = -Wall -Wextra -Werror -I $(INCLUDE_DIR) -I $(READLINE_PATH)/include -g
-LDFLAGS = -L$(READLINE_PATH)/lib
 
 # ---------- LIB ---------- #
 LIB_DIR = ./lib
@@ -117,7 +108,7 @@ all: $(NAME)
 
 $(NAME): checkMyLibft $(LIBFT_NAME) $(OBJECTS)
 	@echo "$(YELLOW)Compiling $(NAME)...$(NC)"
-	@cc $(CFLAGS) $(LDFLAGS) $(OBJECTS) $(LIBFT_FULL) -lreadline -o $(NAME)
+	@cc $(CFLAGS) $(OBJECTS) $(LIBFT_FULL) -lreadline -o $(NAME)
 	@if [ -f $(NAME) ]; then \
 		echo "$(CYAN)--------------------------------------$(NC)"; \
 		echo "$(GREEN)BUILD PROCESS COMPLETED SUCCESSFULLY!$(NC)"; \
