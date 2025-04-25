@@ -6,7 +6,7 @@
 /*   By: ghambrec <ghambrec@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 17:31:18 by rstumpf           #+#    #+#             */
-/*   Updated: 2025/04/24 18:43:59 by ghambrec         ###   ########.fr       */
+/*   Updated: 2025/04/25 15:26:49 by ghambrec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	handle_input(char *input)
 	get_shell()->ast = ast;
 	free_tokens(tokens);
 	tokens = NULL;
+	if (PRINT_TREE == true)
+		ast_print(ast);
 	exec_ast(ast);
 	free_ast(ast);
 }
